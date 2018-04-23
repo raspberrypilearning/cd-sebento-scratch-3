@@ -1,6 +1,8 @@
 ## Introduction
 
-Add project description here. What will learners be making?
+These are the Advanced Scratch Sushi Cards, and in them you’ll be making a platform-style game which you can later add your own levels, powers and characters to.
+
+![](images/setup1.png)
 
 ### What you will make
 

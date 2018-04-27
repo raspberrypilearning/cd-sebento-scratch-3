@@ -2,7 +2,7 @@
 
 You may have noticed that the `lose`{:class="blockmoreblocks"} **more block**  on the `Player Character` sprite is empty. You’re going to fill this in and setup all the pieces needed for a nice “Game Over” screen.
 
-+ First, complete the `lose` block: 
++ First, find the `lose` block and complete it with the following code: 
 
 ```blocks
     define lose
@@ -45,7 +45,7 @@ Now, for something a little more tricky! If you look at the code for the `Collec
 
 We’ll talk more about what makes clones special when we get to the card about making new and different collectables, but for now what you need to know is that clones can do **almost** everything a normal sprite can, including receiving `broadcast`{:class="blockevents"} messages.
 
-+ Let’s look at how the `Collectable` sprite works: 
++ Let’s look at how the `Collectable` sprite works. See if you can understand some of it: 
 
 ```blocks
     when green flag clicked
@@ -61,12 +61,10 @@ We’ll talk more about what makes clones special when we get to the card about 
         create clone of [myself v]
     end
 ```
- 
- ![](images/losing3.png)
 
  1. First it makes the original collectable invisible
  2. Then it sets up the control variables. We’ll come back to these later.
- 3. The `create-collectables` variable is the on/off switch for cloning: the loop creates clones if `create-collectables` is `true`, and does nothing if it’s not
+ 3. The `create-collectables`{:class="blockdata"} variable is the on/off switch for cloning: the loop creates clones if `create-collectables`{:class="blockdata"} is `true`, and does nothing if it’s not
 
 + Now what you need to do is setup a block on the `Collectable` sprite:
 
@@ -79,5 +77,3 @@ We’ll talk more about what makes clones special when we get to the card about 
  This is similar to the ones you had on the `Edges` and `Platforms` sprites. The only difference is you’re also setting the `create-collectables`{:class="blockdata"} variable to `false` so that no new clones are created. 
  
 + Notice how you can use the variable to pass messages from one part of your code to another! 
-
-![](images/losing4.png)

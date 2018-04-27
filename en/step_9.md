@@ -90,6 +90,3 @@ title: Different Characters!
 
 ![](images/zero.png) 
 
-
-#### Tell us what you thought!
-Go to [dojo.soy/advanced-scratch-end](http://dojo.soy/advanced-scratch-end) and let us know if you had fun with these Sushi Cards and what you’d like to see in future!

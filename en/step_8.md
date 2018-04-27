@@ -18,7 +18,7 @@ Time to start adding some code!
     forever
         wait (4) secs
         if <(create-platforms) = [true]> then
-            create clone of [myself V]
+            create clone of [myself v]
         end
     end
 ```

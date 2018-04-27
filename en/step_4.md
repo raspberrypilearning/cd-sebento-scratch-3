@@ -79,7 +79,7 @@ Now you need to decide what the powerup will do. We’ll start with something si
         change [points v] by (collectable-value)
     end
     if <(type) = [2]> then
-        change [lives v] by 1
+        change [lives v] by [1]
     end
 ```
 

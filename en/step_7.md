@@ -4,11 +4,11 @@ What you’re going to do on this card is add a new level to the game that the p
 
 + First, create a new button sprite by either adding it from the library or drawing your own. I did a bit of both and came up with this: 
 
-![](images/level1.png)
+![The button sprite to switch levels](images/levelButton.png)
 
 Now, the code for this button is kinda clever; it’s designed so that every time you click it, it will take you to the next level, how ever many levels there are.
 
-+ Add this to your button sprite: 
++ Add these scripts to your button sprite: 
 
 ```blocks
     when green flag clicked
@@ -26,8 +26,6 @@ Now, the code for this button is kinda clever; it’s designed so that every tim
     broadcast [collectable-cleanup v]
     broadcast (join [level-](current-level))
 ```
-
-![](images/level2and3.png)
  
 `max-level`{:class="blockdata"} is the highest level
 `min-level`{:class="blockdata"} is the lowest level
@@ -39,20 +37,37 @@ The code uses broadcasts to tell the other sprites which level to display, and t
 
 Now you need to get the other sprites to respond to those broadcasts! Start with the easy one: clearing all the collectables. If you just tell them to `hide`, all the existing clones will. 
 
-+ Add this to the `collectable` sprite: 
++ Add this to the `Collectable` sprite: 
 
 ```blocks
     when I receive [collectable-cleanup v]
     hide
 ```
 
-![](images/level4.png)
-
 Since one of the first things any new clone already does is show itself, that means you don’t even have to worry about turning this off for them!
 
-Now to switch the `platforms` sprite! You can design your own new level later, if you like, but for now let’s use the one I’ve already included \(you’ll see why on the next card!\). 
+Now to switch the `Platforms` sprite! You can design your own new level later, if you like, but for now let’s use the one I’ve already included \(you’ll see why on the next card!\). 
 
 + You just need to add this code to the `Platforms` sprite.
+
+```blocks
+    when I receive [level-1 v]
+    switch costume to [Level 1 v]
+    show
+```
+
+```blocks
+    when I receive [level-2 v]
+    switch costume to [Level 2 v]
+    show
+```
+
+It takes the messages sent out by `joining`{:class="blockoperators"} the `level-`{:class="blockdata"} and the `current-level`{:class="blockdata"} variable and uses them to change the `Platforms` costume. 
+
+
+![](images/level5.png)
+
++ For the `Enemy` sprite, you just need to make sure it disappears on level 2 \(or move it to another platform!\), like this: 
 
 ```blocks
     when I receive [level-1 v]
@@ -63,20 +78,6 @@ Now to switch the `platforms` sprite! You can design your own new level later, i
     when I receive [level-2 v]
     hide
 ```
-
-It takes the messages sent out by **joining** the `level-`{:class="blockdata"} and the `current-level`{:class="blockdata"} variable and uses them to change the `platforms` costume. 
-
-
-![](images/level5.png)
-
-+ For the `Enemy` sprite, you just need to make sure it disappears on level 2 \(or move it to another platform!\), like this: 
-
-```blocks
-    when I receive [level-2 v]
-    hide
-```
-
-![](images/level6.png)
 
 + Finally, the player character needs to separate out the coordinates from the `reset character`{:class="blockmoreblocks"} **more block**, so the character goes to the right place, and call the first level when the game starts. 
 
@@ -107,6 +108,7 @@ The variables are used for the starting coordinates instead of fixed **x** and *
 
 ```blocks
     define reset-game
+    set size to (35) %
     set rotation style [left-right v]
     set [jump-height v] to [15]
     set [gravity v] to [2]
@@ -117,6 +119,3 @@ The variables are used for the starting coordinates instead of fixed **x** and *
     broadcast (join [level-](min-level))
 ```
 The `min-level`{:class="blockdata"} is broadcasted to reset the character and the game.
-
-![](images/level7.png)
- 

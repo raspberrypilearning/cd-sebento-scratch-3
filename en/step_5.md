@@ -4,7 +4,7 @@ Now that you have a new powerup working, it’s time to make it do something coo
  
 To make that work, you need to create another piece of code that you can start while the `react-to-player`{:class="blockmoreblocks"} block finishes running. The way to make this happen is to use the `broadcast`{:class="blockevents"} block to send a message to another piece of code inside this sprite. 
 
-+ Create this block on the `Collectable` sprite. Let’s call the message `collectable-rain`, since that’s basically what it does!
++ Create this block on the `Collectable` sprite. Let’s call the message `collectable-rain`{:class="blockevents"}, since that’s basically what it does!
 
 ```blocks
     when I receive [collectable-rain v]
@@ -12,8 +12,6 @@ To make that work, you need to create another piece of code that you can start w
     wait (1) secs
     set [collectable-frequency v] to [1]
 ```
-
-![](images/super1.png)
 
 --- collapse ---
 ---

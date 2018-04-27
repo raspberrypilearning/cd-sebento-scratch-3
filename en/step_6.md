@@ -22,7 +22,7 @@ Your game works and now you can collect points, get special powers from powerups
     show
     set [enemy-move-steps v] to [5]
     set rotation style [left-right v]
-    go to x: (-68) y: (-11)
+    go to x: (1) y: (59)
     forever
         move (enemy-move-steps) steps
         if <not <touching [Platforms v] ?>> then
@@ -31,7 +31,7 @@ Your game works and now you can collect points, get special powers from powerups
     end
 ```
 
-If you just drag the `go to`{:class="blockmotion"} block and don’t change the x & y values, they’ll be the values for the current location of the sprite!
+Note: If you just drag the `go to`{:class="blockmotion"} block and don’t change the **x** & **y** values, they’ll be the values for the current location of the sprite!
  
 The code in the `if.. then`{:class="blockcontrol"} block will make the enemy turn around when they get to the end of the platform!
 
@@ -51,7 +51,7 @@ The next thing you’ll need is for the player to lose a life when they touch th
 
 --- collapse ---
 ---
-title: Show me the whole green flag script
+title: Show me the whole updated script
 ---
 
 My `Player Character` sprite's main block looks like this now:

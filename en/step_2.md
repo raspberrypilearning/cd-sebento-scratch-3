@@ -4,7 +4,7 @@ Because you’re learning Scratch and not how to build a physics engine (code th
 
 You should take a quick look at it including the details on this card, since you’ll be making some changes to it later, but you don’t need to understand everything it’s doing.
 
-+ The first thing you’ll need to do is to get a copy of the code from [dojo.soy/platform-starter](http://dojo.soy/platform-starter) 
++ The first thing you’ll need to do is to get a copy of the code from [dojo.soy/platform-starter](http://dojo.soy/platform-starter){:target="_blank"} 
 
 + You can download this code by clicking **See Inside**, then the **File** menu and then **Download to your computer** and then open it in Scratch on your computer.
 

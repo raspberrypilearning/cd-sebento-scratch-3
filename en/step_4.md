@@ -61,7 +61,7 @@ Now you need to decide what the powerup will do. We’ll start with something si
 
 + Expand the **Options** section and add a **number input**. Name it `type`. 
 
-+ Make the `react-to-player`{:class="blockmoreblocks} block either give the same points prize that the star is already giving, or increase the player’s lives, depending on the `type` of powerup.  
++ Make the `react-to-player`{:class="blockmoreblocks"} block either give the same points prize that the star is already giving, or increase the player’s lives, depending on the `type` of powerup.  
 
 ![](images/powerup4and5.png)
 

@@ -6,7 +6,7 @@ Your game works and now you can collect points, get special powers from powerups
 
 + Resize the sprite to the right size and place it somewhere appropriate to start. Here’s what mine looks like: 
 
-![](images/comp1.png)
+![The helicopter enemy sprite](images/enemySprite.png)
 
 + Write the easier code first: Setup the block for the `game over` message, so the enemy will disappear when the player loses the game. 
 
@@ -14,8 +14,6 @@ Your game works and now you can collect points, get special powers from powerups
     when I receive [game-over v]
     hide
 ```
-
-![](images/comp2.png)
 
 + Now you need to write the code for what the enemy does. You can use mine from this card, but don’t be afraid to add more! What if they teleport around to different platforms? Or what if there’s a powerup that makes them move faster, or slower? 
 
@@ -40,8 +38,6 @@ The code in the `if.. then`{:class="blockcontrol"} block will make the enemy tur
 The next thing you’ll need is for the player to lose a life when they touch the enemy. You need to make sure they **stop** touching really quickly, though, since otherwise the touching code will keep running and they’ll keep losing lives. 
 
 + Here's how I did it, though feel free to try to improve on it! I modified the `Player Character` sprite’s main block. Add the code before the `if`{:class="blockcontrol"} block that checks if you're out of lives.
-
-![](images/comp4modified.png)
 
 ```blocks
     if <touching [Enemy v] ?> then

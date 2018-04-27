@@ -6,7 +6,7 @@ You may have noticed that the `lose`{:class="blockmoreblocks"} **more block**  o
 
 ```blocks
     define lose
-    stop [other scripts in sprite v]
+    stop [other scripts in sprite v] :: control stack
     broadcast [game over v]
     go to x:(0) y:(0)
     say [Game over! You lose!] for (5) secs
@@ -41,9 +41,9 @@ Now you need to make sure all the sprites know what to do when the game is over,
     show
 ```
 
-Now, for something a little more tricky! If you look at the code for the `Collectable` sprite, you’ll see it works by **cloning** itself. That is, it makes copies of itself, which follow the special `when I start as a clone`{:class="blockcontrol"} instructions. 
+Now, for something a little more tricky! If you look at the code for the `Collectable` sprite, you’ll see it works by **cloning** itself. That is, it makes copies of itself, which follow the special `when I start as a clone`{:class="blockevents"} instructions. 
 
-We’ll talk more about what makes clones special when we get to the card about making new and different collectables, but for now what you need to know is that clones can do **almost** everything a normal sprite can, including receiving `broadcast`{:class="blockcontrol"} messages.
+We’ll talk more about what makes clones special when we get to the card about making new and different collectables, but for now what you need to know is that clones can do **almost** everything a normal sprite can, including receiving `broadcast`{:class="blockevents"} messages.
 
 + Let’s look at how the `Collectable` sprite works: 
 

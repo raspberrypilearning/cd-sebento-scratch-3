@@ -10,15 +10,34 @@ Your game works and now you can collect points, get special powers from powerups
 
 + Write the easier code first: Setup the block for the `game over` message, so the enemy will disappear when the player loses the game. 
 
+```blocks
+    when I receive [game-over v]
+    hide
+```
+
 ![](images/comp2.png)
 
 + Now you need to write the code for what the enemy does. You can use mine from this card, but don’t be afraid to add more! What if they teleport around to different platforms? Or what if there’s a powerup that makes them move faster, or slower? 
 
+```blocks
+    when green flag clicked
+    show
+    set [enemy-move-steps v] to [5]
+    set rotation style [left-right v]
+    go to x: (-68) y: (-11)
+    forever
+        move (enemy-move-steps) steps
+        if <not <touching [Platforms v] ?>> then
+            set [enemy-move-steps v] to ((enemy-move-steps) * (-1))
+        end
+    end
+```
+
 ![](images/comp3.png)
 
-If you just drag the `go to` block and don’t change the x & y values, they’ll be the values for the current location of the sprite!
+If you just drag the `go to`{:class="blockmotion"} block and don’t change the x & y values, they’ll be the values for the current location of the sprite!
  
-The code in the `if.. then` block will make the enemy turn around when they get to the end of the platform!
+The code in the `if.. then`{:class="blockcontrol"} block will make the enemy turn around when they get to the end of the platform!
 
 + The next thing you’ll need is for the player to lose a life when they touch the enemy. You need to make sure they **stop** touching really quickly, though, since otherwise the touching code will keep running and they’ll keep losing lives. Here's how I did it, though feel free to try to improve on it! I modified the `Player Character` sprite’s main block. 
 

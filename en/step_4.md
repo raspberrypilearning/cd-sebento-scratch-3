@@ -65,14 +65,13 @@ Now you need to decide what the powerup will do. We’ll start with something si
 
 ![](images/powerup4and5.png)
 
-+ Update the `when I start as a clone`{:class="blockcontrol"} code to replace the points increase with a **call** to `react-to-player`{:class="blockmoreblocks"}, **passing** `collectable-type`{:class="blockdata"}. Stars still boost points but the new powerup adds lives. 
++ Update the `when I start as a clone`{:class="blockevents"} code to replace the points increase with a **call** to `react-to-player`{:class="blockmoreblocks"}, **passing** `collectable-type`{:class="blockdata"}. Stars still boost points but the new powerup adds lives. 
 
 ```blocks
     if <touching [Player Character v] ?> then
-        react-player (collectable-type) :: custom
+        react-to-player (collectable-type) :: custom
         delete this clone
     end
 ```
 
-![](images/powerup6.png)
 

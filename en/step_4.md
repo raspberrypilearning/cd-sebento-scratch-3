@@ -26,8 +26,6 @@ In the code above, `collectable-type`{:class="blockdata"} is **passed** to `pick
         create clone of [myself v]
 ```
 
-![](images/powerup2.png)
-
 --- collapse ---
 ---
 title: Pro Tip!
@@ -55,17 +53,15 @@ Great! Now you’re setting a different value for the collectable type, but none
     end
 ```
 
-![](images/powerup3.png)
-
 Now you need to decide what the powerup will do. We’ll start with something simple: giving the player a new life. On the next card, you’ll make it do something cooler. 
 
 ### To create the powerup code
 
-+ Go into **more blocks** and **Make a Block**. Name the block `react-to-player`.
++ Go into **more blocks** and **Make a Block**. Name the block `react-to-player`{:class="blockmoreblocks"}.
 
 + Expand the **Options** section and add a **number input**. Name it `type`. 
 
-+ Make the `react-to-player` block either give the same points prize that the star is already giving, or increase the player’s lives, depending on the `type` of powerup.  
++ Make the `react-to-player`{:class="blockmoreblocks} block either give the same points prize that the star is already giving, or increase the player’s lives, depending on the `type` of powerup.  
 
 ![](images/powerup4and5.png)
 
@@ -73,7 +69,7 @@ Now you need to decide what the powerup will do. We’ll start with something si
 
 ```blocks
     if <touching [Player Character v] ?> then
-        react-player (collectable-type)
+        react-player (collectable-type) :: custom
         delete this clone
     end
 ```

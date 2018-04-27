@@ -1,10 +1,10 @@
 ## Super powerups!
 
-Now that you have a new powerup working, it’s time to make it do something cool! How about making it rain powerups for a few seconds, instead of just giving out an extra life? 
+Now that you have a new powerup working, it’s time to make it do something cool! How about making it 'rain' powerups for a few seconds, instead of just giving out an extra life? 
  
-To make that work, you need to create another piece of code that you can start while the “react-to-player” block finishes running. The way to make this happen is to use the `broadcast`{:class="blockevents"} block to send a message to another piece of code inside this sprite. Let’s call it `collectable-rain`, since that’s basically what it does!
+To make that work, you need to create another piece of code that you can start while the `react-to-player`{:class="blockmoreblocks"} block finishes running. The way to make this happen is to use the `broadcast`{:class="blockevents"} block to send a message to another piece of code inside this sprite. 
 
-+ Create this block on the `Collectable` sprite. 
++ Create this block on the `Collectable` sprite. Let’s call the message `collectable-rain`, since that’s basically what it does!
 
 ```blocks
     when I receive [collectable-rain v]
@@ -26,13 +26,13 @@ This doesn’t look like it should do much, but if you think about what’s happ
 
 ![](images/super2.png)
 
-Instead of pausing the code here for a second, it’s only pausing for **one millionth** of a second, meaning that the loop will run many more times than normal because of the smaller value of `collectable-frequency`{:class="blockdata"}. This means that the code is going to create **a lot** more powerups in that second than it normally would. Can you think of any problems that might cause? There’ll be a lot more lightning bolts… what if I kept catching them?
+Instead of pausing the code here for a second, it’s only pausing for **one millionth** of a second, meaning that the loop will run many more times than normal because of the smaller value of `collectable-frequency`{:class="blockdata"}. This means that the code is going to create **a lot** more powerups in that second than it normally would. Can you think of any problems that might cause? There’ll be a lot more super farts… what if I kept catching them?
 
 --- /collapse ---
 
 Now you have that broadcast block ready, but it’s not being used yet. 
 
-+ This next part’s easy. Just update `react-to-player`{:class="blockmoreblocks"} to look like this, so it broadcasts `collectable-rain` when the player touches a type `2` powerup. 
++ This next part’s easy. Just update `react-to-player`{:class="blockmoreblocks"} to look like this, so it broadcasts `collectable-rain`{:class="blockevents"} when the player touches a type `2` powerup. 
 
 ```blocks
     define react-to-player (type)
@@ -43,8 +43,6 @@ Now you have that broadcast block ready, but it’s not being used yet.
         broadcast [collectable-rain v]
     end
 ```
-
-![](images/super3.png)
 
 #### Get Creative!
  

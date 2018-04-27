@@ -1,26 +1,66 @@
 ## Losing the game
 
-You may have noticed that the `lose` **more block**  on the `Player Character` sprite is empty. You’re going to fill this in and setup all the pieces needed for a nice “Game Over” screen.
+You may have noticed that the `lose`{:class="blockmoreblocks"} **more block**  on the `Player Character` sprite is empty. You’re going to fill this in and setup all the pieces needed for a nice “Game Over” screen.
 
 + First, complete the `lose` block: 
 
+```blocks
+    define lose
+    stop [other scripts in sprite v]
+    broadcast [game over v]
+    go to x:(0) y:(0)
+    say [Game over! You lose!] for (5) secs
+```
+
 ![](images/losing1.png)
+
+--- collapse ---
+---
+title: What does the code do?
+---
+
+Wherever the `lose`{:class="blockmoreblocks"} block runs, what it will do is: 
 
  1. Stop the physics and other game scripts on the Player Character
  2. Tell all the other sprites that the game is over, by **broadcasting** a message so they can change based on that
  3. Move the Player Character to the centre of the screen and have them tell the player the game is over
 
+--- /collapse ---
+
 Now you need to make sure all the sprites know what to do when the game is over, and how to reset themselves when the player starts a new game. **Don’t forget that any new sprites you add may need code for this too!**
 
-+ Start with the easy ones, the `Platforms` and `Edges` sprites both need code for appearing when the game starts and disappearing at game over. 
++ Start with the easy ones. The `Platforms` and `Edges` sprites both need code for appearing when the game starts and disappearing at game over, so add that to each of them:
 
-![](images/losing2.png)
+```blocks
+    when I receive [game over  v]
+    hide
+```
 
-Now, for something a little more tricky! If you look at the code for the `Collectable` sprite, you’ll see it works by **cloning** itself. That is, it makes copies of itself, which follow the special `when I start as a clone` instructions. 
+```blocks
+    when green flag clicked
+    show
+```
 
-We’ll talk more about what makes clones special when we get to the card about making new and different collectables, but for now what you need to know is that clones can do **almost** everything a normal sprite can, including receiving `broadcast` messages.
+Now, for something a little more tricky! If you look at the code for the `Collectable` sprite, you’ll see it works by **cloning** itself. That is, it makes copies of itself, which follow the special `when I start as a clone`{:class="blockcontrol"} instructions. 
+
+We’ll talk more about what makes clones special when we get to the card about making new and different collectables, but for now what you need to know is that clones can do **almost** everything a normal sprite can, including receiving `broadcast`{:class="blockcontrol"} messages.
 
 + Let’s look at how the `Collectable` sprite works: 
+
+```blocks
+    when green flag clicked
+    hide
+    set [collectable-value v] to [1]
+    set [collectable-speed v] to [1]
+    set [collectable-frequency v] to [1]
+    set [creat-collectables v] to [true]
+    set [collectable-type v] to [1]
+    repeat until <not <(create-collectables) = [true]>>
+        wait (collectable-frequency) secs
+        go to x: (pick random (-240) to (240)) y: (179)
+        create clone of [myself v]
+    end
+```
  
  ![](images/losing3.png)
 
@@ -28,6 +68,16 @@ We’ll talk more about what makes clones special when we get to the card about 
  2. Then it sets up the control variables. We’ll come back to these later.
  3. The `create-collectables` variable is the on/off switch for cloning: the loop creates clones if `create-collectables` is `true`, and does nothing if it’s not
 
-+ Now what you need to do is setup a block like the ones you had on the `Edges` and `Platforms` sprites on the `Collectable` sprite. The only difference is you’re also setting the `create-collectables` variable to `false` so that no new clones are created. Notice how you can use the variable to pass messages from one part of your code to another! 
++ Now what you need to do is setup a block on the `Collectable` sprite:
+
+```blocks
+    when I receive [game over v]
+    hide
+    set [create-collectables v] to [false]
+```
+
+ This is similar to the ones you had on the `Edges` and `Platforms` sprites. The only difference is you’re also setting the `create-collectables`{:class="blockdata"} variable to `false` so that no new clones are created. 
+ 
++ Notice how you can use the variable to pass messages from one part of your code to another! 
 
 ![](images/losing4.png)

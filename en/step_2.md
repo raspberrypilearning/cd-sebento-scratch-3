@@ -18,10 +18,10 @@ You can lose lives, but nothing happens when you run out. Also, the game has onl
 
 ![](images/setup2and3.png)
 
-In the code above, the main game `forever` loop calls the `main-physics` block to do a whole lot of stuff! Keeping them separated like this makes it easy to read the main loop and understand what happens when, without worrying about **how** it happens.
+In the code above, the main game `forever`{:class="blockcontrol"} loop calls the `main-physics`{:class="blockmoreblocks"} block to do a whole lot of stuff! Keeping them separated like this makes it easy to read the main loop and understand what happens when, without worrying about **how** it happens.
  
 
-+ Now look at `reset game` and `reset character` and notice:
-    They do pretty normal things—setting up variables, making sure the character rotates properly
-    `reset-game` **calls** `reset-character`—you can use a **more block** inside another **more block**!
-    `reset-character` gets used in two different places, but to change it you only have to change the code of the **more block** in one! This can save you a lot of work and help you avoid mistakes.
++ Now look at `reset game`{:class="blockmoreblocks"} and `reset character`{:class="blockmoreblocks"} and notice:
+    1. They do pretty normal things—setting up variables, making sure the character rotates properly
+    2. `reset-game`{:class="blockmoreblocks"} **calls** `reset-character`{:class="blockmoreblocks"} — you can use a **more block** inside another **more block**!
+    3. `reset-character`{:class="blockmoreblocks"} gets used in two different places, but to change it you only have to change the code of the **more block** in one! This can save you a lot of work and help you avoid mistakes.

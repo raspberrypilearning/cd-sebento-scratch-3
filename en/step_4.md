@@ -9,7 +9,12 @@ You may have noticed that the `lose`{:class="blockmoreblocks"} **more block**  o
     stop [other scripts in sprite v] :: control stack
     broadcast [game over v]
     go to x:(0) y:(0)
-    say [Game over! You lose!] for (5) secs
+    say [Game over!] for (2) secs
+    say [It's pretty much impossible to catch all the methane, right?] for (5) secs
+    say [It would be better to reduce the amount produced in the first place.] for (6) secs
+    say [By considering the consequences of how we produce food...] for (5) secs
+    say [...we can do it in a more sustainable way that's better for everyone.] for (6) secs
+    stop [all v]
 ```
 
 ![](images/losing1.png)
@@ -24,6 +29,7 @@ Wherever the `lose`{:class="blockmoreblocks"} block runs, what it will do is:
  1. Stop the physics and other game scripts on the Player Character
  2. Tell all the other sprites that the game is over, by **broadcasting** a message so they can change based on that
  3. Move the Player Character to the centre of the screen and have them tell the player the game is over
+ 4. Stop all scripts in the game.
 
 --- /collapse ---
 

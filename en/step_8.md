@@ -1,75 +1,121 @@
-## Moving platforms
+## Level 2
 
-The reason I asked you to use my version of level 2 is the gap you might have noticed in the middle. You’re going to create a platform that moves through that gap, that the player can jump onto and ride. 
+What you’re going to do on this card is add a new level to the game that the player can get to just by pressing a button. Later, you can change it so they need a certain number of points, or something else, to get there.
 
-![Another level with different platforms](images/movingPlatforms.png)
++ First, create a new button sprite by either adding it from the library or drawing your own. I did a bit of both and came up with this: 
 
-+ First, you’ll need the sprite for the platform. You can create this by adding any sprite, naming it `Moving-Platform` and using the costume customisation tools in the **costumes** tab to make it look like the other platforms \(use vector mode\).
+![The button sprite to switch levels](images/levelButton.png)
 
-Time to start adding some code! 
+Now, the code for this button is kinda clever; it’s designed so that every time you click it, it will take you to the next level, how ever many levels there are.
 
-+ Begin with the basics: To make a never-ending set of platforms moving up the screen, you’ll need to **clone** the platform at some sort of interval. I picked 4 seconds. 
-
-+ You also need to make sure that there’s an on/off switch for making the platforms, so they don’t show up on level 1. I’m using a **variable** called `create-platforms`{:class="blockdata"}. 
-
-Here's how my code looks so far for the new sprite:
++ Add these scripts to your button sprite: 
 
 ```blocks
     when green flag clicked
-    hide
-    forever
-        wait (4) secs
-        if <(create-platforms) = [true]> then
-            create clone of [myself v]
-        end
-    end
+    set [max-level v] to [2]
+    set [min-level v] to [1]
+    set [current-level v] to [1]
 ```
-
-+ Then add the clone's code:
 
 ```blocks
-    when I start as a clone
-    show
-    forever
-        if <(y position) < [180]> then
-            change y by (1)
-            wait (0.02) secs
-        else
-            delete this clone
-        end
+    when this sprite clicked
+    change [current-level v] by (1)
+    if <(current-level) > (max-level)> then
+        set [current-level v] to (min-level)
     end
+    broadcast [collectable-cleanup v]
+    broadcast (join [level-](current-level))
+```
+ 
+`max-level`{:class="blockdata"} is the highest level
+`min-level`{:class="blockdata"} is the lowest level
+`current-level`{:class="blockdata"} is the level the player is on right now
+
++ These all need to be set by the programmer \(you!\), so if you add a third level, don’t forget to change `max-level`{:class="blockdata"}!
+
+The code uses broadcasts to tell the other sprites which level to display, and to clear up the collectables.
+
+Now you need to get the other sprites to respond to those broadcasts! Start with the easy one: clearing all the collectables. If you just tell them to `hide`, all the existing clones will. 
+
++ Add this to the `Collectable` sprite: 
+
+```blocks
+    when I receive [collectable-cleanup v]
+    hide
 ```
 
-This code is simple: Move up to the top of the screen, slowly enough for the player to jump on and off, and then disappear. 
+Since one of the first things any new clone already does is show itself, that means you don’t even have to worry about turning this off for them!
 
-+ You need to make the platforms disappear/reappear based on the level changing events and on the `game over` event. 
+Now to switch the `Platforms` sprite! You can design your own new level later, if you like, but for now let’s use the one I’ve already included \(you’ll see why on the next card!\). 
+
++ You just need to add this code to the `Platforms` sprite.
 
 ```blocks
     when I receive [level-1 v]
-    set [create-platforms v] to [false]
-    hide
+    switch costume to [Level 1 v]
+    show
+```
 
+```blocks
     when I receive [level-2 v]
-    set [create-platforms v] to [true]
+    switch costume to [Level 2 v]
+    show
+```
 
-    when I receive [game over v]
+It takes the messages sent out by `joining`{:class="blockoperators"} the `level-`{:class="blockdata"} and the `current-level`{:class="blockdata"} variable and uses them to change the `Platforms` costume. 
+
+
+![](images/level5.png)
+
++ For the `Enemy` sprite, you just need to make sure it disappears on level 2 \(or move it to another platform!\), like this: 
+
+```blocks
+    when I receive [level-1 v]
+    show
+```
+
+```blocks
+    when I receive [level-2 v]
     hide
-    set [create-platforms v] to [false]
 ```
 
-+ Now, if you try to actually play the game, the Player Character falls through the platform! Any idea why? 
-
-It’s because the physics code doesn’t know about the platform. It’s actually an easy fix: on the `Player Character` sprite you need to replace every `touching “Platforms”`{:class="blocksensing"}  with an `OR`{:class="blockoperators"} operator, where you check for **either** `touching “Platforms”`{:class="blocksensing"}  **OR** `touching “Moving Platform”`{:class="blocksensing"} 
- 
-+ Go through the code on the `Player Character` sprite and everywhere you see this block
++ Finally, the player character needs to separate out the coordinates from the `reset character`{:class="blockmoreblocks"} **more block**, so the character goes to the right place, and call the first level when the game starts. 
 
 ```blocks
-    <touching [Platforms v] ?>
+    when I receive [level-1 v]
+    set [start-x v] to [-183]
+    set [start-y v] to [42]
+    reset-character :: custom
 ```
-
-replace it with
 
 ```blocks
-    <<touching [Platforms v] ?> or <touching [Moving-Platform v] ?>>
+    when I receive [level-2 v]
+    set [start-x v] to [-218]
+    set [start-y v] to [-143]
+    reset-character :: custom
 ```
 
+For each level, you set the starting coordinates and then **call** `reset-character`{:class="blockmoreblocks"}
+
+```blocks
+    define reset-character
+    set [can-jump v] to [true]
+    set [x-velocity v] to [0]
+    set [y-velocity v] to [-0]
+    go to x: (start-x) y: (start-y)
+```
+The variables are used for the starting coordinates instead of fixed **x** and **y** values in the `go to`{:class="blockmotion"} block
+
+```blocks
+    define reset-game
+    set size to (35) %
+    set rotation style [left-right v]
+    set [jump-height v] to [15]
+    set [gravity v] to [2]
+    set [x-speed v] to [1]
+    set [y-speed v] to [1]
+    set [lives v] to [3]
+    set [points v] to [0]
+    broadcast (join [level-](min-level))
+```
+The `min-level`{:class="blockdata"} is broadcasted to reset the character and the game.

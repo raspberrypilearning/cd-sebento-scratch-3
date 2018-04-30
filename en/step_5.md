@@ -1,36 +1,77 @@
-## Super powerups!
+## Powerups
 
-Now that you have a new powerup working, it’s time to make it do something cool! How about making it 'rain' powerups for a few seconds, instead of just giving out an extra life? 
- 
-To make that work, you need to create another piece of code that you can start while the `react-to-player`{:class="blockmoreblocks"} block finishes running. The way to make this happen is to use the `broadcast`{:class="blockevents"} block to send a message to another piece of code inside this sprite. 
+On the last card you saw the collectable I created. It’s a fart cloud that just adds one point when you grab it. That’s pretty boring.
 
-+ Create this block on the `Collectable` sprite. Let’s call the message `collectable-rain`{:class="blockevents"}, since that’s basically what it does!
+On this card, you’re going to create a new collectable, but you’re going to do it in a way that makes adding more collectables easy, so you can invent your own powers and bonuses and really make the game your own!
+
++ Add a new costume to the `Collectable` sprite for your new power-up. I've drawn a supersized fart cloud, but you can make whatever you like!
+
+Notice that I’ve already included some pieces to make this easier for you with the `collectable-type`{:class="blockdata"} variable and the `pick costume`{:class="blockmoreblocks"} **more block**. You’re going to need to improve on them though. 
+
+![](images/powerup1.png)
+
+In the code above, `collectable-type`{:class="blockdata"} is **passed** to `pick-costume`{:class="blockmoreblocks"} when it’s **called**, where it becomes `type` and can be used inside the **more block**
+
+First, you need to set the collectable type. It’s just a number, used to tell the program what costume, rules etc. to use for the collectable. You’re going to want to pick it at random, to keep things interesting. 
+
++ Find the `repeat until`{:class="blockcontrol"} loop inside the green flag code for the `Collectable` sprite and add the `if... else`{:class="blockcontrol"} code shown below.
 
 ```blocks
-    when I receive [collectable-rain v]
-    set [collectable-frequency v] to [0.000001]
-    wait (1) secs
-    set [collectable-frequency v] to [1]
+    repeat until <not <(create-collectables) = [true]>>
+        if <[50] = (pick random (1) to (50))> then
+            set [collectable-type v] to [2]
+        else
+            set [collectable-type v] to [1]
+        end
+        wait (collectable-frequency) secs
+        go to x: (pick random (-240) to (240)) y: (179)
+        create clone of [myself v]
 ```
+
+This example gives a 1/50 chance of setting the `collectable-type`{:class="blockdata"} to `2`.
 
 --- collapse ---
 ---
-title: What does the new code do?
+title: Pro Tip!
 ---
 
-This block just sets `collectable-frequency`{:class="blockdata"} to a very small number \(change it to different values, see what happens!\) and then waits a second and changes it back to `1`.
+There can be a different value set as the `collectable-type`{:class="blockdata"} for each clone. 
 
-This doesn’t look like it should do much, but if you think about what’s happening during that second, the `when (green flag) clicked`{:class="blockevents"} code is still running, and the `repeat until`{:class="blockcontrol"} loop in it is looping. Look at the code in that loop: 
+Think of it like creating a new copy of the variable on the main `Collectable` sprite with the value that was in `collectable-type`{:class="blockdata"} the instant that clone was created. 
 
-![](images/super2.png)
-
-Instead of pausing the code here for a second, it’s only pausing for **one millionth** of a second, meaning that the loop will run many more times than normal because of the smaller value of `collectable-frequency`{:class="blockdata"}. This means that the code is going to create **a lot** more powerups in that second than it normally would. Can you think of any problems that might cause? There’ll be a lot more super farts… what if I kept catching them?
+One of the things that makes clones special is that they cannot change the values of any variables they start with. They are effectively **constant** values.
 
 --- /collapse ---
 
-Now you have that broadcast block ready, but it’s not being used yet. 
+Great! Now you’re setting a different value for the collectable type, but none of the code knows what to do with it yet! 
 
-+ This next part’s easy. Just update `react-to-player`{:class="blockmoreblocks"} to look like this, so it broadcasts `collectable-rain`{:class="blockevents"} when the player touches a type `2` powerup. 
++ First, just teach the `pick-costume`{:class="blockmoreblocks"} **more block** to set the new costume when it gets the new type, like this \(using whatever costume you picked\): 
+
+```blocks
+    define pick-costume (type)
+    if <(type) = [1]> then
+        switch costume to [fartCloud v]
+    end
+    if <(type) = [2]> then
+        switch costume to [superFart v]
+    end
+```
+
+Now you need to decide what the powerup will do. We’ll start with something simple: giving the player a new life. On the next card, you’ll make it do something cooler. 
+
+### To create the powerup code
+
++ Go into **more blocks** and **Make a Block**. Name the block `react-to-player`{:class="blockmoreblocks"}.
+
+![Type in the name for the block](images/powerupMakeName.png)
+
++ Expand the **Options** section and add a **number input**. Name it `type`.
+
+![Adding a number input to the block](images/powerupMakeInput.png)
+
++ Click OK. 
+
++ Make the `react-to-player`{:class="blockmoreblocks"} block either give the same points prize that the star is already giving, or increase the player’s lives, depending on the `type` of powerup.  
 
 ```blocks
     define react-to-player (type)
@@ -38,10 +79,17 @@ Now you have that broadcast block ready, but it’s not being used yet.
         change [points v] by (collectable-value)
     end
     if <(type) = [2]> then
-        broadcast [collectable-rain v]
+        change [lives v] by [1]
     end
 ```
 
-#### Get Creative!
- 
-+ Based on this card and the previous one, you can now make as many powerups as you want! What about one that gives out 20 times the usual number of points, adds three lives, or maybe means the player can’t run out of lives while it’s on? Come up with some and see if you can make them!
++ Update the `when I start as a clone`{:class="blockevents"} code to replace the points increase with a **call** to `react-to-player`{:class="blockmoreblocks"}, **passing** `collectable-type`{:class="blockdata"}. Normal fart clouds still boost points but the new powerup adds lives. 
+
+```blocks
+    if <touching [Player Character v] ?> then
+        react-to-player (collectable-type) :: custom
+        delete this clone
+    end
+```
+
+

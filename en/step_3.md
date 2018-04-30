@@ -1,79 +1,27 @@
-## Losing the game
+## Setting things up
 
-You may have noticed that the `lose`{:class="blockmoreblocks"} **more block**  on the `Player Character` sprite is empty. You’re going to fill this in and setup all the pieces needed for a nice “Game Over” screen.
+Because you’re learning Scratch and not how to build a physics engine (code that makes things behave at least a little like the real world—e.g. not falling through floors), you’ll be starting with a project I’ve created that already has the basics of movement, jumping and detecting platforms built in.
 
-+ First, find the `lose` block and complete it with the following code: 
+You should take a quick look at it including the details on this card, since you’ll be making some changes to it later, but you don’t need to understand everything it’s doing.
 
-```blocks
-    define lose
-    stop [other scripts in sprite v] :: control stack
-    broadcast [game over v]
-    go to x:(0) y:(0)
-    say [Game over! You lose!] for (5) secs
-```
++ The first thing you’ll need to do is to get a copy of the code from [dojo.soy/platform-starter](http://dojo.soy/platform-starter){:target="_blank"} 
 
-![](images/losing1.png)
++ You can download this code by clicking **See Inside**, then the **File** menu and then **Download to your computer** and then open it in Scratch on your computer.
 
---- collapse ---
----
-title: What does the code do?
----
++ You can use it directly in Scratch in your browser by just clicking **See Inside** and then **Remix**.
 
-Wherever the `lose`{:class="blockmoreblocks"} block runs, what it will do is: 
+The physics engine of the game has a variety of pieces in it, some of which work right now and some of which don’t. You can find out which by running the game and trying to play it.
 
- 1. Stop the physics and other game scripts on the Player Character
- 2. Tell all the other sprites that the game is over, by **broadcasting** a message so they can change based on that
- 3. Move the Player Character to the centre of the screen and have them tell the player the game is over
+You can lose lives, but nothing happens when you run out. Also, the game has only got one level, one type of thing to collect and  no enemies. You’re going to fix all of that, and a bit more!
 
---- /collapse ---
++ For now, take a look at how the code is put together. It uses lots of **more blocks**, which are great for splitting your code up into pieces so you can manage it better. It’s like having a block made up of a lot of other blocks, which you can give some basic instructions to.
 
-Now you need to make sure all the sprites know what to do when the game is over, and how to reset themselves when the player starts a new game. **Don’t forget that any new sprites you add may need code for this too!**
+![](images/setup2and3.png)
 
-+ Start with the easy ones. The `Platforms` and `Edges` sprites both need code for appearing when the game starts and disappearing at game over, so add that to each of them:
-
-```blocks
-    when I receive [game over  v]
-    hide
-```
-
-```blocks
-    when green flag clicked
-    show
-```
-
-Now, for something a little more tricky! If you look at the code for the `Collectable` sprite, you’ll see it works by **cloning** itself. That is, it makes copies of itself, which follow the special `when I start as a clone`{:class="blockevents"} instructions. 
-
-We’ll talk more about what makes clones special when we get to the card about making new and different collectables, but for now what you need to know is that clones can do **almost** everything a normal sprite can, including receiving `broadcast`{:class="blockevents"} messages.
-
-+ Let’s look at how the `Collectable` sprite works. See if you can understand some of it: 
-
-```blocks
-    when green flag clicked
-    hide
-    set [collectable-value v] to [1]
-    set [collectable-speed v] to [1]
-    set [collectable-frequency v] to [1]
-    set [creat-collectables v] to [true]
-    set [collectable-type v] to [1]
-    repeat until <not <(create-collectables) = [true]>>
-        wait (collectable-frequency) secs
-        go to x: (pick random (-240) to (240)) y: (179)
-        create clone of [myself v]
-    end
-```
-
- 1. First it makes the original collectable invisible
- 2. Then it sets up the control variables. We’ll come back to these later.
- 3. The `create-collectables`{:class="blockdata"} variable is the on/off switch for cloning: the loop creates clones if `create-collectables`{:class="blockdata"} is `true`, and does nothing if it’s not
-
-+ Now what you need to do is setup a block on the `Collectable` sprite:
-
-```blocks
-    when I receive [game over v]
-    hide
-    set [create-collectables v] to [false]
-```
-
- This is similar to the ones you had on the `Edges` and `Platforms` sprites. The only difference is you’re also setting the `create-collectables`{:class="blockdata"} variable to `false` so that no new clones are created. 
+In the code above, the main game `forever`{:class="blockcontrol"} loop calls the `main-physics`{:class="blockmoreblocks"} block to do a whole lot of stuff! Keeping them separated like this makes it easy to read the main loop and understand what happens when, without worrying about **how** it happens.
  
-+ Notice how you can use the variable to pass messages from one part of your code to another! 
+
++ Now look at `reset game`{:class="blockmoreblocks"} and `reset character`{:class="blockmoreblocks"} and notice:
+    1. They do pretty normal things—setting up variables, making sure the character rotates properly
+    2. `reset-game`{:class="blockmoreblocks"} **calls** `reset-character`{:class="blockmoreblocks"} — you can use a **more block** inside another **more block**!
+    3. `reset-character`{:class="blockmoreblocks"} gets used in two different places, but to change it you only have to change the code of the **more block** in one! This can save you a lot of work and help you avoid mistakes.

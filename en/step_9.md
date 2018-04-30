@@ -1,92 +1,75 @@
-## What next?
+## Moving platforms
 
-You’ve got a game now! But there’s still a lot more you can do with it! Here’s a few ideas to get you started:
+The reason I asked you to use my version of level 2 is the gap you might have noticed in the middle. You’re going to create a platform that moves through that gap, that the player can jump onto and ride. 
+
+![Another level with different platforms](images/movingPlatforms.png)
+
++ First, you’ll need the sprite for the platform. You can create this by adding any sprite, naming it `Moving-Platform` and using the costume customisation tools in the **costumes** tab to make it look like the other platforms \(use vector mode\).
+
+Time to start adding some code! 
+
++ Begin with the basics: To make a never-ending set of platforms moving up the screen, you’ll need to **clone** the platform at some sort of interval. I picked 4 seconds. 
+
++ You also need to make sure that there’s an on/off switch for making the platforms, so they don’t show up on level 1. I’m using a **variable** called `create-platforms`{:class="blockdata"}. 
+
+Here's how my code looks so far for the new sprite:
+
+```blocks
+    when green flag clicked
+    hide
+    forever
+        wait (4) secs
+        if <(create-platforms) = [true]> then
+            create clone of [myself v]
+        end
+    end
+```
+
++ Then add the clone's code:
+
+```blocks
+    when I start as a clone
+    show
+    forever
+        if <(y position) < [180]> then
+            change y by (1)
+            wait (0.02) secs
+        else
+            delete this clone
+        end
+    end
+```
+
+This code is simple: Move up to the top of the screen, slowly enough for the player to jump on and off, and then disappear. 
+
++ You need to make the platforms disappear/reappear based on the level changing events and on the `game over` event. 
+
+```blocks
+    when I receive [level-1 v]
+    set [create-platforms v] to [false]
+    hide
+
+    when I receive [level-2 v]
+    set [create-platforms v] to [true]
+
+    when I receive [game over v]
+    hide
+    set [create-platforms v] to [false]
+```
+
++ Now, if you try to actually play the game, the Player Character falls through the platform! Any idea why? 
+
+It’s because the physics code doesn’t know about the platform. It’s actually an easy fix: on the `Player Character` sprite you need to replace every `touching “Platforms”`{:class="blocksensing"}  with an `OR`{:class="blockoperators"} operator, where you check for **either** `touching “Platforms”`{:class="blocksensing"}  **OR** `touching “Moving Platform”`{:class="blocksensing"} 
  
---- collapse ---
---- 
-title: High Scores
----
++ Go through the code on the `Player Character` sprite and everywhere you see this block
 
-+ Keep a list of the names and scores of people who’ve gotten high scores in the game! You’ll need to use the `ask`{:class="blocklooks"} block to the get their name.
+```blocks
+    <touching [Platforms v] ?>
+```
 
---- /collapse ---
+replace it with
 
---- collapse ---
---- 
-title: New Powerups!
----
-
-+ Try adding some new powerups. For example:
-  * Immunity to enemies
-  * More lives
-  * Bigger player character
-  * Smaller player character
- 
---- /collapse ---
-
---- collapse ---
---- 
-title: Scrolling Levels!
----
-
-+ Can you figure out how to make the levels scroll along, so the player character can move through them from left to right? Or at least _look_ like that’s what’s happening?
- 
---- /collapse ---
-
---- collapse ---
---- 
-title: Completing Levels!
----
-
-+ Right now, the levels never end. What if, instead of pushing a button, you needed a certain number of points to get to the next level?
- 
---- /collapse ---
-
---- collapse ---
---- 
-title: Play With Physics!
----
-
-+ Try changing some of the values in the physics engine, like the gravity, jump height, x-speed and y-speed. How do they change the game? 
- Can you use them to make powerups?
- 
---- /collapse ---
-
---- collapse ---
---- 
-title: More Levels
----
-
-+ Add more levels! Make better art! By using the stage background, make the game look cooler while still keeping platforms easy to work with as a coder.
- 
---- /collapse ---
-
---- collapse ---
---- 
-title: Sound Effects!
----
-
-+ This game is totally silent right now! Try adding background music and sound effects using the blocks in **sound**!
- 
---- /collapse ---
-
---- collapse ---
---- 
-title: Secrets!
----
-
-+ Think of secret bonuses, cheat codes and other “easter eggs” you could hide in the game for players to discover. Try to code some of them!
- 
---- /collapse ---
-
---- collapse ---
---- 
-title: Different Characters!
----
-
-+ Let the player pick a character. Make them different in things like size, how high they jump, maybe even how many lives they have and points they get from collectables! 
-
---- /collapse ---
-
-![](images/zero.png) 
+```blocks
+    <<touching [Platforms v] ?> or <touching [Moving-Platform v] ?>>
+```
 

@@ -17,8 +17,6 @@ You may have noticed that the `lose`{:class="blockmoreblocks"} **more block**  o
     stop [all v]
 ```
 
-![](images/losing1.png)
-
 --- collapse ---
 ---
 title: What does the code do?

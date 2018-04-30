@@ -64,9 +64,6 @@ Now to switch the `Platforms` sprite! You can design your own new level later, i
 
 It takes the messages sent out by `joining`{:class="blockoperators"} the `level-`{:class="blockdata"} and the `current-level`{:class="blockdata"} variable and uses them to change the `Platforms` costume. 
 
-
-![](images/level5.png)
-
 + For the `Enemy` sprite, you just need to make sure it disappears on level 2 \(or move it to another platform!\), like this: 
 
 ```blocks

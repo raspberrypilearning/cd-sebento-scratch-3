@@ -1,6 +1,6 @@
 ## Adding some competition
 
-Your game works and now you can collect points, get special powers from powerups and lose. We’re getting somewhere! Maybe it’d be fun to add some competition though… what about including a character who moves around a little, but you can’t touch? Like the enemies in the traditional platformer games \(like Super Mario\) we’re being inspired by here.
+Your game works and now you can collect points, get special powers from power-ups, and lose. We’re getting somewhere! Maybe it’d be fun to add some competition though…what about including a character that moves around a little, but that you can’t touch? Like the enemies in the traditional platformer games \(like Super Mario\) we’re being inspired by here.
 
 + Well, first, pick your enemy and add their sprite. Because our character is in the sky, I chose a helicopter. There are lots of other sprites you could add though. I also renamed the sprite to `Enemy` just to make things clearer for me.
 
@@ -8,14 +8,14 @@ Your game works and now you can collect points, get special powers from powerups
 
 ![The helicopter enemy sprite](images/enemySprite.png)
 
-+ Write the easier code first: Setup the block for the `game over` message, so the enemy will disappear when the player loses the game. 
++ Write the easier code first: Set up the block for the `game over` message, so the enemy will disappear when the player loses the game. 
 
 ```blocks
     when I receive [game-over v]
     hide
 ```
 
-+ Now you need to write the code for what the enemy does. You can use mine from this card, but don’t be afraid to add more! What if they teleport around to different platforms? Or what if there’s a powerup that makes them move faster, or slower? 
++ Now you need to write the code for what the enemy does. You can use mine from this card, but don’t be afraid to add more! What if they teleport around to different platforms? Or what if there’s a power-up that makes them move faster, or slower? 
 
 ```blocks
     when green flag clicked

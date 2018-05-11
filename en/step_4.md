@@ -1,6 +1,6 @@
 ## Losing the game
 
-You may have noticed that the `lose`{:class="blockmoreblocks"} **more block**  on the `Player Character` sprite is empty. You’re going to fill this in and setup all the pieces needed for a nice “Game Over” screen.
+You may have noticed that the `lose`{:class="blockmoreblocks"} **More** block on the `Player Character` sprite is empty. You’re going to fill this in and set up all the pieces needed for a nice “Game Over” screen.
 
 + First, find the `lose` block and complete it with the following code: 
 
@@ -24,16 +24,16 @@ title: What does the code do?
 
 Wherever the `lose`{:class="blockmoreblocks"} block runs, what it will do is: 
 
- 1. Stop the physics and other game scripts on the Player Character
- 2. Tell all the other sprites that the game is over, by **broadcasting** a message so they can change based on that
- 3. Move the Player Character to the centre of the screen and have them tell the player the game is over
- 4. Stop all scripts in the game.
+ 1. Stop the physics and other game scripts on the `Player Character`
+ 2. Tell all the other sprites that the game is over by **broadcasting** a message so they can change based on that
+ 3. Move the `Player Character` to the centre of the screen and have them tell the player that the game is over
+ 4. Stop all scripts in the game
 
 --- /collapse ---
 
 Now you need to make sure all the sprites know what to do when the game is over, and how to reset themselves when the player starts a new game. **Don’t forget that any new sprites you add may need code for this too!**
 
-+ Start with the easy ones. The `Platforms` and `Edges` sprites both need code for appearing when the game starts and disappearing at game over, so add that to each of them:
++ Start with the easy ones. The `Platforms` and `Edges` sprites both need code for appearing when the game starts and disappearing at game over, so add this to each of them:
 
 ```blocks
     when I receive [game over  v]
@@ -66,11 +66,11 @@ We’ll talk more about what makes clones special when we get to the card about 
     end
 ```
 
- 1. First it makes the original collectable invisible
+ 1. First it makes the original collectable invisible.
  2. Then it sets up the control variables. We’ll come back to these later.
- 3. The `create-collectables`{:class="blockdata"} variable is the on/off switch for cloning: the loop creates clones if `create-collectables`{:class="blockdata"} is `true`, and does nothing if it’s not
+ 3. The `create-collectables`{:class="blockdata"} variable is the on/off switch for cloning: the loop creates clones if `create-collectables`{:class="blockdata"} is `true`, and does nothing if it’s not.
 
-+ Now what you need to do is setup a block on the `Collectable` sprite:
++ Now what you need to do is set up a block on the `Collectable` sprite:
 
 ```blocks
     when I receive [game over v]

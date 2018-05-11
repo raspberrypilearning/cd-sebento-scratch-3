@@ -1,6 +1,6 @@
 ## Introduction
 
-These are the Advanced Scratch Sushi Cards, and in them you’ll be making a platform-style game which you can later add your own levels, powers and characters to.
+These are the Advanced Scratch Sushi Cards, and in them you’ll be making a platform-style game to which you can later add your own levels, powers, and characters.
 
 ### What you will make
 
@@ -16,7 +16,7 @@ Use the arrow keys to move Pico around. Watch you don't crash into the helicopte
 
 + Cloning sprites
 + Using variables inside cloned sprites
-+ Creating and using "More" blocks
-+ Reusing code in several places with "More" blocks
++ Creating and using **More** blocks
++ Reusing code in several places with **More** blocks
 + Messages to trigger behaviours across sprites
 + Using variables to configure your program

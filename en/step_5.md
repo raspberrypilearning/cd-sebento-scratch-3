@@ -24,8 +24,8 @@ The `pick-costume`{:class="blockmoreblocks"} block works a bit like the `lose`{:
     
 When the block runs, what it will do is this:
 
-1. It looks at the input, which it calls `type`
-2. If the value of `type` is equal to `1`, then it switches to the fartCloud costume
+ 1. It looks at the input, which it calls `type`
+ 2. If the value of `type` is equal to `1`, then it switches to the fartCloud costume
 
 Take a look at where the block is used:
 

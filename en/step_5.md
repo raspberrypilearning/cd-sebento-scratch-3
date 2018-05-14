@@ -40,7 +40,7 @@ Take a look at where the block is used:
             delete this clone
 ```
 
-The `collectable-type`{:class="blockdata"} variable is **passed** as an input to `pick-costume`{:class="blockmoreblocks"}. Inside the code for `pick-costume`{:class="blockmoreblocks"}, this then becomes the variable `type`. It has the same value as `collectable-type`{:class="blockdata"}.
+The `collectable-type`{:class="blockdata"} variable gets **passed** to the `pick-costume`{:class="blockmoreblocks"} block. Inside the code for `pick-costume`{:class="blockmoreblocks"}, `collectable-type`{:class="blockdata"} is then used as the input variable (`type`).
 
 --- /collapse ---
 

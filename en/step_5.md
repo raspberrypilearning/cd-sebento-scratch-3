@@ -44,7 +44,9 @@ The `collectable-type`{:class="blockdata"} variable is **passed** as an input to
 
 --- /collapse ---
 
-First, you need to set the `type`. It’s just a number used to tell the program what costume, rules, etc. to use for the collectable. You’re going to want to pick the number at random to keep things interesting. 
+### Get the new type of collectable to be created at random times
+
+First, you need to set the `collectable-type`. It’s just a number used to tell the program what costume, rules, etc. to use for the collectable. You’re going to want to pick the number at random to keep things interesting. 
 
 + Find the `repeat until`{:class="blockcontrol"} loop inside the green flag code for the `Collectable` sprite and add the `if...else`{:class="blockcontrol"} code shown below.
 

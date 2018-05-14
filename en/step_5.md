@@ -6,11 +6,43 @@ On this card, you’re going to create a new collectable, but you’re going to 
 
 + Add a new costume to the `Collectable` sprite for your new power-up. I've drawn a supersize fart cloud, but you can make whatever you like!
 
-Notice that I’ve already included some pieces to make this easier for you with the `collectable-type`{:class="blockdata"} variable and the `pick costume`{:class="blockmoreblocks"} **More** block. You’re going to need to improve on them though. 
+I’ve already included some pieces to make this easier for you with the `collectable-type`{:class="blockdata"} variable and the `pick costume`{:class="blockmoreblocks"} **More** block. You’re going to need to improve on them though. 
 
-![](images/powerup1.png)
+--- collapse ---
+---
+title: How does these pieces work?
+---
 
-In the code above, `collectable-type`{:class="blockdata"} is **passed** to `pick-costume`{:class="blockmoreblocks"} when it’s **called**, where it becomes `type` and can be used inside the **More** block.
+The `pick-costume`{:class="blockmoreblocks"} block works a bit like the `lose`{:class="blockmoreblocks"} block, but you might notice something extra that it has: it takes an **input**.
+
+```blocks
+    define pick-costume (type)
+    if <(type) = [1]> then
+        switch costume to [fartCloud v]
+    end
+```
+    
+When the block runs, what it will do is this:
+
+1. It looks at the input, which it calls `type`
+2. If the value of `type` is equal to `1`, then it switches to the fartCloud costume
+
+Take a look at where the block is used:
+
+```blocks
+    when I start as a clone
+    pick-costume (collectable-type) :: custom
+    show
+    repeat until <(y position) < [170]>
+        change y by (collectable-speed)
+        if <touching [Player Character v]?> then
+            change [points v] by (collectable-value)
+            delete this clone
+```
+
+The `collectable-type`{:class="blockdata"} variable is **passed** as an input to `pick-costume`{:class="blockmoreblocks"}. Inside the code for `pick-costume`{:class="blockmoreblocks"}, this then becomes the variable `type`. It has the same value as `collectable-type`{:class="blockdata"}.
+
+--- /collapse ---
 
 First, you need to set the `type`. It’s just a number used to tell the program what costume, rules, etc. to use for the collectable. You’re going to want to pick the number at random to keep things interesting. 
 
@@ -71,7 +103,7 @@ Now you need to decide what the power-up will do. We’ll start with something s
 
 + Click **OK**. 
 
-+ Make the `react-to-player`{:class="blockmoreblocks"} block either give the same points prize that the star is already giving, or increase the player’s lives, depending on the `type` of power-up.  
++ Make the `react-to-player`{:class="blockmoreblocks"} block either increase the points or increase the player’s lives, depending on the `type` of power-up.  
 
 ```blocks
     define react-to-player (type)

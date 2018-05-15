@@ -1,16 +1,26 @@
 ## Power-ups
 
-On the last card you saw the collectable I created. It’s a fart cloud that just adds one point when you grab it. That’s pretty boring.
-
-On this card, you’re going to create a new type of collectable, but you’re going to do it in a way that will make adding other types of collectables easy, so you can invent your own power-ups and bonuses and really make the game your own!
-
-+ Add a new costume to the `Collectable` sprite for your new power-up. I've drawn a supersize fart cloud, but you can make whatever you like!
+At the moment you have just one type of collectible: a fart cloud that adds one point when you grab it. On this card, you’re going to create a new type of collectible, but you’re going to do it in a way that will make adding other types of collectibles easy, so you can invent your own power-ups and bonuses and really make the game your own!
 
 I’ve already included some pieces to make this easier for you with the `collectable-type`{:class="blockdata"} variable and the `pick-costume`{:class="blockmoreblocks"} **More** block. You’re going to need to improve on them though. 
 
+Let's have a look at how the collectible works right now.
+
++ In the scripts for the `Colletable` sprite, find the `when I start as a clone` code. The blocks we're interested in right now are the ones which give you points for collecting it:
+
+```blocks
+    if <touching [Player Character v]?> then
+        change [points v] by (collectable-value)
+        delete this clone
+```
+    and the one that selects a costume for the clone:
+```blocks
+    pick-costume (collectable-type) :: custom
+```
+
 --- collapse ---
 ---
-title: How do these pieces work?
+title: How does picking a costume work?
 ---
 
 The `pick-costume`{:class="blockmoreblocks"} block works a bit like the `lose`{:class="blockmoreblocks"} block, but you might notice something extra that it has: it takes an **input** variable called `type`.
@@ -44,42 +54,13 @@ The `collectable-type`{:class="blockdata"} variable gets **passed** to the `pick
 
 --- /collapse ---
 
-### Create the new type of collectable at random times
+### Add a costume for the power-up
 
-First, you need to set the `collectable-type`{:class="blockdata"}. This variable is just a number that tells the `pick-costume`{:class="blockmoreblocks"} block what costume, rules, etc., to use for the collectable you're telling it to make. You’re going to want to pick the number at random, to make a random collectable and keep things interesting. 
+Of course, right now there's only one costume since there's only one type of collectible, but you're about to change that!
 
-+ Find the `repeat until`{:class="blockcontrol"} loop inside the green flag code for the `Collectable` sprite and add the `if...else`{:class="blockcontrol"} code shown below.
++ Add a new costume to the `Collectable` sprite for your new power-up. I've drawn a supersize fart cloud, but you can make whatever you like!
 
-```blocks
-    repeat until <not <(create-collectables) = [true]>>
-        if <[50] = (pick random (1) to (50))> then
-            set [collectable-type v] to [2]
-        else
-            set [collectable-type v] to [1]
-        end
-        wait (collectable-frequency) secs
-        go to x: (pick random (-240) to (240)) y: (179)
-        create clone of [myself v]
-```
-
-This example gives a 1 in 50 chance of setting the `collectable-type`{:class="blockdata"} to `2`.
-
---- collapse ---
----
-title: Pro tip!
----
-
-You can set a different value as the `collectable-type`{:class="blockdata"} for each clone. 
-
-Think of it like creating a new copy of the main `Collectable` sprite using the value that was in `collectable-type`{:class="blockdata"} the instant that `Collectable` clone was created. 
-
-One of the things that makes clones special is that they cannot change the values of any variables they start with. They effectively have **constant** values.
-
---- /collapse ---
-
-Great! Now you’re setting a different value for the `collectable-type`{:class="blockdata"}, but none of the code knows what to do with it yet! 
-
-+ Tell the `pick-costume`{:class="blockmoreblocks"} **More** block to set the new costume whenever it gets the new value for `type`, like this \(using whatever costume you picked\): 
++ Next you need to tell the `pick-costume`{:class="blockmoreblocks"} **More** block to set the new costume whenever it gets the new value for `type`, like this \(using whatever costume you picked\): 
 
 ```blocks
     define pick-costume (type)
@@ -93,7 +74,7 @@ Great! Now you’re setting a different value for the `collectable-type`{:class=
 
 ### Create the power-up code
 
-Now you need to decide what the new collectible  will do. We’ll start with something simple: giving the player a new life. On the next card, you’ll make it do something cooler. 
+Now you need to decide what the new collectible will do. We’ll start with something simple: giving the player a new life. On the next card, you’ll make it do something cooler. 
 
 + Go into the **More** section and click **Make a Block**. Name the new block `react-to-player`{:class="blockmoreblocks"}.
 
@@ -117,7 +98,7 @@ Now you need to decide what the new collectible  will do. We’ll start with som
     end
 ```
 
-+ Update the `when I start as a clone`{:class="blockevents"} code to replace the points increase with a **call** to `react-to-player`{:class="blockmoreblocks"}, **passing** `collectable-type`{:class="blockdata"}. Normal fart clouds still boost points but the new power-up adds lives. 
++ Update the `when I start as a clone`{:class="blockevents"} code to replace the points increase with a **call** to `react-to-player`{:class="blockmoreblocks"}, **passing** `collectable-type`{:class="blockdata"}. By using this **more** block, normal fart clouds still boost points but the new power-up adds lives. 
 
 ```blocks
     if <touching [Player Character v] ?> then
@@ -125,3 +106,42 @@ Now you need to decide what the new collectible  will do. We’ll start with som
         delete this clone
     end
 ```
+
+### Using `collectable-type`{:class="blockdata"} to create different collectables at random
+
+You might be wondering at this point... how do you tell each collectible what type it should be?
+
+The answer is by setting the `collectable-type`{:class="blockdata"}. This variable is just a number. As you've seen, it's used to tell the `pick-costume`{:class="blockmoreblocks"} and `react-to-player`{:class="blockmoreblocks"} blocks what costume, rules, etc., to use for the collectible. 
+
+--- collapse ---
+---
+title: Working with clones: pro tip!
+---
+
+You can set a different value as the `collectable-type`{:class="blockdata"} for each clone. 
+
+Think of it like creating a new copy of the main `Collectable` sprite using the value that was in `collectable-type`{:class="blockdata"} the instant that `Collectable` clone was created. 
+
+One of the things that makes clones special is that they cannot change the values of any variables they start with. They effectively have **constant** values.
+
+--- /collapse ---
+
+You're going to set the `collectable-type`{:class="blockdata"} to either `1` or `2` for each new clone that you make. Let's pick the number at random, to make a random collectable and keep things interesting. 
+
++ Find the `repeat until`{:class="blockcontrol"} loop inside the green flag code for the `Collectable` sprite and add the `if...else`{:class="blockcontrol"} code shown below.
+
+```blocks
+    repeat until <not <(create-collectables) = [true]>>
+        if <[50] = (pick random (1) to (50))> then
+            set [collectable-type v] to [2]
+        else
+            set [collectable-type v] to [1]
+        end
+        wait (collectable-frequency) secs
+        go to x: (pick random (-240) to (240)) y: (179)
+        create clone of [myself v]
+```
+
+This example gives a 1 in 50 chance of setting the `collectable-type`{:class="blockdata"} to `2`.
+
+Great! Now you have a new collectible type that gives you an extra life instead of points when you collect it!

@@ -33,6 +33,8 @@ Wherever the `lose`{:class="blockmoreblocks"} block runs, what it will do is:
 
 Now you need to make sure all the sprites know what to do when the game is over, and how to reset themselves when the player starts a new game. **Don’t forget that any new sprites you add may need code for this too!**
 
+### Hiding the platforms and edges
+
 + Start with the easy ones. The `Platforms` and `Edges` sprites both need code for appearing when the game starts and disappearing at game over, so add this to each of them:
 
 ```blocks
@@ -45,7 +47,7 @@ Now you need to make sure all the sprites know what to do when the game is over,
     show
 ```
 
-## Your first collectible
+#### Stopping the farts
 
 Now, for something a little more tricky! If you look at the code for the `Collectable` sprite, you’ll see it works by **cloning** itself. That is, it makes copies of itself, which follow the special `when I start as a clone`{:class="blockevents"} instructions. 
 

@@ -1,12 +1,12 @@
 ## Level 2
 
-What you’re going to do on this card is add a new level to the game that the player can get to just by pressing a button. Later, you can change it so they need a certain number of points, or something else, to get there.
+With this card, you're going to add a new level to the game that the player can get to by just pressing a button. Later, you can change your code to make it so they need a certain number of points, or something else, to get there.
 
 + First, create a new button sprite by either adding it from the library or drawing your own. I did a bit of both and came up with this: 
 
 ![The button sprite to switch levels](images/levelButton.png)
 
-Now, the code for this button is kinda clever; it’s designed so that every time you click it, it will take you to the next level, how ever many levels there are.
+Now, the code for this button is kinda clever: it’s designed so that every time you click it, it will take you to the next level, however many levels there are.
 
 + Add these scripts to your button sprite: 
 
@@ -27,28 +27,28 @@ Now, the code for this button is kinda clever; it’s designed so that every tim
     broadcast (join [level-](current-level))
 ```
  
-`max-level`{:class="blockdata"} is the highest level
-`min-level`{:class="blockdata"} is the lowest level
-`current-level`{:class="blockdata"} is the level the player is on right now
++ `max-level`{:class="blockdata"} is the highest level
++ `min-level`{:class="blockdata"} is the lowest level
++ `current-level`{:class="blockdata"} is the level the player is on right now
 
-+ These all need to be set by the programmer \(you!\), so if you add a third level, don’t forget to change `max-level`{:class="blockdata"}!
++ These all need to be set by the programmer \(you!\), so if you add a third level, don’t forget to change the value of `max-level`{:class="blockdata"}!
 
 The code uses broadcasts to tell the other sprites which level to display, and to clear up the collectables.
 
-Now you need to get the other sprites to respond to those broadcasts! Start with the easy one: clearing all the collectables. If you just tell them to `hide`, all the existing clones will. 
+Now you need to get the other sprites to respond to these broadcasts! Start with the easy one: clearing all the collectables.  
 
-+ Add this to the `Collectable` sprite: 
++ Just tell all the existing clones to `hide` by adding this to the `Collectable` sprite: 
 
 ```blocks
     when I receive [collectable-cleanup v]
     hide
 ```
 
-Since one of the first things any new clone already does is show itself, that means you don’t even have to worry about turning this off for them!
+Since one of the first things any new clone already does is show itself, this new code means means you don’t even have to worry about turning this behaviour off for them!
 
 Now to switch the `Platforms` sprite! You can design your own new level later, if you like, but for now let’s use the one I’ve already included \(you’ll see why on the next card!\). 
 
-+ You just need to add this code to the `Platforms` sprite.
++ Add this code to the `Platforms` sprite:
 
 ```blocks
     when I receive [level-1 v]
@@ -62,9 +62,9 @@ Now to switch the `Platforms` sprite! You can design your own new level later, i
     show
 ```
 
-It takes the messages sent out by `joining`{:class="blockoperators"} the `level-`{:class="blockdata"} and the `current-level`{:class="blockdata"} variable and uses them to change the `Platforms` costume. 
+It takes the `joined`{:class="blockoperators"} messages of `level-`{:class="blockdata"} and `current-level`{:class="blockdata"} that the button sprite sends out, and uses them to change the `Platforms` costume. 
 
-+ For the `Enemy` sprite, you just need to make sure it disappears on level 2 \(or move it to another platform!\), like this: 
++ For the `Enemy` sprite, you just need to make sure it disappears on level 2 \(or moves it to another platform!\), like this: 
 
 ```blocks
     when I receive [level-1 v]
@@ -76,7 +76,7 @@ It takes the messages sent out by `joining`{:class="blockoperators"} the `level-
     hide
 ```
 
-+ Finally, the player character needs to separate out the coordinates from the `reset character`{:class="blockmoreblocks"} **more block**, so the character goes to the right place, and call the first level when the game starts. 
++ Finally, the player character needs to separate out the coordinates from the `reset-character`{:class="blockmoreblocks"} **more block**, so the character goes to the right place, and call the first level when the game starts. 
 
 ```blocks
     when I receive [level-1 v]

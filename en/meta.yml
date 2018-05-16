@@ -1,6 +1,6 @@
 title: Advanced Scratch Sushi Cards
 hero_image: images/banner.png
-description: Make a platform-style game to which you can add your own levels, powers and characters.
+description: Make a platform-style game and add your own levels, powers, and characters.
 theme: orange
 version: 1
 listed: false
@@ -11,7 +11,7 @@ steps:
   - title: What you will need
   - title: Setting things up
   - title: Losing the game
-  - title: Powerups
+  - title: Power-ups
   - title: Super power-ups!
   - title: Adding some competition
   - title: Level 2

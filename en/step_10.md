@@ -16,7 +16,7 @@ title: High scores
 title: New power-ups!
 ---
 
-+ Try adding some new power-ups,for example:
++ Try adding some new power-ups, for example:
   * Immunity to enemies
   * More lives
   * Bigger player character
@@ -29,7 +29,7 @@ title: New power-ups!
 title: Scrolling levels!
 ---
 
-+ Can you figure out how to make the levels scroll along, so the player character can move through them from left to right? Or at least make it _look_ like that’s what’s happening?
++ Can you figure out how to make the levels scroll along, so the player character can move through them from left to right? Or at least make it _look_ like that’s what’s happening.
  
 --- /collapse ---
 

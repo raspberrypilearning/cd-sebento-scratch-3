@@ -1,10 +1,10 @@
 ## Super power-ups!
 
-Now that you have a new power-up working, it’s time to make it do something cool! How about making it 'rain' power-ups for a few seconds, instead of just giving out an extra life? 
+Now that you have a new power-up working, it’s time to make it do something cool! Let's make it 'rain' power-ups for a few seconds, instead of just giving out an extra life.
  
-To make that work, you need to create another piece of code that you can start while the `react-to-player`{:class="blockmoreblocks"} block finishes running. The way to make this happen is to use the `broadcast`{:class="blockevents"} block to send a message to another piece of code inside this sprite. 
+For this you need to create another piece of code that will start while the `react-to-player`{:class="blockmoreblocks"} block finishes running. To make that happen, you'll use a `broadcast`{:class="blockevents"} block to send a message to another piece of code inside this sprite. 
 
-+ Create this block for the `Collectable` sprite. Let’s call the message `collectable-rain`{:class="blockevents"}, since that’s basically what it does!
++ Create this block for the `Collectable` sprite. Let’s call the broadcast `collectable-rain`{:class="blockevents"}.
 
 ```blocks
     when I receive [collectable-rain v]
@@ -18,9 +18,9 @@ To make that work, you need to create another piece of code that you can start w
 title: What does the new code do?
 ---
 
-This block just sets `collectable-frequency`{:class="blockdata"} to a very small number \(change it to different values, see what happens!\) and then waits a second and changes it back to `1`.
+This block just sets `collectable-frequency`{:class="blockdata"} to a very small number \(change it to different values and see what happens!\) and then waits a second and changes it back to `1`.
 
-This doesn’t look like it should do much, but if you think about what’s happening during that second, the `when green flag clicked`{:class="blockevents"} code is still running, and the `repeat until`{:class="blockcontrol"} loop in it is looping. Look at the code in that loop: 
+This doesn’t look like it should do much, but think about what’s happening during that second: the `when green flag clicked`{:class="blockevents"} code is still running, and the `repeat until`{:class="blockcontrol"} loop in it is looping. Look at the code in that loop: 
 
 ```blocks
     repeat until <not <(create-collectables) = [true]>>
@@ -35,13 +35,13 @@ This doesn’t look like it should do much, but if you think about what’s happ
     end
 ```
 
-Instead of pausing the code here for a second, it’s only pausing for **one millionth** of a second, meaning that the loop will run many more times than normal because of the smaller value of `collectable-frequency`{:class="blockdata"}. This means that the code is going to create **a lot** more power-ups in that second than it normally would. Can you think of any problems that might cause? There’ll be a lot more super-farts…what if I kept catching them?
+You can see that the `wait` block here pauses the code for the length of time set by `collectable-frequency`{:class="blockdata"}. So if the value of `collectable-frequency`{:class="blockdata"} changes to `0.000001`, the `wait` block only pauses for **one millionth** of a second, meaning that the loop will run many more times than normal. As a result, the code is going to create **a lot** more power-ups than it normally would, until `collectable-frequency`{:class="blockdata"} changes back `1`. Can you think of any problems that might cause? There’ll be a lot more super-farts…what if you kept catching them?
 
 --- /collapse ---
 
-Now you have that `broadcast`{:class="blockevents"} block ready, but it’s not being used yet. 
+Now you have the sprite ready to receive the `collectable-rain`{:class="blockevents"} broadcast block, but you haven't made code for sending the broadcast yet. 
 
-+ This next part’s easy. Just update `react-to-player`{:class="blockmoreblocks"} to look like this, so it broadcasts `collectable-rain`{:class="blockevents"} when the player touches a type `2` power-up. 
++ This next part’s easy. Just update the `react-to-player`{:class="blockmoreblocks"} block to look like this, so it broadcasts `collectable-rain`{:class="blockevents"} when the player touches a type `2` power-up. 
 
 ```blocks
     define react-to-player (type)
@@ -53,6 +53,6 @@ Now you have that `broadcast`{:class="blockevents"} block ready, but it’s not 
     end
 ```
 
-#### Get creative!
+### Challenge: get creative!
  
-+ Based on this card and the previous one, you can now make as many different power-ups as you want! What about one that gives out 20 times the usual number of points, adds three lives, or maybe means the player can’t run out of lives while it’s on? Come up with some cool power-ups and see if you can make them!
++ Based on this card and the previous one, you can now make as many different power-ups as you want! What about one that gives out 20 times the usual number of points, or adds three lives, or makes it so the player can’t run out of lives for a period of time? Come up with some cool power-ups and see if you can make them!

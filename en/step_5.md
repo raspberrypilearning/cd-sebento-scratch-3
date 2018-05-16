@@ -13,7 +13,9 @@ Let's have a look at how the collectible works right now.
         change [points v] by (collectable-value)
         delete this clone
 ```
-    and the one that selects a costume for the clone:
+
+ and the one that selects a costume for the clone:
+
 ```blocks
     pick-costume (collectable-type) :: custom
 ```

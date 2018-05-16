@@ -64,7 +64,7 @@ Now to switch the `Platforms` sprite! You can design your own new level later, i
 
 It takes the `joined`{:class="blockoperators"} messages of `level-`{:class="blockdata"} and `current-level`{:class="blockdata"} that the button sprite sends out, and uses them to change the `Platforms` costume. 
 
-+ For the `Enemy` sprite, you just need to make sure it disappears on level 2 \(or moves it to another platform!\), like this: 
++ For the `Enemy` sprite, you just need to make sure it disappears on level 2, like this: 
 
 ```blocks
     when I receive [level-1 v]
@@ -75,8 +75,21 @@ It takes the `joined`{:class="blockoperators"} messages of `level-`{:class="bloc
     when I receive [level-2 v]
     hide
 ```
+If you wanted to, you could make it move to another platform instead – in that case you would use a `go to`{:class="blockmotion"} block instead of the `show`{:class="blocklooks"} and `hide`{:class="blocklooks"}.
 
-+ Finally, the player character needs to separate out the coordinates from the `reset-character`{:class="blockmoreblocks"} **more block**, so the character goes to the right place, and call the first level when the game starts. 
+Finally, the player character needs to separate out the coordinates from its reset code, so that it goes to the right place for each level. You also want to switch to the first level when the game starts. 
+
++ Start by creating variables for the starting coordinates, `start-x` and `start-y`, and plug them into the `go to`{:class="blockmotion"} block in `reset-character`{:class="blockmoreblocks"} instead of the fixed **x** and **y** values.
+
+```blocks
+    define reset-character
+    set [can-jump v] to [true]
+    set [x-velocity v] to [0]
+    set [y-velocity v] to [-0]
+    go to x: (start-x) y: (start-y)
+```
+
++ Then for each level, set the starting coordinates and add a **call** to `reset-character`{:class="blockmoreblocks"}:
 
 ```blocks
     when I receive [level-1 v]
@@ -92,16 +105,7 @@ It takes the `joined`{:class="blockoperators"} messages of `level-`{:class="bloc
     reset-character :: custom
 ```
 
-For each level, you set the starting coordinates and then **call** `reset-character`{:class="blockmoreblocks"}
-
-```blocks
-    define reset-character
-    set [can-jump v] to [true]
-    set [x-velocity v] to [0]
-    set [y-velocity v] to [-0]
-    go to x: (start-x) y: (start-y)
-```
-The variables are used for the starting coordinates instead of fixed **x** and **y** values in the `go to`{:class="blockmotion"} block
++ Lastly, remove the call to `reset-character`{:class="blockmoreblocks"} from `reset-game`{:class="blockmoreblocks"} and instead broadcast the minimum level. The code you added above will then set up the correct starting coordinates and call `reset-character`{:class="blockmoreblocks"} for you.
 
 ```blocks
     define reset-game
@@ -115,4 +119,16 @@ The variables are used for the starting coordinates instead of fixed **x** and *
     set [points v] to [0]
     broadcast (join [level-](min-level))
 ```
-The `min-level`{:class="blockdata"} is broadcasted to reset the character and the game.
+
+--- collapse ---
+---
+title: Resetting the character and the game
+---
+
+Notice that the first block in the `Player Character` sprite's main green flag script is a call to the `reset-game`{:class="blockmoreblocks"} **more** block. 
+
+This block sets up all the variables for a new game and then calls the `reset-character`{:class="blockmoreblocks"} **more** block, which places the character back in its starting position.
+
+Having the `reset-character`{:class="blockmoreblocks"} code in its own block separate from `reset-game`{:class="blockmoreblocks"}  allows you to reset the character to different positions without having to also reset the whole game.
+
+--- /collapse ---

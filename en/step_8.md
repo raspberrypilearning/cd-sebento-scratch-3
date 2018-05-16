@@ -113,7 +113,7 @@ Whenever a new level starts, the `Player Character` sprite needs to go to the ri
 
 You also need to make sure that every time someone starts the game, the first level they play is Level 1.
 
-+ Go to the `reset-game`{:class="blockmoreblocks"} script and remove the call to `reset-character`{:class="blockmoreblocks"}. In its place, broadcast the `min-level`{:class="blockdata"}. The code you've already added with this cards will then set up the correct starting coordinates and call `reset-character`{:class="blockmoreblocks"}.
++ Go to the `reset-game`{:class="blockmoreblocks"} script and remove the call to `reset-character`{:class="blockmoreblocks"}. In its place, broadcast the `min-level`{:class="blockdata"}. The code you've already added with this card will then set up the correct starting coordinates and call `reset-character`{:class="blockmoreblocks"}.
 
 ```blocks
     define reset-game

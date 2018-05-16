@@ -22,7 +22,18 @@ This block just sets `collectable-frequency`{:class="blockdata"} to a very small
 
 This doesn’t look like it should do much, but if you think about what’s happening during that second, the `when green flag clicked`{:class="blockevents"} code is still running, and the `repeat until`{:class="blockcontrol"} loop in it is looping. Look at the code in that loop: 
 
-![](images/super2.png)
+```blocks
+    repeat until <not <(create-collectables) = [true]>>
+        if < [50] = (pick random (1) to (50))> then
+            set [collectable-type v] to [2]
+        else
+            set [collectable-type v] to [1]
+        end
+        wait (collectable-frequency) secs
+        go to x: (pick random (-240) to (240)) y:(-179)
+        create clone of [myself v]
+    end
+```
 
 Instead of pausing the code here for a second, it’s only pausing for **one millionth** of a second, meaning that the loop will run many more times than normal because of the smaller value of `collectable-frequency`{:class="blockdata"}. This means that the code is going to create **a lot** more power-ups in that second than it normally would. Can you think of any problems that might cause? There’ll be a lot more super-farts…what if I kept catching them?
 

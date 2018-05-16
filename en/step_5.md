@@ -111,26 +111,26 @@ Now you need to decide what the new collectable will do. We’ll start with some
 
 ### Using `collectable-type`{:class="blockdata"} to create different collectables at random
 
-You might be wondering at this point how you tell each collectable what type it should be.
+Right now, you might be wondering how you'll tell each collectable the game makes what type it should be.
 
-The answer is by setting the `collectable-type`{:class="blockdata"}. This variable is just a number. As you've seen, it's used to tell the `pick-costume`{:class="blockmoreblocks"} and `react-to-player`{:class="blockmoreblocks"} blocks what costume, rules, etc., to use for the collectable. 
+You do this by setting the value of `collectable-type`{:class="blockdata"}. This variable is just a number. As you've seen, it's used to tell the `pick-costume`{:class="blockmoreblocks"} and `react-to-player`{:class="blockmoreblocks"} blocks what costume, rules, etc., to use for the collectable. 
 
 --- collapse ---
 ---
 title: Working with variables in a clone
 ---
 
-You can set a different value as the `collectable-type`{:class="blockdata"} for each clone. 
+For each clone of the `Collectable` sprite, you can set a different value for `collectable-type`{:class="blockdata"}. 
 
-Think of it like creating a new copy of the main `Collectable` sprite using the value that was in `collectable-type`{:class="blockdata"} the instant that `Collectable` clone was created. 
+Think of it like creating a new copy of the `Collectable` sprite using the value that is stored in `collectable-type`{:class="blockdata"} at the time `Collectable` clone gets created. 
 
-One of the things that makes clones special is that they cannot change the values of any variables they start with. They effectively have **constant** values.
+One of the things that makes clones special is that they cannot change the values of any variables they start with. They effectively have **constant** values. That means that when you change the value of `collectable-type`{:class="blockdata"}, this doesn't affect the `Collectable` sprite clones that are already in the game.
 
 --- /collapse ---
 
-You're going to set the `collectable-type`{:class="blockdata"} to either `1` or `2` for each new clone that you make. Let's pick the number at random, to make a random collectable and keep things interesting. 
+You're going to set the `collectable-type`{:class="blockdata"} to either `1` or `2` for each new clone that you make. Let's pick the number at random, to make a random collectable every time and keep things interesting. 
 
-+ Find the `repeat until`{:class="blockcontrol"} loop inside the green flag code for the `Collectable` sprite and add the `if...else`{:class="blockcontrol"} code shown below.
++ Find the `repeat until`{:class="blockcontrol"} loop inside the green flag code for the `Collectable` sprite, and add the `if...else`{:class="blockcontrol"} code shown below.
 
 ```blocks
     repeat until <not <(create-collectables) = [true]>>
@@ -144,6 +144,6 @@ You're going to set the `collectable-type`{:class="blockdata"} to either `1` or 
         create clone of [myself v]
 ```
 
-This example gives a 1 in 50 chance of setting the `collectable-type`{:class="blockdata"} to `2`.
+This code gives a 1 in 50 chance of setting the `collectable-type`{:class="blockdata"} to `2`.
 
-Great! Now you have a new collectable type that gives you an extra life instead of points when you collect it!
+Great! Now you have a new type of collectable that sometimes shows up instead of the fart cloud, and that gives you an extra life instead of a point when you collect it!

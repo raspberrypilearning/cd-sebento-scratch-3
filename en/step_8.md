@@ -79,7 +79,7 @@ If you wanted to, you could make it move to another platform instead – in that
 
 Finally, the player character needs to separate out the coordinates from its reset code, so that it goes to the right place for each level. You also want to switch to the first level when the game starts. 
 
-+ Start by creating variables for the starting coordinates, `start-x` and `start-y`, and plug them into the `go to`{:class="blockmotion"} block in `reset-character`{:class="blockmoreblocks"} instead of the fixed **x** and **y** values.
++ Start by creating variables for the starting coordinates, `start-x`{:class="blockdata"} and `start-y`{:class="blockdata"}, and plug them into the `go to`{:class="blockmotion"} block in `reset-character`{:class="blockmoreblocks"} instead of the fixed **x** and **y** values.
 
 ```blocks
     define reset-character

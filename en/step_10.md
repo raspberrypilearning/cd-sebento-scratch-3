@@ -4,7 +4,7 @@ You’ve got a game now! But there’s still a lot more you can do with it! Here
  
 --- collapse ---
 --- 
-title: High Scores
+title: High scores
 ---
 
 + Keep a list of the names and scores of people who’ve gotten high scores in the game! You’ll need to use the `ask`{:class="blocklooks"} block to the get their name.
@@ -13,10 +13,10 @@ title: High Scores
 
 --- collapse ---
 --- 
-title: New Powerups!
+title: New power-ups!
 ---
 
-+ Try adding some new powerups. For example:
++ Try adding some new power-ups,for example:
   * Immunity to enemies
   * More lives
   * Bigger player character
@@ -26,16 +26,16 @@ title: New Powerups!
 
 --- collapse ---
 --- 
-title: Scrolling Levels!
+title: Scrolling levels!
 ---
 
-+ Can you figure out how to make the levels scroll along, so the player character can move through them from left to right? Or at least _look_ like that’s what’s happening?
++ Can you figure out how to make the levels scroll along, so the player character can move through them from left to right? Or at least make it _look_ like that’s what’s happening?
  
 --- /collapse ---
 
 --- collapse ---
 --- 
-title: Completing Levels!
+title: Completing levels!
 ---
 
 + Right now, the levels never end. What if, instead of pushing a button, you needed a certain number of points to get to the next level?
@@ -44,29 +44,30 @@ title: Completing Levels!
 
 --- collapse ---
 --- 
-title: Play With Physics!
+title: Play With physics!
 ---
 
-+ Try changing some of the values in the physics engine, like the gravity, jump height, x-speed and y-speed. How do they change the game? 
- Can you use them to make powerups?
++ Try changing some of the values in the physics engine, like the `gravity`, `jump height`, `x-speed`, and `y-speed`. How do they change the game?
+
++ Can you use the physics to make power-ups?
  
 --- /collapse ---
 
 --- collapse ---
 --- 
-title: More Levels
+title: More levels
 ---
 
-+ Add more levels! Make better art! By using the stage background, make the game look cooler while still keeping platforms easy to work with as a coder.
++ Add more levels! Make better art! Use the Stage background to make the game look cooler while still keeping platforms easy to work with for you as the coder.
  
 --- /collapse ---
 
 --- collapse ---
 --- 
-title: Sound Effects!
+title: Sound effects!
 ---
 
-+ This game is totally silent right now! Try adding background music and sound effects using the blocks in **sound**!
++ This game is totally silent right now! Try adding background music and sound effects using the blocks in the **Sound** section!
  
 --- /collapse ---
 
@@ -75,18 +76,17 @@ title: Sound Effects!
 title: Secrets!
 ---
 
-+ Think of secret bonuses, cheat codes and other “easter eggs” you could hide in the game for players to discover. Try to code some of them!
++ Think of secret bonuses, cheat codes, and other 'easter eggs' you can hide in the game for players to discover. Try to code some of them!
  
 --- /collapse ---
 
 --- collapse ---
 --- 
-title: Different Characters!
+title: Different characters!
 ---
 
-+ Let the player pick a character. Make them different in things like size, how high they jump, maybe even how many lives they have and points they get from collectables! 
++ Let the player pick a character. Make them different in attributes like size, how high they jump, maybe even how many lives they have and how many points they get from collectables! 
 
 --- /collapse ---
 
 ![](images/zero.png) 
-

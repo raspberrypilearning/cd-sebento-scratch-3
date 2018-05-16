@@ -1,6 +1,6 @@
 ## What next?
 
-You’ve got a game now! But there’s still a lot more you can do with it! Here’s a few ideas to get you started:
+You’ve got a complete game now, but there’s a whole lot more you can do with it! Here are a few ideas to get you started:
  
 --- collapse ---
 --- 

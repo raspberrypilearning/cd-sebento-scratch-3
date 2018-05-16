@@ -4,7 +4,7 @@ description: Make a platform-style game and add your own levels, powers, and cha
 theme: orange
 version: 1
 listed: false
-copyedit: false
+copyedit: true
 last_tested: "2018-04-23"
 steps:
   - title: Introduction

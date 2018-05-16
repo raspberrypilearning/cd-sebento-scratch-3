@@ -6,7 +6,7 @@ I’ve already included some pieces to make this easier for you with the `collec
 
 Let's have a look at how the collectible works right now.
 
-+ In the scripts for the `Colletable` sprite, find the `when I start as a clone` code. The blocks we're interested in right now are the ones which give you points for collecting it:
++ In the scripts for the `Colletable` sprite, find the `when I start as a clone`{:class="blockevents"} code. The blocks we're interested in right now are the ones which give you points for collecting a fart:
 
 ```blocks
     if <touching [Player Character v]?> then
@@ -88,7 +88,7 @@ Now you need to decide what the new collectible will do. We’ll start with some
 
 + Click **OK**. 
 
-+ Make the `react-to-player`{:class="blockmoreblocks"} block either increase the points or increase the player’s lives, depending on the `type` of power-up.  
++ Make the `react-to-player`{:class="blockmoreblocks"} block either increase the points or increase the player’s lives, depending on the value of `type`.  
 
 ```blocks
     define react-to-player (type)

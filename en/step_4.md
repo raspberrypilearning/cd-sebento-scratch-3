@@ -47,7 +47,7 @@ Now you need to make sure all the sprites know what to do when the game is over,
     show
 ```
 
-#### Stopping the farts
+### Stopping the farts
 
 Now, for something a little more tricky! If you look at the code for the `Collectable` sprite, you’ll see it works by **cloning** itself. That is, it makes copies of itself, which follow the special `when I start as a clone`{:class="blockevents"} instructions. 
 

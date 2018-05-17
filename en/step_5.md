@@ -45,7 +45,7 @@ Take a look at the part of the script that uses the block:
     when I start as a clone
     pick-costume (collectable-type) :: custom
     show
-    repeat until <(y position) < [170]>
+    repeat until <(y position) > [170]>
         change y by (collectable-speed)
         if <touching [Player Character v]?> then
             change [points v] by (collectable-value)
@@ -140,7 +140,7 @@ You're going to set the `collectable-type`{:class="blockdata"} to either `1` or 
             set [collectable-type v] to [1]
         end
         wait (collectable-frequency) secs
-        go to x: (pick random (-240) to (240)) y: (179)
+        go to x: (pick random (-240) to (240)) y: (-179)
         create clone of [myself v]
 ```
 

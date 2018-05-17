@@ -4,7 +4,7 @@ The reason I asked you to use my version of level 2 is the gap you might have no
 
 ![Another level with different platforms](images/movingPlatforms.png)
 
-+ First, you’ll need the sprite for the platform: add any sprite, name it `Moving-Platform`, and using the costume customisation tools in the Costumes tab to make it look like the other platforms \(use vector mode\).
++ First, you’ll need the sprite for the platform: add a new sprite, name it `Moving-Platform`, and using the costume customisation tools in the Costumes tab to make it look like the other platforms \(use vector mode\).
 
 Now let's adde some code! 
 

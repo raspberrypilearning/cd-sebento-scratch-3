@@ -57,6 +57,7 @@ We’ll talk more about what makes clones special when we get to the card about 
 
 ```blocks
     when green flag clicked
+    set size to (35) %
     hide
     set [collectable-value v] to [1]
     set [collectable-speed v] to [1]
@@ -65,7 +66,7 @@ We’ll talk more about what makes clones special when we get to the card about 
     set [collectable-type v] to [1]
     repeat until <not <(create-collectables) = [true]>>
         wait (collectable-frequency) secs
-        go to x: (pick random (-240) to (240)) y: (179)
+        go to x: (pick random (-240) to (240)) y: (-179)
         create clone of [myself v]
     end
 ```

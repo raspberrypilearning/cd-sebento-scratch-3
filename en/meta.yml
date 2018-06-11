@@ -2,9 +2,15 @@ title: Advanced Scratch Sushi Cards
 hero_image: images/banner.png
 description: Make a platform-style game and add your own levels, powers, and characters.
 theme: orange
-version: 1
 listed: true
 copyedit: true
+curriculum: ''
+interests: ''
+technologies: scratch
+site_areas: coderdojo, projects
+hardware: ''
+software: scratch
+version: 3.0.0
 last_tested: "2018-04-23"
 steps:
   - title: Introduction

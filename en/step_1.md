@@ -12,7 +12,10 @@ Did you know that having lots and lots of cows contributes to climate change? Th
 
 Use the arrow keys to move Pico around. Make sure you don't crash into the helicopter!
 
-### What you will learn
+--- collapse ---
+---
+title: What you will learn
+---
 
 + Cloning sprites
 + Using variables inside cloned sprites
@@ -20,3 +23,20 @@ Use the arrow keys to move Pico around. Make sure you don't crash into the helic
 + Reusing code in several places with **More** blocks
 + Messages to trigger behaviours across sprites
 + Using variables to configure your program
+
+--- /collapse ---
+
+--- collapse ---
+---
+title: What you will need
+---
+
+### Hardware
+
++ A computer capable of running Scratch 2.0
+
+### Software
+
++ Scratch 2.0 (either [online](https://scratch.mit.edu/projects/editor/){:target="_blank"} or [offline](https://scratch.mit.edu/scratch2download/){:target="_blank"})
+
+--- /collapse ---

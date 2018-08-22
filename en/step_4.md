@@ -1,88 +1,149 @@
-## Losing the game
+## Power-ups
 
-You may have noticed that the `lose`{:class="blockmoreblocks"} **More** block on the `Player Character` sprite is empty. You’re going to fill this in and set up all the pieces needed for a nice 'Game over' screen.
+At the moment you have just one type of collectible: a fart cloud that gains you one point when you grab it. On this card, you’re going to create a new type of collectible, in a way that will make adding other types of collectibles easy. Then you can invent your own power-ups and bonuses and really make the game your own!
 
-+ First, find the `lose` block and complete it with the following code: 
+I’ve already included some pieces to do this with the `collectable-type`{:class="blockdata"} variable and the `pick-costume`{:class="blockmoreblocks"} **More** block. You’re going to need to improve on them though. 
+
+Let's have a look at how the collectible works right now.
+
++ In the scripts for the `Collectable` sprite, find the `when I start as a clone`{:class="blockevents"} code. The blocks you should look at are the ones that give you points for collecting a fart:
 
 ```blocks
-    define lose
-    stop [other scripts in sprite v] :: control stack
-    broadcast [game over v]
-    go to x:(0) y:(0)
-    say [Game over!] for (2) secs
-    say [It's pretty much impossible to catch all the methane, right?] for (5) secs
-    say [It would be better to reduce the amount produced in the first place.] for (6) secs
-    say [By considering the consequences of how we produce food...] for (5) secs
-    say [...we can do it in a more sustainable way that's better for everyone.] for (6) secs
-    stop [all v]
+    if <touching [Player Character v]?> then
+        change [points v] by (collectable-value)
+        delete this clone
+```
+
+ and this one that selects a costume for the clone:
+
+```blocks
+    pick-costume (collectable-type) :: custom
 ```
 
 --- collapse ---
 ---
-title: What does the code do?
+title: How does picking a costume work?
 ---
 
-Whenever the `lose`{:class="blockmoreblocks"} block runs, what it does is: 
+The `pick-costume`{:class="blockmoreblocks"} block works a bit like the `lose`{:class="blockmoreblocks"} block, but it has something extra: it takes an **input** variable called `type`.
 
- 1. Stop the physics and other game scripts on the `Player Character`
- 2. Tell all the other sprites that the game is over by **broadcasting** a message so they can change based on that
- 3. Move the `Player Character` to the centre of the screen and have them tell the player that the game is over
- 4. Stop all scripts in the game
+```blocks
+    define pick-costume (type)
+    if <(type) = [1]> then
+        switch costume to [fartCloud v]
+    end
+```
+    
+When the `pick-costume`{:class="blockmoreblocks"} block runs, what it does is this:
+
+ 1. It looks at the `type` input variable
+ 1. If the value of `type` is equal to `1`, it switches to the `fartCloud` costume
+
+Take a look at the part of the script that uses the block:
+
+```blocks
+    when I start as a clone
+    pick-costume (collectable-type) :: custom
+    show
+    repeat until <(y position) > [170]>
+        change y by (collectable-speed)
+        if <touching [Player Character v]?> then
+            change [points v] by (collectable-value)
+            delete this clone
+```
+
+You can see that the `collectable-type`{:class="blockdata"} variable gets **passed** to the `pick-costume`{:class="blockmoreblocks"} block. Inside the code for `pick-costume`{:class="blockmoreblocks"}, `collectable-type`{:class="blockdata"} is then used as the input variable (`type`).
 
 --- /collapse ---
 
-Now you need to make sure all the sprites know what to do when the game is over, and how to reset themselves when the player starts a new game. **Don’t forget that any new sprites you add also might need code for this!**
+### Add a costume for the new power-up
 
-### Hiding the platforms and edges
+Of course, right now the `Collectable` sprite only has one costume, since there's only one type of collectable. You're about to change that!
 
-+ Start with the easy ones. The `Platforms` and `Edges` sprites both need code for appearing when the game starts and disappearing at 'Game over', so add this to each of them:
++ Add a new costume to the `Collectable` sprite for your new power-up. I've drawn a supersize fart cloud, but you can make whatever you like!
 
-```blocks
-    when I receive [game over  v]
-    hide
-```
++ Next you need to tell the `pick-costume`{:class="blockmoreblocks"} **More** block to set the new costume whenever it gets the new value for `type`, like this \(using whatever costume name you picked\): 
 
 ```blocks
-    when green flag clicked
-    show
-```
-
-### Stopping the farts
-
-Now, for something a little more tricky! If you look at the code for the `Collectable` sprite, you’ll see it works by **cloning** itself. That is, it makes copies of itself that follow the special `when I start as a clone`{:class="blockevents"} instructions. 
-
-We’ll talk more about what makes clones special when we get to the card about making new and different collectables. For now, what you need to know is that clones can do **almost** everything a normal sprite can, including receiving `broadcast`{:class="blockevents"} messages.
-
-+ Let’s look at how the `Collectable` sprite works. See if you can understand some of its code: 
-
-```blocks
-    when green flag clicked
-    set size to (35) %
-    hide
-    set [collectable-value v] to [1]
-    set [collectable-speed v] to [1]
-    set [collectable-frequency v] to [1]
-    set [create-collectables v] to [true]
-    set [collectable-type v] to [1]
-    repeat until <not <(create-collectables) = [true]>>
-        wait (collectable-frequency) secs
-        go to x: (pick random (-240) to (240)) y: (-179)
-        create clone of [myself v]
+    define pick-costume (type)
+    if <(type) = [1]> then
+        switch costume to [fartCloud v]
+    end
+    if <(type) = [2]> then
+        switch costume to [superFart v]
     end
 ```
 
- 1. First it makes the original collectable invisible.
- 2. Then it sets up the control variables. We’ll come back to these later.
- 3. The `create-collectables`{:class="blockdata"} variable is the on/off switch for cloning: the loop creates clones if `create-collectables`{:class="blockdata"} is `true`, and does nothing if it’s not.
+### Create the power-up code
 
-+ Now you need to set up a block on the `Collectable` sprite so that it reacts to the `game over` broadcast:
+Now you need to decide what the new collectable will do. We’ll start with something simple: giving the player a new life. On the next card, you’ll make it do something cooler. 
+
++ Go into the **More** section and click **Make a Block**. Name the new block `react-to-player`{:class="blockmoreblocks"}.
+
+![Type in the name for the block](images/powerupMakeName.png)
+
++ Expand the **Options** section and add a **number input**. Name it `type`.
+
+![Adding a number input to the block](images/powerupMakeInput.png)
+
++ Click **OK**. 
+
++ Make the `react-to-player`{:class="blockmoreblocks"} block either increase the points or increase the player’s lives, depending on the value of `type`.  
 
 ```blocks
-    when I receive [game over v]
-    hide
-    set [create-collectables v] to [false]
+    define react-to-player (type)
+    if <(type) = [1]> then
+        change [points v] by (collectable-value)
+    end
+    if <(type) = [2]> then
+        change [lives v] by [1]
+    end
 ```
 
-This code is similar to the code controlling the `Edges` and `Platforms` sprites. The only difference is that you’re also setting the `create-collectables`{:class="blockdata"} variable to `false` so that no new clones are created when it's 'Game over'. 
- 
-+ Note that you can use this variable to pass messages from one part of your code to another! 
++ Update the `when I start as a clone`{:class="blockevents"} code to replace the block that adds a point with a **call** to `react-to-player`{:class="blockmoreblocks"}, **passing** `collectable-type`{:class="blockdata"}. By using this **More** block, normal fart clouds still add a point, and the new power-up adds a life. 
+
+```blocks
+    if <touching [Player Character v] ?> then
+        react-to-player (collectable-type) :: custom
+        delete this clone
+    end
+```
+
+### Using `collectable-type`{:class="blockdata"} to create different collectables at random
+
+Right now, you might be wondering how you'll tell each collectable the game makes what type it should be.
+
+You do this by setting the value of `collectable-type`{:class="blockdata"}. This variable is just a number. As you've seen, it's used to tell the `pick-costume`{:class="blockmoreblocks"} and `react-to-player`{:class="blockmoreblocks"} blocks what costume, rules, etc., to use for the collectable. 
+
+--- collapse ---
+---
+title: Working with variables in a clone
+---
+
+For each clone of the `Collectable` sprite, you can set a different value for `collectable-type`{:class="blockdata"}. 
+
+Think of it like creating a new copy of the `Collectable` sprite using the value that is stored in `collectable-type`{:class="blockdata"} at the time `Collectable` clone gets created. 
+
+One of the things that makes clones special is that they cannot change the values of any variables they start with. They effectively have **constant** values. That means that when you change the value of `collectable-type`{:class="blockdata"}, this doesn't affect the `Collectable` sprite clones that are already in the game.
+
+--- /collapse ---
+
+You're going to set the `collectable-type`{:class="blockdata"} to either `1` or `2` for each new clone that you make. Let's pick the number at random, to make a random collectable every time and keep things interesting. 
+
++ Find the `repeat until`{:class="blockcontrol"} loop inside the green flag code for the `Collectable` sprite, and add the `if...else`{:class="blockcontrol"} code shown below.
+
+```blocks
+    repeat until <not <(create-collectables) = [true]>>
+        if <[50] = (pick random (1) to (50))> then
+            set [collectable-type v] to [2]
+        else
+            set [collectable-type v] to [1]
+        end
+        wait (collectable-frequency) secs
+        go to x: (pick random (-240) to (240)) y: (-179)
+        create clone of [myself v]
+```
+
+This code gives a 1 in 50 chance of setting the `collectable-type`{:class="blockdata"} to `2`.
+
+Great! Now you have a new type of collectable that sometimes shows up instead of the fart cloud, and that gives you an extra life instead of a point when you collect it!

@@ -7,7 +7,7 @@ You’ve got a complete game now, but there’s a whole lot more you can do with
 title: High scores
 ---
 
-+ Keep a list of the names and scores of people who’ve gotten high scores in the game! You’ll need to use the `ask`{:class="blocklooks"} block to the get their name.
++ Keep a list of the names and scores of people who’ve gotten high scores in the game! You’ll need to use the `ask`{:class="block3looks"} block to the get their name.
 
 --- /collapse ---
 

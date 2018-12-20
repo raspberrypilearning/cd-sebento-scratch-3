@@ -12,14 +12,14 @@ Now, the code for this button is kinda clever: it’s designed so that every tim
 
 + Add these scripts to your button sprite: 
 
-```blocks
+```blocks3
     when green flag clicked
     set [max-level v] to [2]
     set [min-level v] to [1]
     set [current-level v] to [1]
 ```
 
-```blocks
+```blocks3
     when this sprite clicked
     change [current-level v] by (1)
     if <(current-level) > (max-level)> then
@@ -29,11 +29,11 @@ Now, the code for this button is kinda clever: it’s designed so that every tim
     broadcast (join [level-](current-level))
 ```
  
-+ `max-level`{:class="blockdata"} is the highest level
-+ `min-level`{:class="blockdata"} is the lowest level
-+ `current-level`{:class="blockdata"} is the level the player is on right now
++ `max-level`{:class="block3variables"} is the highest level
++ `min-level`{:class="block3variables"} is the lowest level
++ `current-level`{:class="block3variables"} is the level the player is on right now
 
-+ These all need to be set by the programmer \(you!\), so if you add a third level, don’t forget to change the value of `max-level`{:class="blockdata"}!
++ These all need to be set by the programmer \(you!\), so if you add a third level, don’t forget to change the value of `max-level`{:class="block3variables"}!
 
 The code uses broadcasts to tell the other sprites which level to display, and to clear up the collectables.
 
@@ -43,7 +43,7 @@ Now you need to get the other sprites to respond to these broadcasts! Start with
 
 + Just tell all the existing clones to `hide` by adding this to the `Collectable` sprite: 
 
-```blocks
+```blocks3
     when I receive [collectable-cleanup v]
     hide
 ```
@@ -54,38 +54,38 @@ Now to switch the `Platforms` sprite. You can design your own new level later if
 
 + Add this code to the `Platforms` sprite:
 
-```blocks
+```blocks3
     when I receive [level-1 v]
     switch costume to [Level 1 v]
     show
 ```
 
-```blocks
+```blocks3
     when I receive [level-2 v]
     switch costume to [Level 2 v]
     show
 ```
 
-It receives the `joined`{:class="blockoperators"} messages of `level-`{:class="blockdata"} and `current-level`{:class="blockdata"} that the button sprite sends out, and responds by changing the `Platforms` costume. 
+It receives the `joined`{:class="block3operators"} messages of `level-`{:class="block3variables"} and `current-level`{:class="block3variables"} that the button sprite sends out, and responds by changing the `Platforms` costume. 
 
 + For the `Enemy` sprite, you just need to make sure it disappears when the player enters level 2, like this: 
 
-```blocks
+```blocks3
     when I receive [level-1 v]
     show
 ```
 
-```blocks
+```blocks3
     when I receive [level-2 v]
     hide
 ```
-If you prefer, you can make the enemy move to another platform instead. In that case, you would use a `go to`{:class="blockmotion"} block instead of the `show`{:class="blocklooks"} and `hide`{:class="blocklooks"}.
+If you prefer, you can make the enemy move to another platform instead. In that case, you would use a `go to`{:class="block3motion"} block instead of the `show`{:class="block3looks"} and `hide`{:class="block3looks"}.
 
 Whenever a new level starts, the `Player Character` sprite needs to go to the right place for that level. To make this happen, you need to change where the sprite gets its coordinates from when it first appears on the Stage. At the moment, there are fixed `x` and `y` values in its code.
 
-+ Begin by creating variables for the starting coordinates, `start-x`{:class="blockdata"} and `start-y`{:class="blockdata"}. Then plug them into the `go to`{:class="blockmotion"} block in `reset-character`{:class="blockmoreblocks"} instead of the `x` and `y` values:
++ Begin by creating variables for the starting coordinates, `start-x`{:class="block3variables"} and `start-y`{:class="block3variables"}. Then plug them into the `go to`{:class="block3motion"} block in `reset-character`{:class="block3myblocks"} instead of the `x` and `y` values:
 
-```blocks
+```blocks3
     define reset-character
     set [can-jump v] to [true]
     set [x-velocity v] to [0]
@@ -93,16 +93,16 @@ Whenever a new level starts, the `Player Character` sprite needs to go to the ri
     go to x: (start-x) y: (start-y)
 ```
 
-+ Then for each broadcast announcing the start of a level, set the right `start-x`{:class="blockdata"} and `start-y`{:class="blockdata"} coordinates in response, and add a **call** to `reset-character`{:class="blockmoreblocks"}:
++ Then for each broadcast announcing the start of a level, set the right `start-x`{:class="block3variables"} and `start-y`{:class="block3variables"} coordinates in response, and add a **call** to `reset-character`{:class="block3myblocks"}:
 
-```blocks
+```blocks3
     when I receive [level-1 v]
     set [start-x v] to [-183]
     set [start-y v] to [42]
     reset-character :: custom
 ```
 
-```blocks
+```blocks3
     when I receive [level-2 v]
     set [start-x v] to [-218]
     set [start-y v] to [-143]
@@ -113,9 +113,9 @@ Whenever a new level starts, the `Player Character` sprite needs to go to the ri
 
 You also need to make sure that every time someone starts the game, the first level they play is Level 1.
 
-+ Go to the `reset-game`{:class="blockmoreblocks"} script and remove the call to `reset-character`{:class="blockmoreblocks"}. In its place, broadcast the `min-level`{:class="blockdata"}. The code you've already added with this card will then set up the correct starting coordinates and call `reset-character`{:class="blockmoreblocks"}.
++ Go to the `reset-game`{:class="block3myblocks"} script and remove the call to `reset-character`{:class="block3myblocks"}. In its place, broadcast the `min-level`{:class="block3variables"}. The code you've already added with this card will then set up the correct starting coordinates and call `reset-character`{:class="block3myblocks"}.
 
-```blocks
+```blocks3
     define reset-game
     set size to (35) %
     set rotation style [left-right v]
@@ -133,10 +133,10 @@ You also need to make sure that every time someone starts the game, the first le
 title: Resetting the character and resetting the game
 ---
 
-Notice that the first block in the `Player Character` sprite's main green flag script is a call to the `reset-game`{:class="blockmoreblocks"} **More** block. 
+Notice that the first block in the `Player Character` sprite's main green flag script is a call to the `reset-game`{:class="block3myblocks"} **More** block. 
 
-This block sets up all the variables for a new game and then calls the `reset-character`{:class="blockmoreblocks"} **More** block, which places the character back in its correct starting position.
+This block sets up all the variables for a new game and then calls the `reset-character`{:class="block3myblocks"} **More** block, which places the character back in its correct starting position.
 
-Having the `reset-character`{:class="blockmoreblocks"} code in its own block separate from `reset-game`{:class="blockmoreblocks"}  allows you to reset the character to different positions **without** having to reset the whole game.
+Having the `reset-character`{:class="block3myblocks"} code in its own block separate from `reset-game`{:class="block3myblocks"}  allows you to reset the character to different positions **without** having to reset the whole game.
 
 --- /collapse ---

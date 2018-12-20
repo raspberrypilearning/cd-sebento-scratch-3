@@ -1,10 +1,10 @@
 ## Losing the game
 
-You may have noticed that the `lose`{:class="blockmoreblocks"} **More** block on the `Player Character` sprite is empty. You’re going to fill this in and set up all the pieces needed for a nice 'Game over' screen.
+You may have noticed that the `lose`{:class="block3myblocks"} **More** block on the `Player Character` sprite is empty. You’re going to fill this in and set up all the pieces needed for a nice 'Game over' screen.
 
 + First, find the `lose` block and complete it with the following code: 
 
-```blocks
+```blocks3
     define lose
     stop [other scripts in sprite v] :: control stack
     broadcast [game over v]
@@ -22,7 +22,7 @@ You may have noticed that the `lose`{:class="blockmoreblocks"} **More** block on
 title: What does the code do?
 ---
 
-Whenever the `lose`{:class="blockmoreblocks"} block runs, what it does is: 
+Whenever the `lose`{:class="block3myblocks"} block runs, what it does is: 
 
  1. Stop the physics and other game scripts on the `Player Character`
  2. Tell all the other sprites that the game is over by **broadcasting** a message so they can change based on that
@@ -37,25 +37,25 @@ Now you need to make sure all the sprites know what to do when the game is over,
 
 + Start with the easy ones. The `Platforms` and `Edges` sprites both need code for appearing when the game starts and disappearing at 'Game over', so add this to each of them:
 
-```blocks
+```blocks3
     when I receive [game over  v]
     hide
 ```
 
-```blocks
+```blocks3
     when green flag clicked
     show
 ```
 
 ### Stopping the farts
 
-Now, for something a little more tricky! If you look at the code for the `Collectable` sprite, you’ll see it works by **cloning** itself. That is, it makes copies of itself that follow the special `when I start as a clone`{:class="blockevents"} instructions. 
+Now, for something a little more tricky! If you look at the code for the `Collectable` sprite, you’ll see it works by **cloning** itself. That is, it makes copies of itself that follow the special `when I start as a clone`{:class="block3events"} instructions. 
 
-We’ll talk more about what makes clones special when we get to the card about making new and different collectables. For now, what you need to know is that clones can do **almost** everything a normal sprite can, including receiving `broadcast`{:class="blockevents"} messages.
+We’ll talk more about what makes clones special when we get to the card about making new and different collectables. For now, what you need to know is that clones can do **almost** everything a normal sprite can, including receiving `broadcast`{:class="block3events"} messages.
 
 + Let’s look at how the `Collectable` sprite works. See if you can understand some of its code: 
 
-```blocks
+```blocks3
     when green flag clicked
     set size to (35) %
     hide
@@ -73,16 +73,16 @@ We’ll talk more about what makes clones special when we get to the card about 
 
  1. First it makes the original collectable invisible.
  2. Then it sets up the control variables. We’ll come back to these later.
- 3. The `create-collectables`{:class="blockdata"} variable is the on/off switch for cloning: the loop creates clones if `create-collectables`{:class="blockdata"} is `true`, and does nothing if it’s not.
+ 3. The `create-collectables`{:class="block3variables"} variable is the on/off switch for cloning: the loop creates clones if `create-collectables`{:class="block3variables"} is `true`, and does nothing if it’s not.
 
 + Now you need to set up a block on the `Collectable` sprite so that it reacts to the `game over` broadcast:
 
-```blocks
+```blocks3
     when I receive [game over v]
     hide
     set [create-collectables v] to [false]
 ```
 
-This code is similar to the code controlling the `Edges` and `Platforms` sprites. The only difference is that you’re also setting the `create-collectables`{:class="blockdata"} variable to `false` so that no new clones are created when it's 'Game over'. 
+This code is similar to the code controlling the `Edges` and `Platforms` sprites. The only difference is that you’re also setting the `create-collectables`{:class="block3variables"} variable to `false` so that no new clones are created when it's 'Game over'. 
  
 + Note that you can use this variable to pass messages from one part of your code to another! 

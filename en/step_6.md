@@ -10,14 +10,14 @@ Your game works and now you can collect points, get special powers from power-up
 
 + Write the easier code first: set up its block for the `game over` message to make the enemy disappear when the player loses the game. 
 
-```blocks
+```blocks3
     when I receive [game-over v]
     hide
 ```
 
 + Now you need to write the code for what the enemy does. You can use mine from this card, but don’t be afraid to add more! (What if they teleport around to different platforms? Or what if there’s a power-up that makes them move faster, or slower?) 
 
-```blocks
+```blocks3
     when green flag clicked
     show
     set [enemy-move-steps v] to [5]
@@ -31,15 +31,15 @@ Your game works and now you can collect points, get special powers from power-up
     end
 ```
 
-**Note**: if you just drag the `go to`{:class="blockmotion"} block and don’t change the `x` and `y` values, they’ll be the values for the current location of the sprite!
+**Note**: if you just drag the `go to`{:class="block3motion"} block and don’t change the `x` and `y` values, they’ll be the values for the current location of the sprite!
  
-The code in the `if...then`{:class="blockcontrol"} block will make the enemy turn around when they get to the end of the platform!
+The code in the `if...then`{:class="block3control"} block will make the enemy turn around when they get to the end of the platform!
 
 The next thing you’ll need is for the player to lose a life when they touch the enemy. You need to make sure they **stop** touching really quickly, though, since otherwise the touching code will keep running and they’ll keep losing lives. 
 
-+ Here's how I did it, but feel free to try to improve on this code! I modified the `Player Character` sprite’s main block. Add the code before the `if`{:class="blockcontrol"} block that checks if you're out of lives.
++ Here's how I did it, but feel free to try to improve on this code! I modified the `Player Character` sprite’s main block. Add the code before the `if`{:class="block3control"} block that checks if you're out of lives.
 
-```blocks
+```blocks3
     if <touching [Enemy v] ?> then
         hide
         go to x: (-187) y: (42)
@@ -56,7 +56,7 @@ title: Show me the whole updated script
 
 My `Player Character` sprite's main block looks like this now:
 
-```blocks
+```blocks3
     when green flag clicked
     reset-game :: custom
     forever

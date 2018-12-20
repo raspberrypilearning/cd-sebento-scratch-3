@@ -8,11 +8,11 @@ The reason I asked you to use my version of level 2 is the gap you might have no
 
 Now let's adde some code! 
 
-+ Begin with the basics: to make a never-ending set of platforms moving up the screen, you’ll need to clone the platform at regular intervals. I picked 4 seconds. You also need to make sure that there’s an on/off switch for making the platforms, so that they don’t show up in level 1. I’m using a variable called `create-platforms`{:class="blockdata"}. 
++ Begin with the basics: to make a never-ending set of platforms moving up the screen, you’ll need to clone the platform at regular intervals. I picked 4 seconds. You also need to make sure that there’s an on/off switch for making the platforms, so that they don’t show up in level 1. I’m using a variable called `create-platforms`{:class="block3variables"}. 
 
 Here's how my code looks so far for the new sprite:
 
-```blocks
+```blocks3
     when green flag clicked
     hide
     forever
@@ -25,7 +25,7 @@ Here's how my code looks so far for the new sprite:
 
 + Then add the clone's code:
 
-```blocks
+```blocks3
     when I start as a clone
     show
     forever
@@ -42,7 +42,7 @@ This code is simple: it makes the clone move up to the top of the screen, slowly
 
 + You need to make the platforms disappear/reappear based on the broadcasts that change levels and the `game over` message. 
 
-```blocks
+```blocks3
     when I receive [level-1 v]
     set [create-platforms v] to [false]
     hide
@@ -57,17 +57,17 @@ This code is simple: it makes the clone move up to the top of the screen, slowly
 
 + Now, if you try to actually play the game, the player character falls through the platform! Any idea why? 
 
-It’s because the physics code doesn’t know about the platform. It’s actually an easy fix: on the `Player Character` sprite, replace every `touching “Platforms”`{:class="blocksensing"}  block with an `OR`{:class="blockoperators"} operator that checks for **either** `touching “Platforms”`{:class="blocksensing"}  **OR** `touching “Moving-Platform”`{:class="blocksensing"}.
+It’s because the physics code doesn’t know about the platform. It’s actually an easy fix: on the `Player Character` sprite, replace every `touching “Platforms”`{:class="block3sensing"}  block with an `OR`{:class="block3operators"} operator that checks for **either** `touching “Platforms”`{:class="block3sensing"}  **OR** `touching “Moving-Platform”`{:class="block3sensing"}.
  
 + Go through the code on the `Player Character` sprite and everywhere you see this block:
 
-```blocks
+```blocks3
     <touching [Platforms v] ?>
 ```
 
 replace it with this one:
 
-```blocks
+```blocks3
     <<touching [Platforms v] ?> or <touching [Moving-Platform v] ?>>
 ```
 

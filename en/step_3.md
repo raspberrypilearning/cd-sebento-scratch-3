@@ -1,6 +1,6 @@
 ## Losing the game
 
-You may have noticed that the `lose`{:class="block3myblocks"} **More** block on the `Player Character` sprite is empty. You’re going to fill this in and set up all the pieces needed for a nice 'Game over' screen.
+You may have noticed that the `lose`{:class="block3myblocks"} **My blocks** block on the `Player Character` sprite is empty. You’re going to fill this in and set up all the pieces needed for a nice 'Game over' screen.
 
 + First, find the `lose` block and complete it with the following code: 
 

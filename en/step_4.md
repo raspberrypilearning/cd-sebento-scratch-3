@@ -2,7 +2,7 @@
 
 At the moment you have just one type of collectible: a fart cloud that gains you one point when you grab it. On this card, you’re going to create a new type of collectible, in a way that will make adding other types of collectibles easy. Then you can invent your own power-ups and bonuses and really make the game your own!
 
-I’ve already included some pieces to do this with the `collectable-type`{:class="block3variables"} variable and the `pick-costume`{:class="block3myblocks"} **More** block. You’re going to need to improve on them though. 
+I’ve already included some pieces to do this with the `collectable-type`{:class="block3variables"} variable and the `pick-costume`{:class="block3myblocks"} **My blocks** block. You’re going to need to improve on them though. 
 
 Let's have a look at how the collectible works right now.
 
@@ -62,7 +62,7 @@ Of course, right now the `Collectable` sprite only has one costume, since there'
 
 + Add a new costume to the `Collectable` sprite for your new power-up. I've drawn a supersize fart cloud, but you can make whatever you like!
 
-+ Next you need to tell the `pick-costume`{:class="block3myblocks"} **More** block to set the new costume whenever it gets the new value for `type`, like this \(using whatever costume name you picked\): 
++ Next you need to tell the `pick-costume`{:class="block3myblocks"} **My blocks** block to set the new costume whenever it gets the new value for `type`, like this \(using whatever costume name you picked\): 
 
 ```blocks3
     define pick-costume (type)
@@ -78,13 +78,9 @@ Of course, right now the `Collectable` sprite only has one costume, since there'
 
 Now you need to decide what the new collectable will do. We’ll start with something simple: giving the player a new life. On the next card, you’ll make it do something cooler. 
 
-+ Go into the **More** section and click **Make a Block**. Name the new block `react-to-player`{:class="block3myblocks"}.
++  Go into the **My blocks** section and click **Make a Block**. Name the new block `react-to-player`{:class="block3myblocks"} and add a **number input** named `type`.
 
 ![Type in the name for the block](images/powerupMakeName.png)
-
-+ Expand the **Options** section and add a **number input**. Name it `type`.
-
-![Adding a number input to the block](images/powerupMakeInput.png)
 
 + Click **OK**. 
 
@@ -100,7 +96,7 @@ Now you need to decide what the new collectable will do. We’ll start with some
     end
 ```
 
-+ Update the `when I start as a clone`{:class="block3events"} code to replace the block that adds a point with a **call** to `react-to-player`{:class="block3myblocks"}, **passing** `collectable-type`{:class="block3variables"}. By using this **More** block, normal fart clouds still add a point, and the new power-up adds a life. 
++ Update the `when I start as a clone`{:class="block3events"} code to replace the block that adds a point with a **call** to `react-to-player`{:class="block3myblocks"}, **passing** `collectable-type`{:class="block3variables"}. By using this **My blocks** block, normal fart clouds still add a point, and the new power-up adds a life. 
 
 ```blocks3
     if <touching [Player Character v] ?> then

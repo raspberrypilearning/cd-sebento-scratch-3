@@ -133,9 +133,9 @@ You also need to make sure that every time someone starts the game, the first le
 title: Resetting the character and resetting the game
 ---
 
-Notice that the first block in the `Player Character` sprite's main green flag script is a call to the `reset-game`{:class="block3myblocks"} **More** block. 
+Notice that the first block in the `Player Character` sprite's main green flag script is a call to the `reset-game`{:class="block3myblocks"} **My blocks** block. 
 
-This block sets up all the variables for a new game and then calls the `reset-character`{:class="block3myblocks"} **More** block, which places the character back in its correct starting position.
+This block sets up all the variables for a new game and then calls the `reset-character`{:class="block3myblocks"} **My blocks** block, which places the character back in its correct starting position.
 
 Having the `reset-character`{:class="block3myblocks"} code in its own block separate from `reset-game`{:class="block3myblocks"}  allows you to reset the character to different positions **without** having to reset the whole game.
 

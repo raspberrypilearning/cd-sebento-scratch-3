@@ -25,8 +25,8 @@ title: What you will learn
 
 + Cloning sprites
 + Using variables inside cloned sprites
-+ Creating and using **More** blocks
-+ Reusing code in several places with **More** blocks
++ Creating and using **My blocks** blocks
++ Reusing code in several places with **My blocks** blocks
 + Messages to trigger behaviours across sprites
 + Using variables to configure your program
 

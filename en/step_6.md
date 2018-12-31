@@ -10,26 +10,11 @@ Your game works and now you can collect points, get special powers from power-up
 
 + Write the easier code first: set up its block for the `game over` message to make the enemy disappear when the player loses the game. 
 
-```blocks3
-    when I receive [game-over v]
-    hide
-```
+![blocks_1546300207_413277](images/blocks_1546300207_413277.png)
 
 + Now you need to write the code for what the enemy does. You can use mine from this card, but don’t be afraid to add more! (What if they teleport around to different platforms? Or what if there’s a power-up that makes them move faster, or slower?) 
 
-```blocks3
-    when green flag clicked
-    show
-    set [enemy-move-steps v] to [5]
-    set rotation style [left-right v]
-    go to x: (1) y: (59)
-    forever
-        move (enemy-move-steps) steps
-        if <not <touching [Platforms v] ?>> then
-            set [enemy-move-steps v] to ((enemy-move-steps) * (-1))
-        end
-    end
-```
+![blocks_1546300208_48879](images/blocks_1546300208_48879.png)
 
 **Note**: if you just drag the `go to`{:class="block3motion"} block and don’t change the `x` and `y` values, they’ll be the values for the current location of the sprite!
  
@@ -39,15 +24,7 @@ The next thing you’ll need is for the player to lose a life when they touch th
 
 + Here's how I did it, but feel free to try to improve on this code! I modified the `Player Character` sprite’s main block. Add the code before the `if`{:class="block3control"} block that checks if you're out of lives.
 
-```blocks3
-    if <touching [Enemy v] ?> then
-        hide
-        go to x: (-187) y: (42)
-        change [lives v] by (-1)
-        wait (0.5) secs
-        show
-    end
-```
+![blocks_1546300209_6344](images/blocks_1546300209_6344.png)
 
 --- collapse ---
 ---
@@ -56,30 +33,7 @@ title: Show me the whole updated script
 
 My `Player Character` sprite's main block looks like this now:
 
-```blocks3
-    when green flag clicked
-    reset-game :: custom
-    forever
-        main-physics :: custom
-        if <(y position) < [-179]> then
-            hide
-            reset-character :: custom
-            change [lives v] by (-1)
-            wait (0.05) secs
-            show
-        end
-        if <touching [Enemy v] ?> then
-            hide
-            go to x: (-187) y: (42)
-            change [lives v] by (-1)
-            wait (0.5) secs
-            show
-        end
-        if <(lives) < [1]> then
-            lose :: custom
-        end
-    end
-```
+![blocks_1546300210_7313669](images/blocks_1546300210_7313669.png)
 
 --- /collapse ---
 

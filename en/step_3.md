@@ -4,18 +4,7 @@ You may have noticed that the `lose`{:class="block3myblocks"} **My blocks** bloc
 
 + First, find the `lose` block and complete it with the following code: 
 
-```blocks3
-    define lose
-    stop [other scripts in sprite v] :: control stack
-    broadcast [game over v]
-    go to x:(0) y:(0)
-    say [Game over!] for (2) secs
-    say [It's pretty much impossible to catch all the methane, right?] for (5) secs
-    say [It would be better to reduce the amount produced in the first place.] for (6) secs
-    say [By considering the consequences of how we produce food...] for (5) secs
-    say [...we can do it in a more sustainable way that's better for everyone.] for (6) secs
-    stop [all v]
-```
+![blocks_1546300188_2604](images/blocks_1546300188_2604.png)
 
 --- collapse ---
 ---
@@ -37,15 +26,9 @@ Now you need to make sure all the sprites know what to do when the game is over,
 
 + Start with the easy ones. The `Platforms` and `Edges` sprites both need code for appearing when the game starts and disappearing at 'Game over', so add this to each of them:
 
-```blocks3
-    when I receive [game over  v]
-    hide
-```
+![blocks_1546300190_890202](images/blocks_1546300190_890202.png)
 
-```blocks3
-    when green flag clicked
-    show
-```
+![blocks_1546300191_963648](images/blocks_1546300191_963648.png)
 
 ### Stopping the farts
 
@@ -55,21 +38,7 @@ We’ll talk more about what makes clones special when we get to the card about 
 
 + Let’s look at how the `Collectable` sprite works. See if you can understand some of its code: 
 
-```blocks3
-    when green flag clicked
-    set size to (35) %
-    hide
-    set [collectable-value v] to [1]
-    set [collectable-speed v] to [1]
-    set [collectable-frequency v] to [1]
-    set [create-collectables v] to [true]
-    set [collectable-type v] to [1]
-    repeat until <not <(create-collectables) = [true]>>
-        wait (collectable-frequency) secs
-        go to x: (pick random (-240) to (240)) y: (-179)
-        create clone of [myself v]
-    end
-```
+![blocks_1546300193_02303](images/blocks_1546300193_02303.png)
 
  1. First it makes the original collectable invisible.
  2. Then it sets up the control variables. We’ll come back to these later.
@@ -77,11 +46,7 @@ We’ll talk more about what makes clones special when we get to the card about 
 
 + Now you need to set up a block on the `Collectable` sprite so that it reacts to the `game over` broadcast:
 
-```blocks3
-    when I receive [game over v]
-    hide
-    set [create-collectables v] to [false]
-```
+![blocks_1546300194_180546](images/blocks_1546300194_180546.png)
 
 This code is similar to the code controlling the `Edges` and `Platforms` sprites. The only difference is that you’re also setting the `create-collectables`{:class="block3variables"} variable to `false` so that no new clones are created when it's 'Game over'. 
  

@@ -8,13 +8,13 @@ Your game works and now you can collect points, get special powers from power-up
 
 ![The helicopter enemy sprite](images/enemySprite.png)
 
-+ Write the easier code first: set up its block for the `game over` message to make the enemy disappear when the player loses the game. 
++ Write the easier code first: set up its block for the `game over`{:class="block3events"} message to make the enemy disappear when the player loses the game. 
 
-![blocks_1546300207_413277](images/blocks_1546300207_413277.png)
+![blocks_1546533644_6805959](images/blocks_1546533644_6805959.png)
 
 + Now you need to write the code for what the enemy does. You can use mine from this card, but don’t be afraid to add more! (What if they teleport around to different platforms? Or what if there’s a power-up that makes them move faster, or slower?) 
 
-![blocks_1546300208_48879](images/blocks_1546300208_48879.png)
+![blocks_1546533645_7519958](images/blocks_1546533645_7519958.png)
 
 **Note**: if you just drag the `go to`{:class="block3motion"} block and don’t change the `x` and `y` values, they’ll be the values for the current location of the sprite!
  
@@ -24,7 +24,7 @@ The next thing you’ll need is for the player to lose a life when they touch th
 
 + Here's how I did it, but feel free to try to improve on this code! I modified the `Player Character` sprite’s main block. Add the code before the `if`{:class="block3control"} block that checks if you're out of lives.
 
-![blocks_1546300209_6344](images/blocks_1546300209_6344.png)
+![blocks_1546533646_9296541](images/blocks_1546533646_9296541.png)
 
 --- collapse ---
 ---
@@ -33,8 +33,8 @@ title: Show me the whole updated script
 
 My `Player Character` sprite's main block looks like this now:
 
-![blocks_1546300210_7313669](images/blocks_1546300210_7313669.png)
+![blocks_1546533648_041588](images/blocks_1546533648_041588.png)
 
 --- /collapse ---
 
-The new code hides the character, moves them back to their starting position, reduces `lives` by `1`, and after half a second makes them re-appear.
+The new code hides the character, moves them back to their starting position, reduces `lives`{:class="block3variables"} by `1`, and after half a second makes them re-appear.

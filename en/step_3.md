@@ -2,9 +2,9 @@
 
 You may have noticed that the `lose`{:class="block3myblocks"} **My blocks** block on the `Player Character` sprite is empty. You’re going to fill this in and set up all the pieces needed for a nice 'Game over' screen.
 
-+ First, find the `lose` block and complete it with the following code: 
++ First, find the `lose`{:class="block3myblocks"} block and complete it with the following code: 
 
-![blocks_1546300188_2604](images/blocks_1546300188_2604.png)
+![blocks_1546533624_43051](images/blocks_1546533624_43051.png)
 
 --- collapse ---
 ---
@@ -26,9 +26,9 @@ Now you need to make sure all the sprites know what to do when the game is over,
 
 + Start with the easy ones. The `Platforms` and `Edges` sprites both need code for appearing when the game starts and disappearing at 'Game over', so add this to each of them:
 
-![blocks_1546300190_890202](images/blocks_1546300190_890202.png)
+![blocks_1546533628_1234229](images/blocks_1546533628_1234229.png)
 
-![blocks_1546300191_963648](images/blocks_1546300191_963648.png)
+![blocks_1546533629_196009](images/blocks_1546533629_196009.png)
 
 ### Stopping the farts
 
@@ -38,7 +38,7 @@ We’ll talk more about what makes clones special when we get to the card about 
 
 + Let’s look at how the `Collectable` sprite works. See if you can understand some of its code: 
 
-![blocks_1546300193_02303](images/blocks_1546300193_02303.png)
+![blocks_1546533630_267286](images/blocks_1546533630_267286.png)
 
  1. First it makes the original collectable invisible.
  2. Then it sets up the control variables. We’ll come back to these later.
@@ -46,7 +46,7 @@ We’ll talk more about what makes clones special when we get to the card about 
 
 + Now you need to set up a block on the `Collectable` sprite so that it reacts to the `game over` broadcast:
 
-![blocks_1546300194_180546](images/blocks_1546300194_180546.png)
+![blocks_1546533631_428437](images/blocks_1546533631_428437.png)
 
 This code is similar to the code controlling the `Edges` and `Platforms` sprites. The only difference is that you’re also setting the `create-collectables`{:class="block3variables"} variable to `false` so that no new clones are created when it's 'Game over'. 
  

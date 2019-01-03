@@ -8,11 +8,11 @@ Let's have a look at how the collectible works right now.
 
 + In the scripts for the `Collectable` sprite, find the `when I start as a clone`{:class="block3events"} code. The blocks you should look at are the ones that give you points for collecting a fart:
 
-![blocks_1546300195_2588649](images/blocks_1546300195_2588649.png)
+![blocks_1546533632_5068748](images/blocks_1546533632_5068748.png)
 
  and this one that selects a costume for the clone:
 
-![blocks_1546300196_358295](images/blocks_1546300196_358295.png)
+![blocks_1546533633_5983958](images/blocks_1546533633_5983958.png)
 
 --- collapse ---
 ---
@@ -21,18 +21,18 @@ title: How does picking a costume work?
 
 The `pick-costume`{:class="block3myblocks"} block works a bit like the `lose`{:class="block3myblocks"} block, but it has something extra: it takes an **input** variable called `type`.
 
-![blocks_1546300197_4291232](images/blocks_1546300197_4291232.png)
+![blocks_1546533634_664686](images/blocks_1546533634_664686.png)
     
 When the `pick-costume`{:class="block3myblocks"} block runs, what it does is this:
 
- 1. It looks at the `type` input variable
- 1. If the value of `type` is equal to `1`, it switches to the `fartCloud` costume
+ 1. It looks at the `type`{:class="block3myblocks"}  input variable
+ 1. If the value of `type`{:class="block3myblocks"}  is equal to `1`, it switches to the `fartCloud` costume
 
 Take a look at the part of the script that uses the block:
 
-![blocks_1546300198_505423](images/blocks_1546300198_505423.png)
+![blocks_1546533635_748978](images/blocks_1546533635_748978.png)
 
-You can see that the `collectable-type`{:class="block3variables"} variable gets **passed** to the `pick-costume`{:class="block3myblocks"} block. Inside the code for `pick-costume`{:class="block3myblocks"}, `collectable-type`{:class="block3variables"} is then used as the input variable (`type`).
+You can see that the `collectable-type`{:class="block3variables"} variable gets **passed** to the `pick-costume`{:class="block3myblocks"} block. Inside the code for `pick-costume`{:class="block3myblocks"}, `collectable-type`{:class="block3variables"} is then used as the input variable (`type`{:class="block3myblocks"}).
 
 --- /collapse ---
 
@@ -44,25 +44,25 @@ Of course, right now the `Collectable` sprite only has one costume, since there'
 
 + Next you need to tell the `pick-costume`{:class="block3myblocks"} **My blocks** block to set the new costume whenever it gets the new value for `type`, like this \(using whatever costume name you picked\): 
 
-![blocks_1546300199_6332228](images/blocks_1546300199_6332228.png)
+![blocks_1546533636_890489](images/blocks_1546533636_890489.png)
 
 ### Create the power-up code
 
 Now you need to decide what the new collectable will do. We’ll start with something simple: giving the player a new life. On the next card, you’ll make it do something cooler. 
 
-+  Go into the **My blocks** section and click **Make a Block**. Name the new block `react-to-player`{:class="block3myblocks"} and add a **number input** named `type`.
++  Go into the **My blocks** section and click **Make a Block**. Name the new block `react-to-player`{:class="block3myblocks"} and add a **number input** named `type`{:class="block3myblocks"} .
 
 ![Type in the name for the block](images/powerupMakeName.png)
 
 + Click **OK**. 
 
-+ Make the `react-to-player`{:class="block3myblocks"} block either increase the points or increase the player’s lives, depending on the value of `type`.  
++ Make the `react-to-player`{:class="block3myblocks"} block either increase the points or increase the player’s lives, depending on the value of `type`{:class="block3myblocks"} .  
 
-![blocks_1546300200_7260642](images/blocks_1546300200_7260642.png)
+![blocks_1546533637_9903271](images/blocks_1546533637_9903271.png)
 
 + Update the `when I start as a clone`{:class="block3events"} code to replace the block that adds a point with a **call** to `react-to-player`{:class="block3myblocks"}, **passing** `collectable-type`{:class="block3variables"}. By using this **My blocks** block, normal fart clouds still add a point, and the new power-up adds a life. 
 
-![blocks_1546300201_833905](images/blocks_1546300201_833905.png)
+![blocks_1546533639_1079192](images/blocks_1546533639_1079192.png)
 
 ### Using `collectable-type`{:class="block3variables"} to create different collectables at random
 
@@ -87,7 +87,7 @@ You're going to set the `collectable-type`{:class="block3variables"} to either `
 
 + Find the `repeat until`{:class="block3control"} loop inside the green flag code for the `Collectable` sprite, and add the `if...else`{:class="block3control"} code shown below.
 
-![blocks_1546300202_9248798](images/blocks_1546300202_9248798.png)
+![blocks_1546533640_19061](images/blocks_1546533640_19061.png)
 
 This code gives a 1 in 50 chance of setting the `collectable-type`{:class="block3variables"} to `2`.
 

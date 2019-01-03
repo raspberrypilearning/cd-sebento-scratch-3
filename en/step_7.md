@@ -1,86 +1,85 @@
-## Adding some competition
+## Level 2
 
-Your game works and now you can collect points, get special powers from power-ups, and lose. We’re getting somewhere! Maybe it’d be fun to add some competition though — what about including a character that moves around a little, but that you're not supposed to touch? This will be similar to enemies in the traditional platformer games \(like Super Mario\) that we’re being inspired by here.
+With this card, you're going to add a new level to the game that the player can get to by just pressing a button. Later, you can change your code to make it so they need a certain number of points, or something else, to get there.
 
-+ First, pick a sprite to add as your enemy. Because our player character is in the sky, I chose a helicopter. There are lots of other sprites you could add though. I also renamed the sprite to `Enemy`, just to make things clearer for me.
+### Moving to the next level
 
-+ Resize the sprite to the right size and place it somewhere appropriate to start. Here’s what mine looks like: 
++ First, create a new button sprite by either adding it from the library or drawing your own. I did a bit of both and came up with this: 
 
-![The helicopter enemy sprite](images/enemySprite.png)
+![The button sprite to switch levels](images/levelButton.png)
 
-+ Write the easier code first: set up its block for the `game over` message to make the enemy disappear when the player loses the game. 
+Now, the code for this button is kinda clever: it’s designed so that every time you click it, it will take you to the next level, however many levels there are.
 
-```blocks
-    when I receive [game-over v]
-    hide
-```
++ Add these scripts to your button sprite: 
 
-+ Now you need to write the code for what the enemy does. You can use mine from this card, but don’t be afraid to add more! (What if they teleport around to different platforms? Or what if there’s a power-up that makes them move faster, or slower?) 
+![blocks_1546300211_901195](images/blocks_1546300211_901195.png)
 
-```blocks
-    when green flag clicked
-    show
-    set [enemy-move-steps v] to [5]
-    set rotation style [left-right v]
-    go to x: (1) y: (59)
-    forever
-        move (enemy-move-steps) steps
-        if <not <touching [Platforms v] ?>> then
-            set [enemy-move-steps v] to ((enemy-move-steps) * (-1))
-        end
-    end
-```
-
-**Note**: if you just drag the `go to`{:class="blockmotion"} block and don’t change the `x` and `y` values, they’ll be the values for the current location of the sprite!
+![blocks_1546300212_9877949](images/blocks_1546300212_9877949.png)
  
-The code in the `if...then`{:class="blockcontrol"} block will make the enemy turn around when they get to the end of the platform!
++ `max-level`{:class="block3variables"} is the highest level
++ `min-level`{:class="block3variables"} is the lowest level
++ `current-level`{:class="block3variables"} is the level the player is on right now
 
-The next thing you’ll need is for the player to lose a life when they touch the enemy. You need to make sure they **stop** touching really quickly, though, since otherwise the touching code will keep running and they’ll keep losing lives. 
++ These all need to be set by the programmer \(you!\), so if you add a third level, don’t forget to change the value of `max-level`{:class="block3variables"}!
 
-+ Here's how I did it, but feel free to try to improve on this code! I modified the `Player Character` sprite’s main block. Add the code before the `if`{:class="blockcontrol"} block that checks if you're out of lives.
+The code uses broadcasts to tell the other sprites which level to display, and to clear up the collectables.
 
-```blocks
-    if <touching [Enemy v] ?> then
-        hide
-        go to x: (-187) y: (42)
-        change [lives v] by (-1)
-        wait (0.5) secs
-        show
-    end
-```
+### Make the sprites react
+
+Now you need to get the other sprites to respond to these broadcasts! Start with the easy one: clearing all the collectables.  
+
++ Just tell all the existing clones to `hide` by adding this to the `Collectable` sprite: 
+
+![blocks_1546300214_114891](images/blocks_1546300214_114891.png)
+
+Since one of the first things any new clone already does is show itself, this new code means means you don’t even have to worry about turning this behaviour off for them!
+
+Now to switch the `Platforms` sprite. You can design your own new level later if you like, but for now let’s use the one I’ve already included — you’ll see why on the next card! 
+
++ Add this code to the `Platforms` sprite:
+
+![blocks_1546300215_184952](images/blocks_1546300215_184952.png)
+
+![blocks_1546300216_257216](images/blocks_1546300216_257216.png)
+
+It receives the `joined`{:class="block3operators"} messages of `level-`{:class="block3variables"} and `current-level`{:class="block3variables"} that the button sprite sends out, and responds by changing the `Platforms` costume. 
+
++ For the `Enemy` sprite, you just need to make sure it disappears when the player enters level 2, like this: 
+
+![blocks_1546300217_3351638](images/blocks_1546300217_3351638.png)
+
+![blocks_1546300218_3995981](images/blocks_1546300218_3995981.png)
+If you prefer, you can make the enemy move to another platform instead. In that case, you would use a `go to`{:class="block3motion"} block instead of the `show`{:class="block3looks"} and `hide`{:class="block3looks"}.
+
+Whenever a new level starts, the `Player Character` sprite needs to go to the right place for that level. To make this happen, you need to change where the sprite gets its coordinates from when it first appears on the Stage. At the moment, there are fixed `x` and `y` values in its code.
+
++ Begin by creating variables for the starting coordinates, `start-x`{:class="block3variables"} and `start-y`{:class="block3variables"}. Then plug them into the `go to`{:class="block3motion"} block in `reset-character`{:class="block3myblocks"} instead of the `x` and `y` values:
+
+![blocks_1546300219_479578](images/blocks_1546300219_479578.png)
+
++ Then for each broadcast announcing the start of a level, set the right `start-x`{:class="block3variables"} and `start-y`{:class="block3variables"} coordinates in response, and add a **call** to `reset-character`{:class="block3myblocks"}:
+
+![blocks_1546300220_587306](images/blocks_1546300220_587306.png)
+
+![blocks_1546300221_6837492](images/blocks_1546300221_6837492.png)
+
+### Starting at Level 1
+
+You also need to make sure that every time someone starts the game, the first level they play is Level 1.
+
++ Go to the `reset-game`{:class="block3myblocks"} script and remove the call to `reset-character`{:class="block3myblocks"}. In its place, broadcast the `min-level`{:class="block3variables"}. The code you've already added with this card will then set up the correct starting coordinates and call `reset-character`{:class="block3myblocks"}.
+
+![blocks_1546300222_761854](images/blocks_1546300222_761854.png)
 
 --- collapse ---
 ---
-title: Show me the whole updated script
+title: Resetting the character and resetting the game
 ---
 
-My `Player Character` sprite's main block looks like this now:
+Notice that the first block in the `Player Character` sprite's main green flag script is a call to the `reset-game`{:class="block3myblocks"} **My blocks** block. 
 
-```blocks
-    when green flag clicked
-    reset-game :: custom
-    forever
-        main-physics :: custom
-        if <(y position) < [-179]> then
-            hide
-            reset-character :: custom
-            change [lives v] by (-1)
-            wait (0.05) secs
-            show
-        end
-        if <touching [Enemy v] ?> then
-            hide
-            go to x: (-187) y: (42)
-            change [lives v] by (-1)
-            wait (0.5) secs
-            show
-        end
-        if <(lives) < [1]> then
-            lose :: custom
-        end
-    end
-```
+This block sets up all the variables for a new game and then calls the `reset-character`{:class="block3myblocks"} **My blocks** block, which places the character back in its correct starting position.
+
+Having the `reset-character`{:class="block3myblocks"} code in its own block separate from `reset-game`{:class="block3myblocks"}  allows you to reset the character to different positions **without** having to reset the whole game.
 
 --- /collapse ---
-
-The new code hides the character, moves them back to their starting position, reduces `lives` by `1`, and after half a second makes them re-appear.

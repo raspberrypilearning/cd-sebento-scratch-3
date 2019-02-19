@@ -6,7 +6,7 @@ This is the **Scratch 3** version of the project. There is also a [Scratch 2 ver
 
 ## Introduction
 
-These are the Advanced Scratch Sushi Cards, and in them you’ll be making a platform-style game to which you can later add your own levels, powers, and characters.
+In this project you’ll be making a platform-style game to which you can later add your own levels, powers, and characters.
 
 ### What you will make
 

@@ -13,7 +13,7 @@ title: High scores
 
 --- collapse ---
 --- 
-title: New power-ups!
+title: New power-ups
 ---
 
 + Try adding some new power-ups, for example:
@@ -26,7 +26,7 @@ title: New power-ups!
 
 --- collapse ---
 --- 
-title: Scrolling levels!
+title: Scrolling levels
 ---
 
 + Can you figure out how to make the levels scroll along, so the player character can move through them from left to right? Or at least make it _look_ like that’s what’s happening.
@@ -35,7 +35,7 @@ title: Scrolling levels!
 
 --- collapse ---
 --- 
-title: Completing levels!
+title: Completing levels
 ---
 
 + Right now, the levels never end. What if, instead of pushing a button, you needed a certain number of points to get to the next level?
@@ -44,7 +44,7 @@ title: Completing levels!
 
 --- collapse ---
 --- 
-title: Play With physics!
+title: Play With physics
 ---
 
 + Try changing some of the values in the physics engine, like the `gravity`{:class="block3variables"}, `jump height`{:class="block3variables"}, `x-speed`{:class="block3variables"}, and `y-speed`{:class="block3variables"}. How do they change the game?
@@ -64,7 +64,7 @@ title: More levels
 
 --- collapse ---
 --- 
-title: Sound effects!
+title: Sound effects
 ---
 
 + This game is totally silent right now! Try adding background music and sound effects using the blocks in the **Sound** section!
@@ -73,7 +73,7 @@ title: Sound effects!
 
 --- collapse ---
 --- 
-title: Secrets!
+title: Secrets
 ---
 
 + Think of secret bonuses, cheat codes, and other 'easter eggs' you can hide in the game for players to discover. Try to code some of them!
@@ -82,11 +82,9 @@ title: Secrets!
 
 --- collapse ---
 --- 
-title: Different characters!
+title: Different characters
 ---
 
 + Let the player pick a character. Make them different in attributes like size, how high they jump, maybe even how many lives they have and how many points they get from collectables! 
 
 --- /collapse ---
-
-![](images/zero.png) 

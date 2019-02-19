@@ -2,9 +2,22 @@
 
 You may have noticed that the `lose`{:class="block3myblocks"} **My blocks** block on the `Player Character` sprite is empty. You’re going to fill this in and set up all the pieces needed for a nice 'Game over' screen.
 
-+ First, find the `lose`{:class="block3myblocks"} block and complete it with the following code: 
+--- task ---
+First, find the `lose`{:class="block3myblocks"} block and complete it with the following code: 
 
-![blocks_1546533624_43051](images/blocks_1546533624_43051.png)
+```blocks3
+    define lose
++    stop [other scripts in sprite v] :: control stack
++    broadcast [game over v]
++    go to x:(0) y:(0)
++    say [Game over!] for (2) secs
++    say [It's pretty much impossible to catch all the methane, right?] for (5) secs
++    say [It would be better to reduce the amount produced in the first place.] for (6) secs
++    say [By considering the consequences of how we produce food...] for (5) secs
++    say [...we can do it in a more sustainable way that's better for everyone.] for (6) secs
++    stop [all v]
+```
+--- /task ---
 
 --- collapse ---
 ---
@@ -24,11 +37,19 @@ Now you need to make sure all the sprites know what to do when the game is over,
 
 ### Hiding the platforms and edges
 
-+ Start with the easy ones. The `Platforms` and `Edges` sprites both need code for appearing when the game starts and disappearing at 'Game over', so add this to each of them:
+--- task ---
+Start with the basics: The `Platforms` and `Edges` sprites both need code for appearing when the game starts and disappearing at 'Game over', so add this to each of them:
 
-![blocks_1546533628_1234229](images/blocks_1546533628_1234229.png)
+```blocks3
+    when I receive [game over  v]
+    hide
+```
 
-![blocks_1546533629_196009](images/blocks_1546533629_196009.png)
+```blocks3
+    when green flag clicked
+    show
+```
+--- /task ---
 
 ### Stopping the farts
 
@@ -36,18 +57,38 @@ Now, for something a little more tricky! If you look at the code for the `Collec
 
 We’ll talk more about what makes clones special when we get to the card about making new and different collectables. For now, what you need to know is that clones can do **almost** everything a normal sprite can, including receiving `broadcast`{:class="block3events"} messages.
 
-+ Let’s look at how the `Collectable` sprite works. See if you can understand some of its code: 
+Look at how the `Collectable` sprite works. See if you can understand some of its code: 
 
-![blocks_1546533630_267286](images/blocks_1546533630_267286.png)
+```blocks3
+    when green flag clicked
+    set size to (35) %
+    hide
+    set [collectable-value v] to [1]
+    set [collectable-speed v] to [1]
+    set [collectable-frequency v] to [1]
+    set [create-collectables v] to [true]
+    set [collectable-type v] to [1]
+    repeat until <not <(create-collectables) = [true]>>
+        wait (collectable-frequency) secs
+        go to x: (pick random (-240) to (240)) y: (-179)
+        create clone of [myself v]
+    end
+```
 
  1. First it makes the original collectable invisible.
  2. Then it sets up the control variables. We’ll come back to these later.
  3. The `create-collectables`{:class="block3variables"} variable is the on/off switch for cloning: the loop creates clones if `create-collectables`{:class="block3variables"} is `true`, and does nothing if it’s not.
 
-+ Now you need to set up a block on the `Collectable` sprite so that it reacts to the `game over` broadcast:
+--- task ---
+Now set up a block on the `Collectable` sprite so that it reacts to the `game over` broadcast:
 
-![blocks_1546533631_428437](images/blocks_1546533631_428437.png)
+```blocks3
+    when I receive [game over v]
+    hide
+    set [create-collectables v] to [false]
+```
+--- /task ---
 
 This code is similar to the code controlling the `Edges` and `Platforms` sprites. The only difference is that you’re also setting the `create-collectables`{:class="block3variables"} variable to `false` so that no new clones are created when it's 'Game over'. 
  
-+ Note that you can use this variable to pass messages from one part of your code to another! 
+Note that you can use this variable to pass messages from one part of your code to another! 

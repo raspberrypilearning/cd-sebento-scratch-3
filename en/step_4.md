@@ -61,10 +61,13 @@ You can see that the `collectable-type`{:class="block3variables"} variable gets 
 Of course, right now the `Collectable` sprite only has one costume, since there's only one type of collectable. You're about to change that!
 
 --- task ---
+
 Add a new costume to the `Collectable` sprite for your new power-up. I've drawn a supersize fart cloud, but you can make whatever you like!
+
 --- /task ---
 
 --- task ---
+
 Next you need to tell the `pick-costume`{:class="block3myblocks"} **My blocks** block to set the new costume whenever it gets the new value for `type`, like this \(using whatever costume name you picked\): 
 
 ```blocks3
@@ -76,6 +79,7 @@ Next you need to tell the `pick-costume`{:class="block3myblocks"} **My blocks** 
         switch costume to [superFart v]
     end
 ```
+
 --- /task ---
 
 ### Create the power-up code
@@ -83,14 +87,17 @@ Next you need to tell the `pick-costume`{:class="block3myblocks"} **My blocks** 
 Now you need to decide what the new collectable will do. We’ll start with something simple: giving the player a new life. On the next card, you’ll make it do something cooler. 
 
 --- task ---
+
 Go into the **My blocks** section and click **Make a Block**. Name the new block `react-to-player`{:class="block3myblocks"} and add a **number input** named `type`{:class="block3myblocks"} .
 
 ![Type in the name for the block](images/powerupMakeName.png)
 
 Click **OK**. 
+
 --- /task ---
 
 --- task ---
+
 Make the `react-to-player`{:class="block3myblocks"} block either increase the points or increase the player’s lives, depending on the value of `type`{:class="block3myblocks"} .  
 
 ```blocks3
@@ -106,6 +113,7 @@ Make the `react-to-player`{:class="block3myblocks"} block either increase the po
 --- /task ---
 
 --- task ---
+
 Update the `when I start as a clone`{:class="block3events"} code to replace the block that adds a point with a **call** to `react-to-player`{:class="block3myblocks"}, **passing** `collectable-type`{:class="block3variables"}. By using this **My blocks** block, normal fart clouds still add a point, and the new power-up adds a life. 
 
 ```blocks3
@@ -114,6 +122,7 @@ Update the `when I start as a clone`{:class="block3events"} code to replace the 
         delete this clone
     end
 ```
+
 --- /task ---
 
 ### Using `collectable-type`{:class="block3variables"} to create different collectables at random
@@ -138,6 +147,7 @@ One of the things that makes clones special is that they cannot change the value
 You're going to set the `collectable-type`{:class="block3variables"} to either `1` or `2` for each new clone that you make. Let's pick the number at random, to make a random collectable every time and keep things interesting. 
 
 --- task ---
+
 Find the `repeat until`{:class="block3control"} loop inside the green flag code for the `Collectable` sprite, and add the `if...else`{:class="block3control"} code shown below.
 
 ```blocks3
@@ -151,6 +161,7 @@ Find the `repeat until`{:class="block3control"} loop inside the green flag code 
         go to x: (pick random (-240) to (240)) y: (-179)
         create clone of [myself v]
 ```
+
 --- /task ---
 
 This code gives a 1 in 50 chance of setting the `collectable-type`{:class="block3variables"} to `2`.

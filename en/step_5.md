@@ -5,6 +5,7 @@ Now that you have a new power-up working, it’s time to make it do something co
 For this you need to create another piece of code that will start while the `react-to-player`{:class="block3myblocks"} block finishes running. To make that happen, you'll use a `broadcast`{:class="block3events"} block to send a message to another piece of code inside this sprite. 
 
 --- task ---
+
 Create this block for the `Collectable` sprite. Let’s call the broadcast `collectable-rain`{:class="block3events"}.
 
 ```blocks3
@@ -13,6 +14,7 @@ Create this block for the `Collectable` sprite. Let’s call the broadcast `coll
 +    wait (1) secs
 +    set [collectable-frequency v] to [1]
 ```
+
 --- /task ---
 
 --- collapse ---
@@ -44,6 +46,7 @@ You can see that the `wait` block here pauses the code for the length of time se
 Now you have the sprite ready to receive the `collectable-rain`{:class="block3events"} broadcast block, but you haven't made code for sending the broadcast yet. 
 
 --- task ---
+
 Next, update the `react-to-player`{:class="block3myblocks"} block to look like this, so it broadcasts `collectable-rain`{:class="block3events"} when the player touches a type `2` power-up. 
 
 ```blocks3
@@ -55,4 +58,5 @@ Next, update the `react-to-player`{:class="block3myblocks"} block to look like t
 +        broadcast [collectable-rain v]
     end
 ```
+
 --- /task ---

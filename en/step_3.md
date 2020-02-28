@@ -3,6 +3,7 @@
 You may have noticed that the `lose`{:class="block3myblocks"} **My blocks** block on the `Player Character` sprite is empty. You’re going to fill this in and set up all the pieces needed for a nice 'Game over' screen.
 
 --- task ---
+
 First, find the `lose`{:class="block3myblocks"} block and complete it with the following code: 
 
 ```blocks3
@@ -17,6 +18,7 @@ First, find the `lose`{:class="block3myblocks"} block and complete it with the f
 +    say [...we can do it in a more sustainable way that's better for everyone.] for (6) secs
 +    stop [all v]
 ```
+
 --- /task ---
 
 --- collapse ---
@@ -38,6 +40,7 @@ Now you need to make sure all the sprites know what to do when the game is over,
 ### Hiding the platforms and edges
 
 --- task ---
+
 Start with the basics: The `Platforms` and `Edges` sprites both need code for appearing when the game starts and disappearing at 'Game over', so add this to each of them:
 
 ```blocks3
@@ -49,6 +52,7 @@ Start with the basics: The `Platforms` and `Edges` sprites both need code for ap
     when green flag clicked
     show
 ```
+
 --- /task ---
 
 ### Stopping the farts
@@ -80,6 +84,7 @@ Look at how the `Collectable` sprite works. See if you can understand some of it
  3. The `create-collectables`{:class="block3variables"} variable is the on/off switch for cloning: the loop creates clones if `create-collectables`{:class="block3variables"} is `true`, and does nothing if it’s not.
 
 --- task ---
+
 Now set up a block on the `Collectable` sprite so that it reacts to the `game over` broadcast:
 
 ```blocks3
@@ -87,6 +92,7 @@ Now set up a block on the `Collectable` sprite so that it reacts to the `game ov
     hide
     set [create-collectables v] to [false]
 ```
+
 --- /task ---
 
 This code is similar to the code controlling the `Edges` and `Platforms` sprites. The only difference is that you’re also setting the `create-collectables`{:class="block3variables"} variable to `false` so that no new clones are created when it's 'Game over'. 

@@ -13,7 +13,7 @@ In dit project maak je een platform-achtige game waaraan je later je eigen nivea
 Wist je dat het hebben van heel veel koeien bijdraagt aan klimaatverandering? Dat komt omdat koeien methaan, een broeikasgas, produceren en het met scheten loslaten. In dit spel is je missie om zoveel mogelijk methaan te vangen als je kunt.
 
 <div class="scratch-preview">
-  <iframe allowtransparency="true" width="485" height="402" src="https://scratch.mit.edu/projects/embed/219285989/?autostart=false" frameborder="0"></iframe>
+  <iframe allowtransparency="true" width="485" height="402" src="https://scratch.mit.edu/projects/embed/395279133/?autostart=false" frameborder="0"></iframe>
 </div>
 
 Gebruik de pijltjestoetsen om Pico te verplaatsen. Zorg ervoor dat je niet tegen de helikopter botst!

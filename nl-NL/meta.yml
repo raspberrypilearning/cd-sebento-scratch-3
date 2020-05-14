@@ -1,0 +1,25 @@
+---
+title: Schetenvanger
+hero_image: images/banner.png
+description: Maak een platform-achtige game en voeg je eigen levels, krachten en personages toe.
+theme: orange
+listed: true
+copyedit: true
+curriculum: ''
+interests: ''
+technologies: scratch
+site_areas: coderdojo, projects
+hardware: ''
+software: scratch
+version: 3.0.0
+last_tested: "2018-04-23"
+steps:
+  - title: Inleiding
+  - title: De voorbereidingen
+  - title: Het spel verliezen
+  - title: Power-ups
+  - title: Super power-ups!
+  - title: Wedstrijdelement toevoegen
+  - title: Level 2
+  - title: Bewegende platforms
+  - title: Wat kun je verder nog doen?

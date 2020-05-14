@@ -1,169 +1,169 @@
 ## Power-ups
 
-At the moment you have just one type of collectible: a fart cloud that gives you one point when you grab it. On this card, you’re going to create a new type of collectible, in a way that will make adding other types of collectibles easy. Then you can invent your own power-ups and bonuses and really make the game your own!
+Op dit moment heb je maar één type prijs: een scheetwolk die je één punt geeft als je hem grijpt. Op deze kaart ga je een nieuw type prijs maken, op een manier die het toevoegen van andere soorten prijzen eenvoudig maakt. Dan kun je je eigen power-ups en bonussen verzinnen en echt je eigen spel maken!
 
-I’ve already included some pieces to do this with the `collectable-type`{:class="block3variables"} variable and the `pick-costume`{:class="block3myblocks"} **My blocks** block. You’re going to need to improve on them though.
+Ik heb hier al enkele stukjes voor toegevoegd met de `prijs-type`{:class="block3variables"} variabele en het `verander uiterlijk`{:class="block3myblocks"} **Mijn blokken** blok. Je zult ze echter moeten verbeteren.
 
-Let's have a look at how the collectible works right now.
+Laten we eens kijken hoe de prijs nu werkt.
 
-In the scripts for the `Collectable` sprite, find the `when I start as a clone`{:class="block3events"} code. The blocks you should look at are the ones that give you points for collecting a fart:
+Zoek in de scripts voor de `Collectable` sprite de `wanneer ik als kloon start`{:class="block3events"} code. De blokken waar je naar moet kijken, zijn de blokken die je punten geven voor het verzamelen van een scheet:
 
 ```blocks3
-    if <touching [Player Character v]?> then
-        change [points v] by (collectable-value ::variables)
-        delete this clone
+    als <raak ik [Player Character v] ?> dan
+        verander [punten v] met (prijs-waarde ::variables)
+        verwijder deze kloon
 ```
 
-and this one that selects a costume for the clone:
+en deze die een uiterlijk voor de kloon selecteert:
 
 ```blocks3
-    pick-costume (collectable-type ::variables) :: custom
+    kies uiterlijk (prijs-type ::variables) :: custom
 ```
 
 --- collapse ---
 ---
-title: How does picking a costume work?
+title: Hoe werkt het kiezen van een uiterlijk?
 ---
 
-The `pick-costume`{:class="block3myblocks"} block works a bit like the `lose`{:class="block3myblocks"} block, but it has something extra: it takes an **input** variable called `type`.
+Het `kies uiterlijk`{:class="block3myblocks"} blok werkt een beetje zoals het `verlies`{:class="block3myblocks"} blok, maar het heeft iets extra's: er is een variabele met **invoer**, `type` genaamd.
 
 ```blocks3
-    define pick-costume (type)
-    if <(type ::variable) = [1]> then
-        switch costume to [fartCloud v]
-    end
+    definieer kies uiterlijk (type)
+    als <(type ::variable) = [1]> dan
+        verander uiterlijk naar [fartCloud v]
+    einde
 ```
 
-When the `pick-costume`{:class="block3myblocks"} block runs, what it does is this:
+Wanneer het blok `kies uiterlijk`{:class="block3myblocks"} wordt uitgevoerd, doet het hier het volgende:
 
- 1. It looks at the `type`{:class="block3myblocks"}  input variable
- 1. If the value of `type`{:class="block3myblocks"}  is equal to `1`, it switches to the `fartCloud` costume
+ 1. Het kijkt naar `type`{:class="block3myblocks"} in de invoer variabele
+ 1. Als de waarde van `type`{:class="block3myblocks"} gelijk is aan `1`, schakelt deze over naar het `fartCloud` uiterlijk
 
-Take a look at the part of the script that uses the block:
+Bekijk het deel van het script dat het blok gebruikt:
 
 ```blocks3
-    when I start as a clone
-    pick-costume (collectable-type ::variables) :: custom
-    show
-    repeat until <(y position) > [170]>
-        change y by (collectable-speed ::variables)
-        if <touching [Player Character v]?> then
-            change [points v] by (collectable-value ::variables)
-            delete this clone
+    wanneer ik als kloon start
+    kies uiterlijk (prijs-type ::variables) :: custom
+    verschijn
+    herhaal tot <(y positie) > [170]>
+        verander y met (prijs-tempo ::variables)
+        als <raak ik [Player Character v] ?> dan
+            verander [punten v] met (prijs-waarde ::variables)
+            verwijder deze kloon
 ```
 
-You can see that the `collectable-type`{:class="block3variables"} variable gets **passed** to the `pick-costume`{:class="block3myblocks"} block. Inside the code for `pick-costume`{:class="block3myblocks"}, `collectable-type`{:class="block3variables"} is then used as the input variable (`type`{:class="block3myblocks"}).
+Je kunt zien dat de `prijs-type`{:class="block3variables"} variabele **doorgezet wordt** naar het blok `kies uiterlijk`{:class="block3myblocks"}. Binnen de code voor `kies uiterlijk`{:class="block3myblocks"}, wordt `prijs-type`{:class="block3variables"} vervolgens gebruikt als de invoervariabele (`type`{:class="block3myblocks"}).
 
 --- /collapse ---
 
-### Add a costume for the new power-up
+### Voeg een uiterlijk toe voor de nieuwe power-up
 
-Of course, right now the `Collectable` sprite only has one costume, since there's only one type of collectable. You're about to change that!
+Natuurlijk heeft de sprite van `Collectable` maar één uiterlijk, omdat er maar één type prijs is. Je staat op het punt om dat te veranderen!
 
 --- task ---
 
-Add a new costume to the `Collectable` sprite for your new power-up. I've drawn a supersize fart cloud, but you can make whatever you like!
+Voeg een nieuw uiterlijk toe aan de `Collectable` sprite voor je nieuwe power-up. Ik heb een supersize scheetwolk getekend, maar je kunt maken wat je maar wilt!
 
 --- /task ---
 
 --- task ---
 
-Next you need to tell the `pick-costume`{:class="block3myblocks"} **My blocks** block to set the new costume whenever it gets the new value for `type`, like this \(using whatever costume name you picked\):
+Vervolgens moet je het `kies uiterlijk` {:class="block3myblocks"} **Mijn blokken** blok vertellen om het nieuwe uiterlijk in te stellen wanneer het de nieuwe waarde voor `type` ontvangt, zoals dit \(met behulp van de uiterlijknaam die je hebt gekozen\):
 
 ```blocks3
-    define pick-costume (type)
-    if <(type ::variable) = [1]> then
-        switch costume to [fartCloud v]
-    end
-+    if <(type ::variable) = [2]> then
-        switch costume to [superFart v]
-    end
+    definieer kies uiterlijk (type)
+    als <(type ::variable) = [1]> dan
+        verander uiterlijk naar [fartCloud v]
+    einde
++ als <(type ::variable) = [2]> dan
+        verander uiterlijk naar [superFart v]
+    einde
 ```
 
 --- /task ---
 
-### Create the power-up code
+### Maak de code voor de power-up
 
-Now you need to decide what the new collectable will do. We’ll start with something simple: giving the player a new life. On the next card, you’ll make it do something cooler.
+Nu moet je beslissen wat de nieuwe prijs zal doen. We beginnen met iets eenvoudigs: de speler een nieuw leven geven. Op de volgende kaart laat je het iets coolers doen.
 
 --- task ---
 
-Go into the **My blocks** section and click **Make a Block**. Name the new block `react-to-player`{:class="block3myblocks"} and add a **number input** named `type`{:class="block3myblocks"} .
+Ga naar het gedeelte **Mijn blokken** en klik op **Maak een blok**. Noem het nieuwe blok `reageer-op-speler`{:class="block3myblocks"} en voeg een **invoer** toe met de naam `type`{:class="block3myblocks"}.
 
-![Type in the name for the block](images/powerupMakeName.png)
+![Typ de naam voor het blok](images/powerupMakeName.png)
 
-Click **OK**.
+Klik op **OK**.
 
 --- /task ---
 
 --- task ---
 
-Make the `react-to-player`{:class="block3myblocks"} block either increase the points or increase the player’s lives, depending on the value of `type`{:class="block3myblocks"} .
+Laat het `reageer-op-speler`{:class="block3myblocks"} blok de punten verhogen of de levensduur van de speler verlengen, afhankelijk van de waarde van `type`{:class="block3myblocks"}.
 
 ```blocks3
-+    define react-to-player (type)
-+    if <(type ::variable) = [1]> then
-        change [points v] by (collectable-value ::variables)
-    end
-+   if <(type ::variable) = [2]> then
-        change [lives v] by [1]
-    end
++ definieer reageer-op-speler (type)
++ if <(type ::variable) = [1]> dan
+        verander [punten v] met (prijs-waarde :: variables)
+    einde
++ if <(type ::variable) = [2]> dan
+        verander [levens v] met [1]
+einde
 ```
 
 --- /task ---
 
 --- task ---
 
-Update the `when I start as a clone`{:class="block3events"} code to replace the block that adds a point with a **call** to `react-to-player`{:class="block3myblocks"}, **passing** `collectable-type`{:class="block3variables"}. By using this **My blocks** block, normal fart clouds still add a point, and the new power-up adds a life.
+Werk de `wanneer ik als kloon start`{:class="block3events"} code bij om het blok dat een punt toevoegt te vervangen door een **aanroep** naar `reageer-op-speler`{:class="block3myblocks"}, `collectable-type`{:class="block3variables"} **doorgevend**. Door dit **Mijn blokken** blok te gebruiken, voegen normale scheetwolken nog steeds een punt toe en voegt de nieuwe power-up een leven toe.
 
 ```blocks3
-    if <touching [Player Character v] ?> then
-+        react-to-player (collectable-type ::variables) :: custom
-        delete this clone
-    end
+    als <raak ik [Player Character v] ?> dan
++ reageer-op-speler (prijs-type ::variables) :: custom
+        verwijder deze kloon
+einde
 ```
 
 --- /task ---
 
-### Using `collectable-type`{:class="block3variables"} to create different collectables at random
+### Gebruik `prijs-type`{:class="block3variables"} om willekeurig verschillende prijzen te maken
 
-Right now, you might be wondering how you'll tell each collectable the game makes what type it should be.
+Op dit moment vraag je je wellicht af hoe je elke prijs dat het spel maakt, kunt vertellen welk type het zou moeten zijn.
 
-You do this by setting the value of `collectable-type`{:class="block3variables"}. This variable is just a number. As you've seen, it's used to tell the `pick-costume`{:class="block3myblocks"} and `react-to-player`{:class="block3myblocks"} blocks what costume, rules, etc., to use for the collectable.
+Je doet dit door de waarde van `prijs-type`{:class="block3variables"} in te stellen. Deze variabele is slechts een getal. Zoals je hebt gezien, wordt het gebruikt om de `kies uiterlijk`{:class="block3myblocks"} en `reageer-op-speler`{:class="block3myblocks"} blokken te vertellen welk uiterlijk, regels, enz. te gebruiken voor de prijs.
 
 --- collapse ---
 ---
-title: Working with variables in a clone
+title: Werken met variabelen in een kloon
 ---
 
-For each clone of the `Collectable` sprite, you can set a different value for `collectable-type`{:class="block3variables"}.
+Voor elke kloon van de `Collectable` sprite kun je een andere waarde instellen voor `prijs-type`{:class="block3variables"}.
 
-Think of it like creating a new copy of the `Collectable` sprite using the value that is stored in `collectable-type`{:class="block3variables"} at the time `Collectable` clone gets created.
+Zie het als het maken van een nieuwe kopie van de `Collectable` sprite met de waarde die is opgeslagen in `prijs-type`{:class="block3variables"} op het moment dat een `Collectable` kloon wordt gemaakt.
 
-One of the things that makes clones special is that they cannot change the values of any variables they start with. They effectively have **constant** values. That means that when you change the value of `collectable-type`{:class="block3variables"}, this doesn't affect the `Collectable` sprite clones that are already in the game.
+Een van de dingen die klonen bijzonder maakt, is dat ze de waarden van variabelen waarmee ze beginnen niet kunnen wijzigen. Ze hebben effectief **constante** waarden. Dat betekent dat wanneer je de waarde van `prijs-type`{:class="block3variables"} wijzigt, dit niet van invloed is op de `Collectable` sprite-klonen die al in het spel aanwezig zijn.
 
 --- /collapse ---
 
-You're going to set the `collectable-type`{:class="block3variables"} to either `1` or `2` for each new clone that you make. Let's pick the number at random, to make a random collectable every time and keep things interesting.
+Je gaat het `prijs-type`{:class="block3variables"} instellen op `1` of `2` voor elke nieuwe kloon die je maakt. Laten we het getal willekeurig kiezen, zodat we elke keer een willekeurige prijs kunnen maken en dingen interessant kunnen houden.
 
 --- task ---
 
-Find the `repeat until`{:class="block3control"} loop inside the green flag code for the `Collectable` sprite, and add the `if...else`{:class="block3control"} code shown below.
+Zoek de `herhaal tot`{:class="block3control"} lus in de groene vlag code voor de `Collectable` sprite, en voeg de `als... anders`{:class="block3control"} code toe zoals hieronder weergegeven.
 
 ```blocks3
-    repeat until <not <(create-collectables ::variables) = [true]>>
-+        if <[50] = (pick random (1) to (50))> then
-            set [collectable-type v] to [2]
-        else
-            set [collectable-type v] to [1]
-        end
-        wait (collectable-frequency ::variables) secs
-        go to x: (pick random (-240) to (240)) y: (-179)
-        create clone of [myself v]
+    herhaal tot >niet >(create-collectables) = [waar]>>
++ if <[50] = (willekeurig getal tussen (1) en (50))> dan
+            maak [prijs-type v] [2]
+        anders
+            maak [prijs-type v] [1]
+        einde
+        wacht (prijs-frequentie :: variables) sec.
+        ga naar x: (willekeurig getal tussen (-240) en (240)) y: (-179)
+        maak een kloon van [mijzelf v]
 ```
 
 --- /task ---
 
-This code gives a 1 in 50 chance of setting the `collectable-type`{:class="block3variables"} to `2`.
+Deze code geeft een kans van 1 op 50 om `prijs-type`{:class="block3variables"} in te stellen op `2`.
 
-Great! Now you have a new type of collectable that sometimes shows up instead of the fart cloud, and that gives you an extra life instead of a point when you collect it!
+Geweldig! Nu heb je een nieuw type prijs dat soms verschijnt in plaats van de scheetwolk, en dat je een extra leven geeft in plaats van een punt wanneer je het verzamelt!

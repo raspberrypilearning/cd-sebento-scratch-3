@@ -1,98 +1,98 @@
-## Moving platforms
+## Bewegende platforms
 
-The reason I asked you to use my version of level 2 is the gap you might have noticed in the middle of the layout. You’re going to create a platform that moves through this gap and that the player can jump on and ride!
+De reden waarom ik je heb gevraagd om mijn versie van level 2 te gebruiken, is de opening die je misschien midden in de opmaak hebt gezien. Je gaat een platform creëren dat zich door dit gat beweegt en waar de speler op kan springen om zich voort te bewegen!
 
-![Another level with different platforms](images/movingPlatforms.png)
+![Een ander level met verschillende platforms](images/movingPlatforms.png)
 
-First, you’ll need the sprite for the platform.
+Ten eerste heb je de sprite voor het platform nodig.
 
 --- task ---
 
-Add a new sprite, name it **Moving-Platform**, and using the costume customisation tools in the Costumes tab to make it look like the other platforms \(use vector mode\).
+Voeg een nieuwe sprite toe, noem deze **Bewegend-Platform**, en gebruik de uiterlijkgereedschappen in Uiterlijken om het op de andere platforms te laten lijken \(gebruik de vectormodus\).
 
 --- /task ---
 
-Now, let's adde some code to the sprite.
+Laten we nu wat code toevoegen aan de sprite.
 
-Begin with the basics: to make a never-ending set of platforms moving up the screen, you’ll need to clone the platform at regular intervals. I picked `4` seconds as my interval. You also need to make sure that there’s an on/off switch for making the platforms, so that they don’t show up in level 1. I’m using a new variable called `create-platforms`{:class="block3variables"}.
+Begin met de basis: om een nooit eindigende verzameling platforms op het scherm te laten bewegen, moet je het platform regelmatig klonen. Ik koos `4` seconden als mijn interval. Je moet ook zorgen dat er een aan/uit schakelaar is om de platforms te maken, zodat ze niet op level 1 verschijnen. Ik gebruik een nieuwe variabele genaamd `maak-platforms`{:class="block3variables"}.
 
 --- task ---
 
-Add code to create clones of your platform sprite.
+Voeg code toe om klonen van je platform sprite te maken.
 
-Here's how mine looks so far:
+Dit is hoe de mijne er nu uitziet:
 
 ```blocks3
-+    when green flag clicked
-+    hide
-+    forever
-        wait (4) secs
-        if <(create-platforms ::variables) = [true]> then
-            create clone of [myself v]
-        end
-    end
++ wanneer op groene vlag wordt geklikt
++ verdwijn
++ herhaal
+        wacht (4) sec.
+        als <(maak-platforms ::variables) = [waar]> dan
+            maak een kloon van [mijzelf v]
+        einde
+    einde
 ```
 
 --- /task ---
 
 --- task ---
 
-Then add the clone's code:
+Voeg vervolgens de klooncode toe:
 
 ```blocks3
-+    when I start as a clone
-+    show
-+    forever
-        if <(y position) < [180]> then
-            change y by (1)
-            wait (0.02) secs
-        else
-            delete this clone
-        end
-    end
++ wanneer ik als kloon start
++ verschijn
++ herhaal
+        als <(y positie) < [180]> dan
+            verander y met (1)
+            wacht (0.02) sec.
+        anders
+            verwijder deze kloon
+        einde
+    einde
 ```
 
 --- /task ---
 
-This code makes the **Moving-Platform** clone move up to the top of the screen, slowly enough for the player to jump on and off, and then disappear.
+Deze code zorgt ervoor dat de kloon van **Bewegend-Platform** naar de bovenkant van het scherm wordt verplaatst, langzaam genoeg zodat de speler erop en eraf kan springen, en vervolgens verdwijnt.
 
 --- task ---
 
-Now make the platforms disappear/reappear based on the broadcasts that change levels (so they're only on the level with space for them), and the `game over`{:class="block3events"} message.
+Laat nu de platforms verdwijnen/verschijnen op basis van de signalen die levels veranderen (dus ze zijn alleen op het level waar ruimte voor hen is), en het `game over`{:class="block3events"} bericht.
 
 ```blocks3
-+    when I receive [level-1 v]
-+    set [create-platforms v] to [false]
-+    hide
++ wanneer ik signaal [level-1 v] ontvang
++ maak [maak-platforms v] [onwaar]
++ verdwijn
 
-+    when I receive [level-2 v]
-+    set [create-platforms v] to [true]
++ wanneer ik signaal [level-2 v] ontvang
++ maak [maak-platforms v] [waar]
 
-+    when I receive [game over v]
-+    hide
-+    set [create-platforms v] to [false]
++ wanneer ik signaal [game over v] ontvang
++ verdwijn
++ maak [maak-platforms v] [onwaar]
 ```
 
 --- /task ---
 
-Now, if you try to actually play the game, the **Player Character** falls through the platform! Any idea why?
+Als je nu probeert om het spel daadwerkelijk te spelen, valt de **Speler** door het platform! Enig idee waarom?
 
-It’s because the physics code doesn’t know about the platform. It’s actually a quick fix:
+Het is omdat de natuurkunde code nog niets weet over het platform. Er is een snelle oplossing:
 
 --- task ---
 
-In the **Player Character** sprite scripts, replace every `touching “Platforms”`{:class="block3sensing"}  block with an `OR`{:class="block3operators"} operator that checks for **either** `touching “Platforms”`{:class="block3sensing"}  **OR** `touching “Moving-Platform”`{:class="block3sensing"}.
+Vervang in de **Player Character** sprite alle `raak ik "Platforms"`{:class="block3sensing"} blokken door een `OF`{:class="block3operators"} operator die controleert op **of** `raak ik "Platforms"`{:class= "block3sensing"}  **OF** `raak ik "Bewegend-Platform "`{:class="block3sensing"}.
 
-Go through the code for the **Player Character** sprite and everywhere you see this block:
+Doorloop de code voor de **Player Character** sprite en overal waar je dit blok ziet:
 
 ```blocks3
-    <touching [Platforms v] ?>
+    <raak ik [Platforms v] ?>
 ```
 
-replace it with this one:
+vervang het door deze:
 
 ```blocks3
-    <<touching [Platforms v] ?> or <touching [Moving-Platform v] ?>>
+    <<raak ik [Platforms v] ?> of <raak ik [Bewegend-Platform v] ?>>
 ```
 
 --- /task ---

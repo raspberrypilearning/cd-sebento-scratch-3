@@ -1,62 +1,62 @@
 ## Super power-ups!
 
-Now that you have a new power-up working, it’s time to make it do something cool! Let's make it 'rain' power-ups for a few seconds, instead of just giving out an extra life.
+Nu je een nieuwe power-up hebt, is het tijd om het iets cools te laten doen! Laten we het een paar seconden power-ups laten 'regenen' in plaats van gewoon een extra leven te geven.
 
-For this you need to create another piece of code that will start while the `react-to-player`{:class="block3myblocks"} block finishes running. To make that happen, you'll use a `broadcast`{:class="block3events"} block to send a message to another piece of code inside this sprite.
+Hiervoor moet je nog een stuk code maken dat start terwijl het `reageer-op-speler`{:class="block3myblocks"} blok klaar is met uitvoeren. Om dat mogelijk te maken, gebruik je een `zend signaal`{:class="block3events"} blok om een bericht naar een ander stuk code in deze sprite te verzenden.
 
 --- task ---
 
-Create this block for the `Collectable` sprite. Let’s call the broadcast `collectable-rain`{:class="block3events"}.
+Maak dit blok voor de `Collectable` sprite. Laten we het signaal `prijzen-regen`{:class="block3events"} noemen.
 
 ```blocks3
-+    when I receive [collectable-rain v]
-+    set [collectable-frequency v] to [0.000001]
-+    wait (1) secs
-+    set [collectable-frequency v] to [1]
++ wanneer ik signaal [prijzen-regen v] ontvang
++ maak [prijs-frequentie v] [0.000001]
++ wacht (1) sec.
++ maak [prijs-frequentie v] [1]
 ```
 
 --- /task ---
 
 --- collapse ---
 ---
-title: What does the new code do?
+title: Wat doet de nieuwe code?
 ---
 
-This block just sets `collectable-frequency`{:class="block3variables"} to a very small number \(change it to different values and see what happens!\) and then waits a second and changes it back to `1`.
+Dit blok stelt `prijs-frequentie`{:class="block3variables"} in op een heel klein aantal \(verander het in verschillende waarden en kijk wat er gebeurt!\), wacht dan een seconde en verandert het terug in `1`.
 
-This doesn’t look like it should do much, but think about what’s happening during that second: the `when green flag clicked`{:class="block3events"} code is still running, and the `repeat until`{:class="block3control"} loop in it is looping. Look at the code in that loop:
+Dit ziet er niet naar uit dat het veel zou moeten doen, maar denk na over wat er tijdens die seconde gebeurt: de `wanneer op de groene vlag wordt geklikt`{:class="block3events"} code is nog steeds actief en de `herhaal tot`{:class="block3control"} lus is ook nog bezig. Bekijk de code in die lus:
 
 ```blocks3
-    repeat until <not <(create-collectables ::variables) = [true]>>
-        if < [50] = (pick random (1) to (50))> then
-            set [collectable-type v] to [2]
-        else
-            set [collectable-type v] to [1]
-        end
-        wait (collectable-frequency ::variables) secs
-        go to x: (pick random (-240) to (240)) y:(-179)
-        create clone of [myself v]
-    end
+    herhaal tot <niet <(create-collectables) = [waar]>>
+        als < [50] = (willekeurig getal tussen (1) en (50))> dan
+            maak [prijs-type v] [2]
+        anders
+            maak [prijs-type v] [1]
+        einde
+        wacht (prijs-frequentie :: variables) sec.
+        ga naar x: (willekeurig getal tussen (-240) en (240)) y: (- 179)
+        maak een kloon van [mijzelf v]
+    einde
 ```
 
-You can see that the `wait` block here pauses the code for the length of time set by `collectable-frequency`{:class="block3variables"}. So if the value of `collectable-frequency`{:class="block3variables"} changes to `0.000001`, the `wait` block only pauses for **one millionth** of a second, meaning that the loop will run many more times than normal. As a result, the code is going to create **a lot** more power-ups than it normally would, until `collectable-frequency`{:class="block3variables"} changes back `1`. Can you think of any problems that might cause? There’ll be a lot more super-farts…what if you kept catching them?
+Je kunt zien dat het `wacht` blok hier de code pauzeert voor de tijdsduur ingesteld door `prijs-frequentie`{:class="block3variables"}. Dus als de waarde van `prijs-frequentie`{:class="block3variables"} verandert in `0.000001`, pauzeert het blok van `wacht` slechts **één miljoenste** seconde, wat betekent dat de lus veel vaker zal lopen dan normaal. Als gevolg hiervan gaat de code **veel** meer power-ups genereren dan normaal, totdat `prijs-frequentie`{:class="block3variables"} `1` weer terug verandert. Kun je mogelijke problemen bedenken? Er zullen nog veel meer super-scheten zijn…wat als je ze blijft vangen?
 
 --- /collapse ---
 
-Now you have the sprite ready to receive the `collectable-rain`{:class="block3events"} broadcast block, but you haven't made code for sending the broadcast yet.
+Nu heb je de sprite klaar om het `prijzen-regen`{:class="block3events"} signaal te ontvangen, maar je hebt nog geen code gemaakt voor het verzenden van het signaal.
 
 --- task ---
 
-Next, update the `react-to-player`{:class="block3myblocks"} block to look like this, so it broadcasts `collectable-rain`{:class="block3events"} when the player touches a type `2` power-up.
+Werk vervolgens het `reageer-op-speler`{:class="block3myblocks"} blok bij zodat het er zo uitziet, zodat het het bericht `prijzen-regen`{:class="block3events"} verstuurt wanneer de speler een type `2` power-up aanraakt.
 
 ```blocks3
-    define react-to-player (type)
-    if <(type ::variable) = [1]> then
-        change [points v] by (collectable-value ::variables)
-    end
-    if <(type ::variable) = [2]> then
-+        broadcast [collectable-rain v]
-    end
+    definieer reageer-op-speler (type)
+    als <(type ::variable) = [1]> dan
+        verander [punten v] met (prijs-waarde ::variables)
+    einde
+    als <(type ::variable) = [2]> dan
++ zend signaal [prijzen-regen v]
+    einde
 ```
 
 --- /task ---

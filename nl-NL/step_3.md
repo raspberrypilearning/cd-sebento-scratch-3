@@ -1,100 +1,100 @@
-## Losing the game
+## Het spel verliezen
 
-You may have noticed that the `lose`{:class="block3myblocks"} **My blocks** block on the `Player Character` sprite is empty. You’re going to fill this in and set up all the pieces needed for a nice 'Game over' screen.
+Het is je misschien opgevallen dat het `verlies`{:class="block3myblocks"} **Mijn blokken** blok van de `speler` sprite leeg is. Je gaat dit invullen en alle stukken instellen die nodig zijn voor een leuk 'Game over' scherm.
 
 --- task ---
 
-First, find the `lose`{:class="block3myblocks"} block and complete it with the following code:
+Zoek eerst het blok `verlies`{:class="block3myblocks"} en vul het aan met de volgende code:
 
 ```blocks3
-    define lose
-+    stop [other scripts in sprite v] :: control stack
-+    broadcast [game over v]
-+    go to x:(0) y:(0)
-+    say [Game over!] for (2) secs
-+    say [It's pretty much impossible to catch all the methane, right?] for (5) secs
-+    say [It would be better to reduce the amount produced in the first place.] for (6) secs
-+    say [By considering the consequences of how we produce food...] for (5) secs
-+    say [...we can do it in a more sustainable way that's better for everyone.] for (6) secs
-+    stop [all v]
+    definieer verlies
++ stop [andere scripts in sprite v] :: control stack
++ zend signaal [game over v]
++ ga naar x: (0) y: (0)
++ zeg [Game over!] (2) sec.
++ zeg [Het is vrijwel onmogelijk om alle methaan te vangen, toch?] (5) sec.
++ zeg [Het is beter om de hoeveelheid uitstoot te verminderen.] (6) sec.
++ zeg [Door rekening te houden met de gevolgen van hoe we voedsel produceren...](5) sec.
++ zeg [...kunnen we het op een duurzamere manier doen die beter is voor iedereen.] (6) sec.
++ stop [alle v]
 ```
 
 --- /task ---
 
 --- collapse ---
 ---
-title: What does the code do?
+titel: Wat doet de code?
 ---
 
-Whenever the `lose`{:class="block3myblocks"} block runs, what it does is:
+Wanneer het `verlies`{:class="block3myblocks"} blok uitgevoerd wordt, doet het dit:
 
- 1. Stop the physics and other game scripts on the `Player Character`
- 2. Tell all the other sprites that the game is over by **broadcasting** a message so they can change based on that
- 3. Move the `Player Character` to the centre of the screen and have them tell the player that the game is over
- 4. Stop all scripts in the game
+ 1. Stop de natuurkunde en andere spelscripts van de `speler`
+ 2. Vertel alle andere sprites dat het spel over is door **een signaal** te zenden zodat ze op basis daarvan kunnen veranderen
+ 3. Verplaats de `speler` naar het midden van het scherm en laat ze de speler vertellen dat het spel afgelopen is
+ 4. Stop alle scripts in het spel
 
 --- /collapse ---
 
-Now you need to make sure all the sprites know what to do when the game is over, and how to reset themselves when the player starts a new game. **Don’t forget that any new sprites you add also might need code for this!**
+Nu moet je ervoor zorgen dat alle sprites weten wat ze moeten doen als het spel is afgelopen en hoe ze zichzelf kunnen resetten als de speler een nieuw spel start. **Vergeet niet dat nieuwe sprites die je toevoegt hiervoor mogelijk ook code nodig hebben!**
 
-### Hiding the platforms and edges
+### De platforms en randen verbergen
 
 --- task ---
 
-Start with the basics: The `Platforms` and `Edges` sprites both need code for appearing when the game starts and disappearing at 'Game over', so add this to each of them:
+Begin met de basis: de sprites `Platforms` en `Edges` hebben beide code nodig om te verschijnen wanneer het spel start en te verdwijnen bij 'Game over', dus voeg dit aan elk van hen toe:
 
 ```blocks3
-    when I receive [game over  v]
-    hide
+    wanneer ik signaal [game over v] ontvang
+    verdwijn
 ```
 
 ```blocks3
-    when green flag clicked
-    show
+    wanneer op de groene vlag wordt geklikt
+    verschijn
 ```
 
 --- /task ---
 
-### Stopping the farts
+### De scheten stoppen
 
-Now, for something a little more tricky! If you look at the code for the `Collectable` sprite, you’ll see it works by **cloning** itself. That is, it makes copies of itself that follow the special `when I start as a clone`{:class="block3events"} instructions.
+Nu is het tijd voor iets moeilijkers! Als je naar de code voor de `Collectable` sprite kijkt, zie je dat deze werkt door **zichzelf** te klonen. Dat wil zeggen dat het kopieën van zichzelf maakt die de speciale `wanneer ik als kloon start`{:class="block3events"} instructies volgen.
 
-We’ll talk more about what makes clones special when we get to the card about making new and different collectables. For now, what you need to know is that clones can do **almost** everything a normal sprite can, including receiving `broadcast`{:class="block3events"} messages.
+We zullen meer vertellen over wat klonen speciaal maakt als we op de kaart komen over het maken van nieuwe en verschillende verzamelobjecten. Voor nu moet je weten dat klonen **bijna** alles kunnen doen wat een normale sprite kan, inclusief het ontvangen van `verzonden`{:class="block3events"} signalen.
 
-Look at how the `Collectable` sprite works. See if you can understand some of its code:
+Kijk hoe de `Collectable` sprite werkt. Kijk of je een deel van de code kunt begrijpen:
 
 ```blocks3
-    when green flag clicked
-    set size to (35) %
-    hide
-    set [collectable-value v] to [1]
-    set [collectable-speed v] to [1]
-    set [collectable-frequency v] to [1]
-    set [create-collectables v] to [true]
-    set [collectable-type v] to [1]
-    repeat until <not <(create-collectables) = [true]>>
-        wait (collectable-frequency) secs
-        go to x: (pick random (-240) to (240)) y: (-179)
-        create clone of [myself v]
-    end
+    wanneer op de groene vlag wordt geklikt
+    maak grootte (35) %
+    verdwijn
+    maak [prijs-waarde v] [1]
+    maak [prijs-tempo v] [1]
+    maak [prijs-frequentie v] [1]
+    maak [maak-prijzen v] [true]
+    maak [prijs-type v] [1]
+    herhaal tot <niet <(maak-prijzen) = [true]>>
+        wacht (prijs-frequentie) sec.
+        ga naar x: (willekeurig getal tussen (-240) en (240)) y: (-179)
+        maak een kloon van [mijzelf v]
+    einde
 ```
 
- 1. First it makes the original collectable invisible.
- 2. Then it sets up the control variables. We’ll come back to these later.
- 3. The `create-collectables`{:class="block3variables"} variable is the on/off switch for cloning: the loop creates clones if `create-collectables`{:class="block3variables"} is `true`, and does nothing if it’s not.
+ 1. Eerst maakt het de originele prijs onzichtbaar.
+ 2. Vervolgens worden de besturingsvariabelen ingesteld. We komen hier later op terug.
+ 3. De `maak-prijzen`{:class="block3variables"} variabele is de aan/uit schakelaar voor het klonen: de lus maakt klonen als `maak-prijzen`{:class="block3variables"} `waar` is en doet niets als dat niet zo is.
 
 --- task ---
 
-Now set up a block on the `Collectable` sprite so that it reacts to the `game over` broadcast:
+Zet nu een blok op de `Collectable` sprite zodat deze reageert op het `game over` signaal:
 
 ```blocks3
-    when I receive [game over v]
-    hide
-    set [create-collectables v] to [false]
+    wanneer ik signaal [game over v] ontvang
+    verdwijn
+    maak [maak-prijzen v] op [false]
 ```
 
 --- /task ---
 
-This code is similar to the code controlling the `Edges` and `Platforms` sprites. The only difference is that you’re also setting the `create-collectables`{:class="block3variables"} variable to `false` so that no new clones are created when it's 'Game over'.
+Deze code is vergelijkbaar met de code die de sprites `Edges` en `Platforms` bestuurt. Het enige verschil is dat je ook de `maak-prijzen`{:class="block3variables"} variabele op `onwaar` instelt, zodat er geen nieuwe klonen worden gemaakt wanneer het 'game over' is.
 
-Note that you can use this variable to pass messages from one part of your code to another! 
+Merk op dat je deze variabele kunt gebruiken om berichten van het ene deel van je code naar het andere door te geven! 

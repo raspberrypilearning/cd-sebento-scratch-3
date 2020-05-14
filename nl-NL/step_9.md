@@ -1,90 +1,90 @@
-## What next?
+## Wat kun je verder nog doen?
 
-You’ve got a complete game now, but there’s a whole lot more you can do with it! Here are a few ideas to get you started:
+Je hebt nu een compleet spel, maar er is nog veel meer dat je ermee kunt doen! Hier zijn een paar ideeën om je op weg te helpen:
 
 --- collapse ---
 ---
-title: High scores
+title: Topscore
 ---
 
-+ Keep a list of the names and scores of people who’ve gotten high scores in the game! You’ll need to use the `ask`{:class="block3looks"} block to the get their name.
++ Houd een lijst bij van de namen en scores van mensen die topscores hebben behaald in het spel! Je moet het blok `zeg`{:class="block3looks"} gebruiken om hun naam te krijgen.
 
 --- /collapse ---
 
 --- collapse ---
 ---
-title: New power-ups
+title: Nieuwe power-ups
 ---
 
-+ Try adding some new power-ups, for example:
-  * Immunity to enemies
-  * More lives
-  * Bigger player character
-  * Smaller player character
++ Probeer enkele nieuwe power-ups toe te voegen, bijvoorbeeld:
+  * Onschendbaarheid voor vijanden
+  * Meer levens
+  * Grotere speler
+  * Kleinere speler
 
 --- /collapse ---
 
 --- collapse ---
 ---
-title: Scrolling levels
+title: Levels schuiven
 ---
 
-+ Can you figure out how to make the levels scroll along, so the player character can move through them from left to right? Or at least make it _look_ like that’s what’s happening.
++ Kun je erachter komen hoe je de levels kunt laten schuiven, zodat de speler van links naar rechts kan bewegen? Of het er op zijn minst uit laten _zien_ alsof dat gebeurt.
 
 --- /collapse ---
 
 --- collapse ---
 ---
-title: Completing levels
+title: Levels voltooien
 ---
 
-+ Right now, the levels never end. What if, instead of pushing a button, you needed a certain number of points to get to the next level?
++ Op dit moment eindigen de levels nooit. Wat als, in plaats van op een knop te drukken, je een bepaald aantal punten nodig hebt om naar het volgende level te gaan?
 
 --- /collapse ---
 
 --- collapse ---
 ---
-title: Play With physics
+title: Speel met natuurkunde
 ---
 
-+ Try changing some of the values in the physics engine, like the `gravity`{:class="block3variables"}, `jump height`{:class="block3variables"}, `x-speed`{:class="block3variables"}, and `y-speed`{:class="block3variables"}. How do they change the game?
++ Probeer bepaalde waarden in de natuurkunde te veranderen, zoals de `zwaartekracht`{:class="block3variables"}, `sprong-hoogte`{:class="block3variables"}, `x-snelheid`{:class="block3variables"}, en `y-snelheid`{:class="block3variables"}. Hoe veranderen ze het spel?
 
-+ Can you use the physics to make power-ups?
++ Kun je de natuurkunde gebruiken om power-ups te maken?
 
 --- /collapse ---
 
 --- collapse ---
 ---
-title: More levels
+title: Meer levels
 ---
 
-+ Add more levels! Make better art! Use the Stage background to make the game look cooler while still keeping platforms easy to work with for you as the coder.
++ Voeg meer levels toe! Maak mooiere kunst! Gebruik de achtergrond van het speelveld om de game er cooler uit te laten zien, terwijl je de platforms nog steeds gemakkelijk kunt gebruiken voor jou als programmeur.
 
 --- /collapse ---
 
 --- collapse ---
 ---
-title: Sound effects
+title: Geluidseffecten
 ---
 
-+ This game is totally silent right now! Try adding background music and sound effects using the blocks in the **Sound** section!
++ Deze game is nu helemaal geluidloos! Probeer achtergrondmuziek en geluidseffecten toe te voegen met behulp van de blokken in het **Geluiden** gedeelte!
 
 --- /collapse ---
 
 --- collapse ---
 ---
-title: Secrets
+title: Geheimen
 ---
 
-+ Think of secret bonuses, cheat codes, and other 'easter eggs' you can hide in the game for players to discover. Try to code some of them!
++ Denk aan geheime bonussen, cheat codes en andere 'easter eggs' die je kunt verbergen in het spel zodat spelers het kunnen ontdekken. Probeer een aantal van hen te programmeren!
 
 --- /collapse ---
 
 --- collapse ---
 ---
-title: Different characters
+title: Verschillende karakters
 ---
 
-+ Let the player pick a character. Make them different in attributes like size, how high they jump, maybe even how many lives they have and how many points they get from collectables!
++ Laat de speler een karakter kiezen. Maak ze verschillend in eigenschappen zoals grootte, hoe hoog ze springen, misschien zelfs hoeveel levens ze hebben en hoeveel punten ze krijgen van prijzen!
 
 --- /collapse ---

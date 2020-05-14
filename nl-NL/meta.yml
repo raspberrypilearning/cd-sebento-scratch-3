@@ -1,7 +1,7 @@
 ---
-title: Fart catcher
+title: Schetenvanger
 hero_image: images/banner.png
-description: Make a platform-style game and add your own levels, powers, and characters.
+description: Maak een platform-achtige game en voeg je eigen levels, krachten en personages toe.
 theme: orange
 listed: true
 copyedit: true
@@ -15,20 +15,20 @@ version: 3.0.0
 last_tested: "2018-04-23"
 steps:
   - 
-    title: Introduction
+    title: Inleiding
   - 
-    title: Setting things up
+    title: De voorbereidingen
   - 
-    title: Losing the game
+    title: Het spel verliezen
   - 
     title: Power-ups
   - 
     title: Super power-ups!
   - 
-    title: Adding some competition
+    title: Een wedstrijdelement toevoegen
   - 
     title: Level 2
   - 
-    title: Moving platforms
+    title: Bewegende platforms
   - 
-    title: What next?
+    title: Wat kun je verder nog doen?

@@ -1,34 +1,34 @@
-## Setting things up
+## De voorbereidingen
 
-Because you’re learning Scratch and not how to build a physics engine (code that makes things behave at least a little like the real world — e.g. not falling through floors), you’ll be starting with a project I’ve created that already has the basics for moving, jumping, and detecting platforms built in.
+Omdat je Scratch leert en niet hoe je een natuurkundige machine moet bouwen (code die ervoor zorgt dat dingen zich op zijn minst een beetje gedragen als de echte wereld - bijvoorbeeld niet door vloeren vallen), begin je met een project dat ik al heb gemaakt, het bevat de basis voor het verplaatsen, springen en detecteren van platforms ingebouwd.
 
-You should take a quick look at it including the details on this card, since you’ll be making some changes to it later, but you don’t need to understand everything it’s doing.
+Kijk ernaar, inclusief de details op deze kaart, want je zult er later wat wijzigingen in aanbrengen, maar je hoeft niet alles te begrijpen wat het doet.
 
 --- task ---
 
-The first thing you’ll need to do is to get a copy of the code from [dojo.soy/platform-starter](http://dojo.soy/platform-starter){:target="_blank"}
+Het eerste dat je moet doen, is de code van [dojo.soy/platform-starter](http://dojo.soy/platform-starter){:target="_blank"} kopiëren
 
-To use it offline, download this code by clicking **See Inside**, then the **File** menu, and **Download to your computer**, and then open it in Scratch on your computer.
+Als je het offline wilt gebruiken, download je deze code door te klikken op **Bekijk van binnen**, vervolgens op het menu **Bestand** en **Opslaan op je computer** en open het vervolgens in Scratch op je computer.
 
-You can also use it directly in Scratch in your browser by just clicking **See Inside** and then **Remix**.
+Je kunt het ook gebruiken door rechtstreeks in Scratch te klikken op **Bekijk van binnen** en dan (als je ingelogt bent) **Remix**.
 
 --- /task ---
 
-The physics engine of the game has a variety of pieces in it, some of which work right now and some of which don’t. You can find out which by running the game and trying to play it.
+De natuurkundige machine van het spel heeft een verscheidenheid aan onderdelen, waarvan sommige nu werken en sommige niet. Je kunt erachter komen door het spel proberen te spelen.
 
-You'll see that you can lose lives, but nothing happens when you run out. Also, the game has only got one level, one type of thing to collect, and no enemies. You’re going to fix all of that, and a bit more!
+Je zult zien dat je levens kunt verliezen, maar er gebeurt niets wanneer je geen levens meer hebt. Ook heeft de game maar één level, één soort prijzen om te verzamelen en geen vijanden. Je gaat dat allemaal oplossen, en een beetje meer!
 
 --- task ---
 
-For now, take a look at how the code is put together. It uses lots of **My blocks** blocks, which are great for splitting your code up into pieces so you can manage it better. It’s like having a block made up of a lot of other blocks, which you can give some basic instructions to.
+Kijk eerst eens hoe de code is samengesteld. Het gebruikt veel blokken van **Mijn blokken**, die ideaal zijn om je code in stukken te splitsen, zodat je ze beter kunt beheren. Het is alsof je een blok hebt dat uit veel andere blokken bestaat, waaraan je enkele basisinstructies kunt geven.
 
 ![](images/setup2and3.png)
 
 --- /task ---
 
-In the code above, the main game `forever`{:class="block3control"} loop calls the `main-physics`{:class="block3myblocks"} block to do a whole lot of stuff! Keeping them separated like this makes it easy to read the main loop and understand what happens when, without worrying about **how** it happens.
+In de bovenstaande code roept de `herhaal`{:class="block3control"} lus van het hoofdspel het `natuurkunde`{:class="block3myblocks"} blok aan om een heleboel dingen te doen! Ze gescheiden houden op deze manier maakt het gemakkelijk om de belangrijkste lus lezen en te begrijpen wat er wanneer gebeurt, zonder zorgen over **hoe** het gebeurt.
 
-Now look at `reset game`{:class="block3myblocks"} and `reset character`{:class="block3myblocks"} blocks and notice:
-    1. They do pretty normal things, such as setting up variables and making sure the character rotates properly
-    2. `reset-game`{:class="block3myblocks"} **calls** `reset-character`{:class="block3myblocks"} — meaning you can use a **My blocks** block inside another **My blocks** block!
-    3. `reset-character`{:class="block3myblocks"} gets used in two different places, but to change it you only have to change the code of the **My blocks** block in one! This can save you a lot of work and help you avoid mistakes.
+Kijk nu naar de `reset spel`{:class = "block3myblocks"} en `reset speler`{:class="block3myblocks"} blokken en merk op:
+    1. Ze doen behoorlijk normale dingen, zoals het instellen van variabelen en ervoor zorgen dat het personage op de juiste manier ronddraait
+    2. `reset spel`{:class="block3myblocks"} **roept** `reset speler`{:class="block3myblocks"} aan - wat betekent dat je een **Mijn blokken** blok in een ander **Mijn blokken** blok kunt gebruiken!
+    3. `reset speler`{:class="block3myblocks"} wordt op twee verschillende plaatsen gebruikt, maar om het te wijzigen, hoef je alleen de code van het **Mijn blokken** blok op één plaats te wijzigen! Dit kan je veel werk besparen en fouten helpen voorkomen.

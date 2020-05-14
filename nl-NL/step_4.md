@@ -68,7 +68,7 @@ Voeg een nieuw uiterlijk toe aan de `Collectable` sprite voor je nieuwe power-up
 
 --- task ---
 
-Vervolgens moet je het `kies uiterlijk` {:class="block3myblocks"} **Mijn blokken** blok vertellen om het nieuwe uiterlijk in te stellen wanneer het de nieuwe waarde voor `type` ontvangt, zoals dit \(met behulp van de uiterlijknaam die je hebt gekozen\):
+Vervolgens moet je het `kies uiterlijk`{:class="block3myblocks"} **Mijn blokken** blok vertellen om het nieuwe uiterlijk in te stellen wanneer het de nieuwe waarde voor `type` ontvangt, zoals dit \(met behulp van de uiterlijknaam die je hebt gekozen\):
 
 ```blocks3
     define kies uiterlijk (type)

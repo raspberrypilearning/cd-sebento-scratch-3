@@ -23,7 +23,7 @@ Zoek eerst het blok `verlies`{:class="block3myblocks"} en vul het aan met de vol
 
 --- collapse ---
 ---
-titel: Wat doet de code?
+title: Wat doet de code?
 ---
 
 Wanneer het `verlies`{:class="block3myblocks"} blok uitgevoerd wordt, doet het dit:

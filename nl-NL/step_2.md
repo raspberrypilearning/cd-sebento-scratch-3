@@ -6,7 +6,7 @@ Kijk ernaar, inclusief de details op deze kaart, want je zult er later wat wijzi
 
 --- task ---
 
-Het eerste dat je moet doen, is de code van [dojo.soy/platform-starter](http://dojo.soy/platform-starter){:target="_blank"} kopiëren
+Het eerste dat je moet doen, is de code van [scratch.mit.edu/projects/395350130](https://scratch.mit.edu/projects/395350130){:target="_blank"} kopiëren
 
 Als je het offline wilt gebruiken, download je deze code door te klikken op **Bekijk van binnen**, vervolgens op het menu **Bestand** en **Opslaan op je computer** en open het vervolgens in Scratch op je computer.
 

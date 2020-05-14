@@ -1,102 +1,102 @@
-## Adding some competition
+## Wedstrijdelement toevoegen
 
-Your game works and now you can collect points, get special powers from power-ups, and lose. We’re getting somewhere! Maybe it’d be fun to add some competition though — what about including a character that moves around a little, but that you're not supposed to touch? This will be similar to enemies in the traditional platformer games \(like Super Mario\) that we’re being inspired by here.
+Je game werkt en nu kun je punten verzamelen, speciale power-ups verdienen en verliezen. Het wordt al wat! Misschien is het leuk om een wedstrijdelement toe te voegen - zoals bijvoorbeeld een personage dat een beetje beweegt, maar dat je niet aan mag raken? Dit lijkt op vijanden in de traditionele platformgames \(zoals Super Mario\) waar we ons hier door laten inspireren.
 
 --- task ---
 
-First, pick a sprite to add as your enemy. Because our player character is in the sky, I chose a helicopter. There are lots of other sprites you could add though. I also renamed the sprite to `Enemy`, just to make things clearer for me.
+Kies eerst een sprite om toe te voegen als je vijand. Omdat onze speler door de lucht beweegt, heb ik voor een helikopter gekozen. Er zijn echter nog veel andere sprites die je zou kunnen gebruiken. Ik heb de sprite ook hernoemd naar `Enemy`, gewoon om dingen duidelijker voor me te maken.
 
-Resize the sprite to the right size and place it somewhere appropriate to start. Here’s what mine looks like:
+Verklein de sprite naar de juiste grootte en plaats deze op een geschikte plaats om te beginnen. Dit is hoe de mijne eruit ziet:
 
-![The helicopter enemy sprite](images/enemySprite.png)
+![De helikopter vijand sprite](images/enemySprite.png)
 
 --- /task ---
 
 --- task ---
 
-Write the simpler code first: set up its block for the `game over`{:class="block3events"} message to make the enemy disappear when the player loses the game.
+Schrijf eerst de eenvoudigere code: stel het blok in voor het `game over`{:class= "block3events"} -bericht om de vijand te laten verdwijnen wanneer de speler het spel verliest.
 
 ```blocks3
-+    when I receive [game-over v]
-+    hide
++ wanneer ik signaal [game-over v] ontvang
++ verdwijn
 ```
 
 --- /task ---
 
 --- task ---
 
-Now you need to write the code for what the enemy does. You can use mine from this card, but don’t be afraid to add more! (What if they teleport around to different platforms? Or what if there’s a power-up that makes them move faster, or slower?)
+Nu moet je de code schrijven voor wat de vijand doet. Je kunt de mijne van deze kaart gebruiken, maar wees niet bang om meer toe te voegen! (Wat als ze naar verschillende platforms teleporteren? Of wat als er een power-up is waardoor ze sneller of langzamer bewegen?)
 
 ```blocks3
-+    when green flag clicked
-+    show
-+    set [enemy-move-steps v] to [5]
-+    set rotation style [left-right v]
-+    go to x: (1) y: (59)
-+    forever
-        move (enemy-move-steps) steps
-        if <not <touching [Platforms v] ?>> then
-            set [enemy-move-steps v] to ((enemy-move-steps) * (-1))
-        end
-    end
++ wanneer op de groene vlag wordt geklikt
++ verschijn
++ maak [enemy-neemt-stappen v] [5]
++ maak draaistijl [links-rechts v]
++ ga naar x: (1) y: (59)
++ herhaal
+        neem (enemy-neemt-stappen) stappen
+        als <niet <raak ik [Platforms v] ?>> dan
+            verander [enemy-neemt-stappen v] met ((enemy-neemt-stappen) * (-1))
+        einde
+    einde
 ```
 
-**Note**: if you just drag the `go to`{:class="block3motion"} block and don’t change the `x` and `y` values, they’ll be the values for the current location of the sprite!
+**Opmerking**: als je het `ga naar`{:class="block3motion"} blok sleept en de `x` en `y` waarden niet wijzigt, zijn dit de waarden voor de huidige locatie van de sprite!
 
 --- /task ---
 
-The code in the `if...then`{:class="block3control"} block will make the enemy turn around when they get to the end of the platform.
+De code in het `als...dan`{:class="block3control"} blok zorgt ervoor dat de vijand zich omdraait wanneer ze het einde van het platform bereiken.
 
-The next thing you’ll need is for the player to lose a life when they touch the enemy. You need to make sure they **stop** touching really quickly, though, since otherwise the touching code will keep running and they’ll keep losing lives.
+Het volgende dat je nodig hebt, is dat de speler een leven verliest wanneer hij de vijand aanraakt. Je moet zorgen dat ze heel snel **stoppen**, omdat anders de aanraak code zal blijven draaien en ze levens blijven te verliezen.
 
 --- task ---
 
-Here's how I did it, but feel free to try to improve on this code! I modified the `Player Character` sprite’s main block. Add the code before the `if`{:class="block3control"} block that checks if you're out of lives.
+Hier is hoe ik het deed, maar voel je vrij om te proberen deze code te verbeteren! Ik heb het hoofdblok van `Player Character` sprite aangepast. Voeg de code toe voor het `als`{:class="block3control"} blok dat controleert of je geen levens meer hebt.
 
 ```blocks3
-+    if <touching [Enemy v] ?> then
-        hide
-        go to x: (-187) y: (42)
-        change [lives v] by (-1)
-        wait (0.5) secs
-        show
-    end
++ als < raak ik [Enemy v] ?> dan
+        verdwijn
+        ga naar x: (-187) y: (42)
+        verander [levens v] met (-1)
+        wacht (0.5) sec,
+        verschijn
+    einde
 ```
 
 --- /task ---
 
 --- collapse ---
 ---
-title: Show me the whole updated script
+title: Laat me het hele bijgewerkte script zien
 ---
 
-My `Player Character` sprite's main block looks like this now:
+Het hoofdblok van mijn `Player Character` sprite ziet er nu zo uit:
 
 ```blocks3
-    when green flag clicked
-    reset-game :: custom
-    forever
-        main-physics :: custom
-        if <(y position) < [-179]> then
-            hide
-            reset-character :: custom
-            change [lives v] by (-1)
-            wait (0.05) secs
-            show
-        end
-        if <touching [Enemy v] ?> then
-            hide
-            go to x: (-187) y: (42)
-            change [lives v] by (-1)
-            wait (0.5) secs
-            show
-        end
-        if <(lives) < [1]> then
-            lose :: custom
-        end
-    end
+    wanneer op de groene vlag wordt geklikt
+    reset-spel :: custom
+    herhaal
+        nauurkunde :: custom
+        als <(y positie) < [-179]> dan
+            verdwijn
+            reset-speler :: custom
+            verander [levens v] met (-1 )
+            wacht (0.05) sec.
+            verschijn
+        einde
+        als < raak ik [Enemy v] ?> dan
+            verdwijn
+            ga naar x: (-187) y: (42)
+            verander [levens v] met (-1)
+            wacht (0.5) sec.
+            verschijn
+        einde
+        als <(levens) < [1]> dan
+            verlies :: custom
+        einde
+    einde
 ```
 
 --- /collapse ---
 
-The new code hides the character, moves them back to their starting position, reduces `lives`{:class="block3variables"} by `1`, and after half a second makes them re-appear.
+De nieuwe code verbergt het karakter, verplaatst ze terug naar hun startpositie, vermindert `levens`{:class="block3variables"} met `1`en laat ze na een halve seconde opnieuw verschijnen.

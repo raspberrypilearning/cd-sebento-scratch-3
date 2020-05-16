@@ -1,48 +1,48 @@
 --- no-print ---
 
-This is the **Scratch 3** version of the project. There is also a [Scratch 2 version of the project](https://projects.raspberrypi.org/en/projects/cd-sebento-scratch-3-scratch2).
+Αυτή είναι η έκδοση **Scratch 3** του έργου. Υπάρχει επίσης η [έκδοση Scratch 2 του έργου](https://projects.raspberrypi.org/en/projects/cd-sebento-scratch-3-scratch2).
 
 --- /no-print ---
 
-## Introduction
+## Εισαγωγή
 
-In this project you’ll be making a platform-style game to which you can later add your own levels, powers, and characters.
+Σε αυτό το έργο θα φτιάξεις ένα παιχνίδι σε στυλ πλατφόρμας στο οποίο μπορείς αργότερα να προσθέσεις τα δικά σου επίπεδα, δυνάμεις και χαρακτήρες.
 
-### What you will make
+### Τι θα φτιάξεις
 
-Did you know that having lots and lots of cows contributes to climate change? That's because cows produce methane, a greenhouse gas, and fart it out. In this game your mission is to catch as much of the methane as you can.
+Γνωρίζεις ότι η κατοχή πολλών αγελάδων συμβάλλει στην αλλαγή του κλίματος; That's because cows produce methane, a greenhouse gas, and fart it out. Σε αυτό το παιχνίδι η αποστολή σου είναι να συλλέξεις όσο το δυνατόν περισσότερο μεθάνιο.
 
 <div class="scratch-preview">
   <iframe allowtransparency="true" width="485" height="402" src="https://scratch.mit.edu/projects/embed/219285989/?autostart=false" frameborder="0"></iframe>
 </div>
 
-Use the arrow keys to move Pico around. Make sure you don't crash into the helicopter!
+Χρησιμοποίησε τα πλήκτρα βέλους για να μετακινήσεις τον Pico. Βεβαιώσου ότι δεν θα συγκρουστείς με το ελικόπτερο!
 
 --- collapse ---
 ---
-title: What you will learn
+title: Τι θα μάθεις
 ---
 
-+ Cloning sprites
-+ Using variables inside cloned sprites
-+ Creating and using **My blocks** blocks
-+ Reusing code in several places with **My blocks** blocks
-+ Messages to trigger behaviours across sprites
-+ Using variables to configure your program
++ Κλωνοποίηση αντικειμένων
++ Χρήση μεταβλητών εντός των κλωνοποιημένων αντικειμένων
++ Δημιουργία και χρήση των μπλόκ **Τα Μπλοκ μου**
++ Επαναχρησιμοποίηση κώδικα σε πολλά μέρη με τα μπλοκ **Τα Μπλοκ μου**
++ Μηνύματα για την πρόκληση συμπεριφορών σε όλα τα αντικείμενα
++ Χρήση μεταβλητών για παραμετροποίηση του προγράμματός σου
 
 --- /collapse ---
 
 --- collapse ---
 ---
-title: What you will need
+title: Τι θα χρειαστείς
 ---
 
-### Hardware
+### Υλικό
 
-+ A computer capable of running Scratch 3
++ Ένας υπολογιστής ικανός ώστε να εκτελείται το Scratch 3
 
-### Software
+### Λογισμικό
 
-+ Scratch 3 (either [online](https://scratch.mit.edu/projects/editor/){:target="_blank"} or [offline](https://scratch.mit.edu/download/){:target="_blank"})
++ Scratch 3 (είτε [σε σύνδεση](https://scratch.mit.edu/projects/editor/){:target="_blank"} είτε [χωρίς σύνδεση](https://scratch.mit.edu/download/){:target="_blank"})
 
 --- /collapse ---

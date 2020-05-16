@@ -1,7 +1,7 @@
 ---
 title: Fart catcher
 hero_image: images/banner.png
-description: Make a platform-style game and add your own levels, powers, and characters.
+description: Δημιούργησε ένα παιχνίδι σε στυλ πλατφόρμας και πρόσθεσε τα δικά σου επίπεδα, δυνάμεις και χαρακτήρες.
 theme: orange
 listed: true
 copyedit: true
@@ -15,11 +15,11 @@ version: 3.0.0
 last_tested: "2018-04-23"
 steps:
   - 
-    title: Introduction
+    title: Εισαγωγή
   - 
     title: Setting things up
   - 
-    title: Losing the game
+    title: Χάνοντας το παιχνίδι
   - 
     title: Power-ups
   - 
@@ -27,8 +27,8 @@ steps:
   - 
     title: Adding some competition
   - 
-    title: Level 2
+    title: Επίπεδο 2
   - 
-    title: Moving platforms
+    title: Κινούμενες πλατφόρμες
   - 
-    title: What next?
+    title: Και τώρα;

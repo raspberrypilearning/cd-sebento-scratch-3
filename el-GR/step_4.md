@@ -1,4 +1,4 @@
-## Power-ups
+## Βραβεία
 
 At the moment you have just one type of collectible: a fart cloud that gives you one point when you grab it. On this card, you’re going to create a new type of collectible, in a way that will make adding other types of collectibles easy. Then you can invent your own power-ups and bonuses and really make the game your own!
 

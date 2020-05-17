@@ -1,6 +1,6 @@
-## Super power-ups!
+## Σούπερ Βραβεία!
 
-Now that you have a new power-up working, it’s time to make it do something cool! Let's make it 'rain' power-ups for a few seconds, instead of just giving out an extra life.
+Τώρα που έχεις νέα βραβεία, ήρθε η ώρα να το κάνεις κάτι άψογο! Ας το κάνουμε να «βρέχει» βραβεία για λίγα δευτερόλεπτα, αντί να δώσουμε μια επιπλέον ζωή.
 
 For this you need to create another piece of code that will start while the `react-to-player`{:class="block3myblocks"} block finishes running. To make that happen, you'll use a `broadcast`{:class="block3events"} block to send a message to another piece of code inside this sprite.
 

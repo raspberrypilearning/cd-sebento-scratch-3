@@ -1,5 +1,5 @@
 ---
-title: Fart catcher
+title: Συλλέκτης πορδών
 hero_image: images/banner.png
 description: Δημιούργησε ένα παιχνίδι σε στυλ πλατφόρμας και πρόσθεσε τα δικά σου επίπεδα, δυνάμεις και χαρακτήρες.
 theme: orange
@@ -17,7 +17,7 @@ steps:
   - 
     title: Εισαγωγή
   - 
-    title: Setting things up
+    title: Πρώτες ρυθμίσεις
   - 
     title: Χάνοντας το παιχνίδι
   - 
@@ -25,7 +25,7 @@ steps:
   - 
     title: Σούπερ Βραβεία!
   - 
-    title: Adding some competition
+    title: Προσθήκη ανταγωνισμού
   - 
     title: Επίπεδο 2
   - 

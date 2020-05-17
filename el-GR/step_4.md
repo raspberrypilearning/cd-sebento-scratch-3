@@ -1,64 +1,64 @@
 ## Βραβεία
 
-At the moment you have just one type of collectible: a fart cloud that gives you one point when you grab it. On this card, you’re going to create a new type of collectible, in a way that will make adding other types of collectibles easy. Then you can invent your own power-ups and bonuses and really make the game your own!
+At the moment you have just one type of collectible: a fart cloud that gives you one point when you grab it. Σε αυτήν την καρτέλα, θα δημιουργήσεις έναν νέο τύπο βραβείων, με τρόπο που θα διευκολύνει την προσθήκη κι άλλων τύπων βραβείων. Στη συνέχεια, μπορείς να εμπνευστείς τα δικά σου βραβεία και μπόνους και να κάνεις πραγματικά το δικό σου παιχνίδι!
 
-I’ve already included some pieces to do this with the `collectable-type`{:class="block3variables"} variable and the `pick-costume`{:class="block3myblocks"} **My blocks** block. You’re going to need to improve on them though.
+Έχω ήδη συμπεριλάβει κώδικα για να το κάνεις αυτό με τη μεταβλητή `τύπος-βραβείου`{:class="block3variables"} και το μπλοκ`επιλογή-ενδυμασίας`{: class="block3myblocks"} από τις **Εντολές μου**. Ωστόσο, θα πρέπει να τον βελτιώσεις.
 
-Let's have a look at how the collectible works right now.
+Ας ρίξουμε μια ματιά στο πώς λειτουργεί το βραβείο αυτή τη στιγμή.
 
-In the scripts for the `Collectable` sprite, find the `when I start as a clone`{:class="block3events"} code. The blocks you should look at are the ones that give you points for collecting a fart:
+Στον κώδικα για το αντικείμενο `Βραβείο`, βρες την εντολή `όταν ξεκινήσω ως κλώνος`{:class="block3events"}. The blocks you should look at are the ones that give you points for collecting a fart:
 
 ```blocks3
-    if <touching [Player Character v]?> then
-        change [points v] by (collectable-value ::variables)
-        delete this clone
+    αν <touching [Player Character v]?> τότε
+        άλλαξε [πόντους v] κατά (τιμή-βραβείου ::μεταβλητές)
+        διέγραψε αυτόν τον κλώνο
 ```
 
-and this one that selects a costume for the clone:
+και αυτό που επιλέγει μια ενδυμασία για τον κλώνο:
 
 ```blocks3
-    pick-costume (collectable-type ::variables) :: custom
+    επιλογή-ενδυμασίας (τύπος-βραβείου ::μεταβλητές) :: προσαρμοσμένο
 ```
 
 --- collapse ---
 ---
-title: How does picking a costume work?
+title: Πώς λειτουργεί η επιλογή ενδυμασίας;
 ---
 
-The `pick-costume`{:class="block3myblocks"} block works a bit like the `lose`{:class="block3myblocks"} block, but it has something extra: it takes an **input** variable called `type`.
+Το μπλοκ `επιλογή-ενδυμασίας`{:class="block3myblocks"} λειτουργεί περίπου σαν το μπλοκ `χάνει`{:class="block3myblocks"}, αλλά έχει κάτι επιπλέον: παίρνει μια**παράμετρο** που ονομάζεται `τύπος`.
 
 ```blocks3
-    define pick-costume (type)
-    if <(type ::variable) = [1]> then
-        switch costume to [fartCloud v]
-    end
+    όρισε επιλογή-ενδυμασίας (τύπος)
+    εαν <(τύπος ::μεταβλητή) = [1]> τότε
+        εναλλαγή ενδυμασίας σε [fartCloud v]
+    τέλος
 ```
 
-When the `pick-costume`{:class="block3myblocks"} block runs, what it does is this:
+Όποτε εκτελείται το μπλοκ `επιλογή-ενδυμασίας`{:class="block3myblocks"}, αυτό που κάνει είναι:
 
- 1. It looks at the `type`{:class="block3myblocks"}  input variable
- 1. If the value of `type`{:class="block3myblocks"}  is equal to `1`, it switches to the `fartCloud` costume
+ 1. Εξετάζει την παράμετρο εισόδου `τύπος`{:class="block3myblocks"}
+ 1. Εάν η τιμή της `τύπος`{:class="block3myblocks"} είναι `1`, τότε αλλάζει στην ενδυμασία `fartCloud`
 
-Take a look at the part of the script that uses the block:
+Ρίξε μια ματιά στο μέρος του κώδικα που χρησιμοποιεί το μπλοκ:
 
 ```blocks3
-    when I start as a clone
-    pick-costume (collectable-type ::variables) :: custom
-    show
-    repeat until <(y position) > [170]>
-        change y by (collectable-speed ::variables)
-        if <touching [Player Character v]?> then
-            change [points v] by (collectable-value ::variables)
-            delete this clone
+    όταν εκκινώ ως κλώνος
+    επιλογή-ενδυμασίας (τύπος-βραβείου ::μεταβλητές) :: προσαρμογή
+    εμφάνιση
+    επανάληψη έως <(θέση y) > [170]>
+        αλλαγή y κατά (ταχύτητα-βραβείου ::μεταβλητές)
+        εάν <0 > τότε
+            αλλαγή [πόντοι v] κατά (τιμή-βραβείου ::μεταβλητές)
+            διαγραφή κλώνου
 ```
 
-You can see that the `collectable-type`{:class="block3variables"} variable gets **passed** to the `pick-costume`{:class="block3myblocks"} block. Inside the code for `pick-costume`{:class="block3myblocks"}, `collectable-type`{:class="block3variables"} is then used as the input variable (`type`{:class="block3myblocks"}).
+Μπορείς να δεις ότι η μεταβλητή `τύπος-βραβείου`{:class="block3variables"} **περνάει** στο μπλοκ `επιλογή-ενδυμασίας`{:class="block3myblocks"}. Μέσα στον κώδικα του `επιλογή-ενδυμασίας`{:class="block3myblocks"}, ο `τύπος-βραβείου`{:class="block3variables"} χρησιμοποιείται στη συνέχεια ως παράμετρος εισόδου (`τύπος`{:class="block3myblocks"}).
 
 --- /collapse ---
 
-### Add a costume for the new power-up
+### Πρόσθεσε μια ενδυμασία για το νέο είδος βραβείου
 
-Of course, right now the `Collectable` sprite only has one costume, since there's only one type of collectable. You're about to change that!
+Φυσικά, τώρα το αντικείμενο`Βραβείο` έχει μόνο μια ενδυμασία, αφού υπάρχει μόνο ένας τύπος βραβείου. You're about to change that!
 
 --- task ---
 

@@ -67,36 +67,36 @@ Your game works and now you can collect points, get special powers from power-up
 
 --- collapse ---
 ---
-title: Show me the whole updated script
+title: Δείξε μου ολόκληρο το ενημερωμένο πρόγραμμα
 ---
 
-My `Player Character` sprite's main block looks like this now:
+Το κύριο μπλοκ του αντικειμένου μου, του χαρακτήρα `Παίκτης`, μοιάζει τώρα:
 
 ```blocks3
-    when green flag clicked
-    reset-game :: custom
-    forever
-        main-physics :: custom
-        if <(y position) < [-179]> then
-            hide
-            reset-character :: custom
-            change [lives v] by (-1)
-            wait (0.05) secs
-            show
-        end
-        if <touching [Enemy v] ?> then
-            hide
-            go to x: (-187) y: (42)
-            change [lives v] by (-1)
-            wait (0.5) secs
-            show
-        end
-        if <(lives) < [1]> then
-            lose :: custom
-        end
-    end
+    όταν γίνει κλικ στην πράσινη σημαία
+    επαναφορά-παιχνιδιού:: προσαρμογή
+    για πάντα
+        κυρίως-φυσική :: προσαρμογή
+        εάν <(y θέση) < [-179]> τότε
+            απόκρυψη
+            επαναφορά-χαρακτήρα :: προσαρμογή
+            άλλαξε [ζωές v] κατά (-1 )
+            αναμονή (0,05) δευτερόλεπτα
+            εμφάνιση
+        τέλος
+        εάν <touching [Enemy v] ?> τότε
+            απόκρυψη
+            μετάβαση στο x: (-187) y: (42)
+            αλλαγή [ζωές v] κατά (-1)
+            αναμονή (0,5) δευτερόλεπτα
+            εμφάνιση
+        τέλος
+        εάν <(ζωές) < [1]> τότε
+            απώλεια :: προσαρμογή
+        τέλος
+    τέλος
 ```
 
 --- /collapse ---
 
-The new code hides the character, moves them back to their starting position, reduces `lives`{:class="block3variables"} by `1`, and after half a second makes them re-appear.
+Ο νέος κώδικας εξαφανίζει τον χαρακτήρα, τον μετακινεί πίσω στην αρχική του θέση, μειώνει τις `ζωές`{:class="block3variables"} κατά `1` και, μετά από μισό δευτερόλεπτο, τον εμφανίζει πάλι.

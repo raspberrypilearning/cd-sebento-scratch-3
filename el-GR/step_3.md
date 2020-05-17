@@ -57,44 +57,44 @@ title: Τι κάνει ο κώδικας;
 
 ### Stopping the farts
 
-Τώρα, κάτι λίγο πιο δύσκολο! If you look at the code for the `Collectable` sprite, you’ll see it works by **cloning** itself. That is, it makes copies of itself that follow the special `when I start as a clone`{:class="block3events"} instructions.
+Τώρα, κάτι λίγο πιο δύσκολο! Εάν κοιτάξεις τον κώδικα για το αντικείμενο `Βραβείο`, θα δεις ότι λειτουργεί με δημιουργία **κλώνων** του εαυτού του. Δηλαδή δημιουργεί αντίγραφα που εκτελούν τις εντολές του μπλοκ `όταν ξεκινήσω ως κλώνος`{:class="block3events"}.
 
-We’ll talk more about what makes clones special when we get to the card about making new and different collectables. For now, what you need to know is that clones can do **almost** everything a normal sprite can, including receiving `broadcast`{:class="block3events"} messages.
+Θα μιλήσουμε περισσότερο για το τι κάνει τους κλώνους ξεχωριστούς όταν φτάσουμε στην καρτέλα για τη δημιουργία νέων και διαφορετικών βραβείων. Προς το παρόν, αυτό που πρέπει να γνωρίζεις είναι ότι οι κλώνοι μπορούν να κάνουν **σχεδόν** όλα όσα μπορεί να κάνει ένα κανονικό αντικείμενο, συμπεριλαμβανομένης και της `λήψης μηνυμάτων`{:class="block3events"}.
 
-Look at how the `Collectable` sprite works. See if you can understand some of its code:
+Δες πώς δουλεύει το αντικείμενο `Βραβείο`. Δες αν μπορείς να καταλάβεις μέρος του κώδικά του:
 
 ```blocks3
-    when green flag clicked
-    set size to (35) %
-    hide
-    set [collectable-value v] to [1]
-    set [collectable-speed v] to [1]
-    set [collectable-frequency v] to [1]
-    set [create-collectables v] to [true]
-    set [collectable-type v] to [1]
-    repeat until <not <(create-collectables) = [true]>>
-        wait (collectable-frequency) secs
-        go to x: (pick random (-240) to (240)) y: (-179)
-        create clone of [myself v]
-    end
+    όταν γίνεται κλικ στην πράσινη σημαία
+    όρισε μέγεθος σε (35)%
+    απόκρυψη
+    όρισε [τιμή-βραβείου v] έως [1]
+    όρισε [ταχύτητα-βραβείου v] σε [1]
+    όρισε [συχνότητα-βραβείου v] σε [1]
+    όρισε [δημιουργία-βραβείου v] σε [true]
+    όρισε [τύπος-βραβείου v] σε [1]
+    επανάληψη έως <not <(create-collectables) = [true]>>
+        αναμονή (συχνότητα-βραβείου) δευτερόλεπτα
+        μετάβαση στο x: (τυχαία επιλογή (-240) έως (240)) y: (- 179)
+        δημιουργία κλώνου του [εαυτού μου v]
+    τέλος
 ```
 
- 1. First it makes the original collectable invisible.
- 2. Then it sets up the control variables. We’ll come back to these later.
- 3. The `create-collectables`{:class="block3variables"} variable is the on/off switch for cloning: the loop creates clones if `create-collectables`{:class="block3variables"} is `true`, and does nothing if it’s not.
+ 1. Πρώτα κάνει το αρχικό Βραβείο αόρατο.
+ 2. Στη συνέχεια, ρυθμίζει τις μεταβλητές ελέγχου. Θα επιστρέψουμε σε αυτά αργότερα.
+ 3. Η μεταβλητή `δημιουργία-βραβείων`{:class="block3variables"} αποτελεί ένα διακόπτη on / off για κλωνοποίηση: ο βρόχος δημιουργεί κλώνους εάν η `δημιουργία-βραβείων`{:class="block3variables"} είναι `αληθής (true)`, και δεν κάνει τίποτα αν είναι ψευδής (false).
 
 --- task ---
 
 Now set up a block on the `Collectable` sprite so that it reacts to the `game over` broadcast:
 
 ```blocks3
-    when I receive [game over v]
-    hide
-    set [create-collectables v] to [false]
+    όταν λαμβάνω [τέλος παιχνιδού v]
+    απόκρυψη
+    όρισε [δημιουργία-βραβείων v] σε [false]
 ```
 
 --- /task ---
 
-This code is similar to the code controlling the `Edges` and `Platforms` sprites. The only difference is that you’re also setting the `create-collectables`{:class="block3variables"} variable to `false` so that no new clones are created when it's 'Game over'.
+Αυτός ο κώδικάς είναι παρόμοιος με τον κώδικα που ελέγχει τα αντικείμενα `Όρια` και `Πλατφόρμες`. Η μόνη διαφορά είναι ότι ρυθμίζεις και τη μεταβλητή `δημιουργία-βραβείων`{:class="block3variables"} σε `ψευδές (false)`, έτσι ώστε να μην δημιουργούνται νέοι κλώνοι όταν τελειώσει το παιχνίδι.
 
-Note that you can use this variable to pass messages from one part of your code to another! 
+Λάβε υπόψη ότι μπορείς να χρησιμοποιήσεις αυτήν τη μεταβλητή για να μεταφέρεις μηνύματα από ένα μέρος του κώδικά σου σε άλλο! 

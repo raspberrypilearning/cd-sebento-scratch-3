@@ -2,61 +2,61 @@
 
 Τώρα που έχεις νέα βραβεία, ήρθε η ώρα να το κάνεις κάτι άψογο! Ας το κάνουμε να «βρέχει» βραβεία για λίγα δευτερόλεπτα, αντί να δώσουμε μια επιπλέον ζωή.
 
-For this you need to create another piece of code that will start while the `react-to-player`{:class="block3myblocks"} block finishes running. To make that happen, you'll use a `broadcast`{:class="block3events"} block to send a message to another piece of code inside this sprite.
+Για αυτό πρέπει να δημιουργήσεις ένα άλλο κομμάτι κώδικα που θα ξεκινήσει ενώ το μπλοκ `αντίδραση-στον-παίκτη`{:class="block3myblocks"} ολοκληρώσει την εκτέλεσή του. Για να συμβεί αυτό, θα χρησιμοποιήσεις ένα μπλοκ `εκπομπής`{:class="block3events"} για να στείλεις ένα μήνυμα σε άλλο κομμάτι κώδικα μέσα σε αυτό το αντικείμενο.
 
 --- task ---
 
-Create this block for the `Collectable` sprite. Let’s call the broadcast `collectable-rain`{:class="block3events"}.
+Δημιούργησε αυτό το μπλοκ για το αντικείμενο `Βραβείο`. Ας ονομάσουμε την εκπομπή `βροχή-βραβείων`{:class="block3events"}.
 
 ```blocks3
-+    when I receive [collectable-rain v]
-+    set [collectable-frequency v] to [0.000001]
-+    wait (1) secs
-+    set [collectable-frequency v] to [1]
++ όταν λαμβάνω [βροχή-βραβείων v]
++ όρισε [συχνότητα-βραβείου v] σε [0.000001]
++ αναμονή (1) δευτερόλεπτα
++ όρισε [συχνότητα-βραβείου v] σε [1]
 ```
 
 --- /task ---
 
 --- collapse ---
 ---
-title: What does the new code do?
+title: Τι κάνει ο νέος κώδικας;
 ---
 
-This block just sets `collectable-frequency`{:class="block3variables"} to a very small number \(change it to different values and see what happens!\) and then waits a second and changes it back to `1`.
+Αυτό το μπλοκ ορίζει απλώς τη `συχνότητα-βραβείου`{:class="block3variables"} σε πολύ μικρό αριθμό \ (άλλαξέ το σε διαφορετικές τιμές και δες τι συμβαίνει!\) και στη συνέχεια περιμένει ένα δευτερόλεπτο και το αλλάζει ξανά σε `1`.
 
-This doesn’t look like it should do much, but think about what’s happening during that second: the `when green flag clicked`{:class="block3events"} code is still running, and the `repeat until`{:class="block3control"} loop in it is looping. Look at the code in that loop:
+Αυτό δεν φαίνεται ότι πρέπει να κάνει πολλά, αλλά σκέψου τι συμβαίνει κατά τη διάρκεια αυτού του δευτερολέπτου: το `όταν γίνεται κλικ στην πράσινη σημαία`{:class="block3events"} ο κώδικας εξακολουθεί να εκτελείται και ο βρόγχος `επαναλαμβάνεται μέχρι`{:class="block3control"} μέσα σε αυτό, επαναλαμβάνεται. Κοίταξε τον κώδικα σε αυτόν τον βρόχο:
 
 ```blocks3
-    repeat until <not <(create-collectables ::variables) = [true]>>
-        if < [50] = (pick random (1) to (50))> then
-            set [collectable-type v] to [2]
-        else
-            set [collectable-type v] to [1]
-        end
-        wait (collectable-frequency ::variables) secs
-        go to x: (pick random (-240) to (240)) y:(-179)
-        create clone of [myself v]
-    end
+    επανέλαβε έως <not <(create-collectables ::variables) = [true]>>
+        εαν < [50] = (τυχαία επιλογή (1) έως (50))> τότε
+            όρισε [τύπος-βραβείου v] σε [2]
+        αλλιώς
+            όρισε [τύπος-βραβείου v] σε [1]
+        τέλος
+        περίμενε (συχνότητα-βραβείου ::μεταβλητές) δευτερόλεπτα
+        μετάβαση στο x: (τυχαία επιλογή (-240) έως (240)) y: (- 179)
+        δημιούργησε κλώνο του [εαυτού μου ω]
+    τέλος
 ```
 
-You can see that the `wait` block here pauses the code for the length of time set by `collectable-frequency`{:class="block3variables"}. So if the value of `collectable-frequency`{:class="block3variables"} changes to `0.000001`, the `wait` block only pauses for **one millionth** of a second, meaning that the loop will run many more times than normal. As a result, the code is going to create **a lot** more power-ups than it normally would, until `collectable-frequency`{:class="block3variables"} changes back `1`. Can you think of any problems that might cause? There’ll be a lot more super-farts…what if you kept catching them?
+Μπορείς να δεις ότι το μπλοκ `περίμενε` εδώ κάνει παύση τον κώδικα για το χρονικό διάστημα που ορίζεται από τη `συχνότητα-βραβείου`{:class="block3variables"}. Εάν η τιμή `συχνότητα-βραβείου`{:class="block3variables"} αλλάξει σε `0.000001`, το μπλοκ `περίμενε` κάνει παύση μόνο για **ένα εκατομμυριοστό** του δευτερολέπτου, που σημαίνει ότι ο βρόχος θα εκτελεστείται πολύ περισσότερες φορές από το κανονικό. Ως αποτέλεσμα, ο κώδικας πρόκειται να δημιουργήσει **πολλά** περισσότερα βραβεία από ό,τι συνήθως, μέχρι η `συχνότητα-βραβείου`{:class="block3variables"} να γίνει πάλι `1`. Μπορείς να σκεφτείς τυχόν προβλήματα που μπορεί αυτό να προκαλέσει; There’ll be a lot more super-farts…what if you kept catching them?
 
 --- /collapse ---
 
-Now you have the sprite ready to receive the `collectable-rain`{:class="block3events"} broadcast block, but you haven't made code for sending the broadcast yet.
+Τώρα έχεις το αντικείμενο έτοιμο να δεχτεί το μπλόκ μηνύματος `βροχή-βραβείων`{:class="block3events"}, αλλά δεν έχεις δημιουργήσει ακόμα τον κώδικα για την αποστολή του μηνύματος.
 
 --- task ---
 
-Next, update the `react-to-player`{:class="block3myblocks"} block to look like this, so it broadcasts `collectable-rain`{:class="block3events"} when the player touches a type `2` power-up.
+Στη συνέχεια, ενημέρωσε το μπλοκ `αντίδραση-στον-παίκτη`{:class="block3myblocks"} ώστε να μοιάζει έτσι, ώστε να μεταδίδει το μήνυμα `βροχή-βραβείων`{:class="block3events"} όταν ο παίκτης αγγίζει τον τύπο `2` του βραβείου.
 
 ```blocks3
-    define react-to-player (type)
-    if <(type ::variable) = [1]> then
-        change [points v] by (collectable-value ::variables)
-    end
-    if <(type ::variable) = [2]> then
-+        broadcast [collectable-rain v]
-    end
+    καθόρισε αντίδραση-στον-παίκτη (τύπος)
+    εάν <(τύπος ::μεταβλητή) = [1]> τότε
+        άλλαξε [πόντους v] κατά (τιμή-βραβείου ::μεταβλητές)
+    τέλος
+    εάν <(τύπος ::μεταβλητή) = [2]> τότε
++        μετάδοση [βροχή-βραβείου v]
+    τέλος
 ```
 
 --- /task ---

@@ -1,0 +1,34 @@
+---
+title: Atrapa-flatulencias
+hero_image: images/banner.png
+description: Crea un juego de plataforma y agrega tus propios niveles, poderes y personajes.
+theme: naranja
+listed: true
+copyedit: true
+curriculum: ''
+interests: ''
+technologies: scratch
+site_areas: coderdojo, projects
+hardware: ''
+software: scratch
+version: 3.0.0
+last_tested: "2018-04-23"
+steps:
+  - 
+    title: Introducción
+  - 
+    title: Preparando todo
+  - 
+    title: Perder el juego
+  - 
+    title: Recompensas
+  - 
+    title: '¡Súper recompensas!'
+  - 
+    title: Añadiendo algo de competencia
+  - 
+    title: Nivel 2
+  - 
+    title: Plataformas móviles
+  - 
+    title: '¿Qué sigue?'

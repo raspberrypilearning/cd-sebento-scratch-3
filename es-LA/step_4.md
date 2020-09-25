@@ -114,7 +114,7 @@ Haz que el bloque `react-to-player`{:class="block3myblocks"} aumente ya sea los 
 
 --- task ---
 
-Actualiza el código `al comenzar como clon`{:class="block3events"} para reemplazar al bloque que agrega un punto con una **llamada** a `react-to-player`{:class="block3myblocks"}, ** pasando** `collectable-type`{:class="block3variables"}. Al usar este bloque **Mis bloques**, las nubes de gas normales aún agregan un punto, y la nueva recompensa agrega una vida.
+Actualiza el código `al comenzar como clon`{:class="block3events"} para reemplazar al bloque que agrega un punto con una **llamada** a `react-to-player`{:class="block3myblocks"}, **pasando** `collectable-type`{:class="block3variables"}. Al usar este bloque **Mis bloques**, las nubes de gas normales aún agregan un punto, y la nueva recompensa agrega una vida.
 
 ```blocks3
     if <touching [Player Character v] ?> then

@@ -14,7 +14,7 @@ Cambia el objeto al tamaño correcto y colócalo en un lugar apropiado para come
 
 --- task ---
 
-Escribe primero el código más fácil: configura su bloque para que el mensaje `fin del juego`{:class="events"} haga desaparecer al enemigo cuando el jugador pierde el juego.
+Escribe primero el código más fácil: configura su bloque para que el mensaje `fin del juego`{:class="block3events"} haga desaparecer al enemigo cuando el jugador pierde el juego.
 
 ```blocks3
 +    when I receive [fin del juego v]

@@ -81,7 +81,7 @@ Es porque el código de la física no sabe acerca de la plataforma. En realidad 
 
 --- task ---
 
-En el script del objeto  **Player Character**, reemplaza cada bloque `touching “Platforms”`{:class="block3sensing"} con un operador `OR`{:class="block3operators"} que comprueba **o por** `touching “Platforms”`{:class="block3sensin g"}  **o por** `touching “Moving-Platform”`{:class="block3sensing"}.
+En el script del objeto  **Player Character**, reemplaza cada bloque `touching “Platforms”`{:class="block3sensing"} con un operador `OR`{:class="block3operators"} que comprueba **o por** `touching “Platforms”`{:class="block3sensing"}  **o por** `touching “Moving-Platform”`{:class="block3sensing"}.
 
 Revisa el código del objeto **Player Character** y dondequiera que veas este bloque:
 

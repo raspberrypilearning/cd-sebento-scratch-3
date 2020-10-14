@@ -23,14 +23,14 @@ Añade código para crear clones de tu objeto de plataforma.
 Así es como el mío se ve hasta ahora:
 
 ```blocks3
-+    al presionar bandera verde
-+    ocultar
-+    por siempre
-        esperar (4) segundos
-        si <(create-platforms ::variables) = [true]> entonces
-            crear clon de [mí mismo v]
-        fin
-    fin
++    when green flag clicked
++    hide
++    forever
+        wait (4) secs
+        if <(create-platforms ::variables) = [true]> then
+            create clone of [myself v]
+        end
+    end
 ```
 
 --- /task ---
@@ -40,16 +40,16 @@ Así es como el mío se ve hasta ahora:
 Luego agrega el código del clon:
 
 ```blocks3
-+    al comenzar como clon
-+    mostrar
-+    por siempre
-        si <(y position) < [180]> entonces
-            cambiar y por (1)
-            esperar (0.02) segundos
-        si no
-            eliminar este clon
-        fin
-    fin
++    when I start as a clone
++    show
++    forever
+        if <(y position) < [180]> then
+            change y by (1)
+            wait (0.02) secs
+        else
+            delete this clone
+        end
+    end
 ```
 
 --- /task ---
@@ -61,16 +61,16 @@ Este código hace que el clon de **Moving-Platform** se mueva hacia la parte sup
 Ahora haz que las plataformas desaparezcan/ reaparezcan en función de los mensajes que cambian los niveles (para que solo estén en el nivel con espacio para ellas), y el mensaje de `fin del juego`{:class="block3events"}.
 
 ```blocks3
-+    al recibir [level-1 v]
-+    establecer [create-platforms v] a [false]
-+    ocultar
++    when I receive [level-1 v]
++    set [create-platforms v] to [false]
++    hide
 
-+    al recibir [level-2 v]
-+    establecer [create-platforms v] a [true]
++    when I receive [level-2 v]
++    set [create-platforms v] to [true]
 
-+    al recibir [fin del juego v]
-+    ocultar
-+    establecer [create-platforms v] a [false]
++    when I receive [game over v]
++    hide
++    set [create-platforms v] to [false]
 ```
 
 --- /task ---

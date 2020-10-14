@@ -19,20 +19,20 @@ Ahora, el código para este botón es inteligente: está diseñado para que cada
 Añade estos scripts a tu objeto **Botón**. Necesitarás crear algunas variables mientras lo haces.
 
 ```blocks3
-+    al presionar bandera verde
-+    establecer [max-level v] a [2]
-+    establecer [min-level v] a [1]
-+    establecer [current-level v] a [1]
++    when green flag clicked
++    set [max-level v] to [2]
++    set [min-level v] to [1]
++    set [current-level v] to [1]
 ```
 
 ```blocks3
-+    al presionar este sprite
-+    cambiar [current-level v] en (1)
-+    si <(current-level) > (max-level ::variables)> entonces
-        establecer [current-level v] a (min-level ::variables)
-    fin
-+    enviar [collectable-cleanup v]
-+    enviar (join [level-](current-level))
++    when this sprite clicked
++    change [current-level v] by (1)
++    if <(current-level) > (max-level ::variables)> then
+        set [current-level v] to (min-level ::variables)
+    end
++    broadcast [collectable-cleanup v]
++    broadcast (join [level-](current-level))
 ```
 
 --- /task ---
@@ -58,8 +58,8 @@ Los mensajes se utilizan para indicar a los otros objetos qué nivel mostrar y p
 Agrega el siguiente código al código de scripts **Collectable** para decirle a todos sus clones que se `oculten`{:class="block3vlooks"} cuando reciban el mensaje de limpieza:
 
 ```blocks3
-+    al recibir [collectable-cleanup v]
-+    ocultar
++    when I receive [collectable-cleanup v]
++    hide
 ```
 
 --- /task ---
@@ -75,15 +75,15 @@ Ahora para cambiar el objeto **Platforms**. Puedes diseñar tu propio nuevo nive
 Añade este código al objeto **Platforms**:
 
 ```blocks3
-+    al recibir [level-1 v]
-+    cambiar disfráz a [Level 1 v]
-+    mostrar
++    when I receive [level-1 v]
++    switch costume to [Level 1 v]
++    show
 ```
 
 ```blocks3
-+    al recibir [level-2 v]
-+    cambiar disfráz a [Level 2 v]
-+    mostrar
++    when I receive [level-2 v]
++    switch costume to [Level 2 v]
++    show
 ```
 
 --- /task ---
@@ -97,13 +97,13 @@ Este recibe los mensajes `unidos`{:class="block3operators"} de `level-`{:class="
 En el script del objeto **Enemy**, solo asegúrate de que el objeto desaparezca cuando el jugador ingrese al nivel 2, así:
 
 ```blocks3
-+    al recibir [level-1 v]
-+    mostrar
++    when I receive [level-1 v]
++    show
 ```
 
 ```blocks3
-+    al recibir [level-2 v]
-+    ocultar
++    when I receive [level-2 v]
++    hide
 ```
 
 --- /task ---
@@ -119,11 +119,11 @@ Cada vez que comienza un nuevo nivel, el objeto de **Player Character** necesita
 Comienza creando variables para las coordenadas iniciales: `start-x`{:class="block3variables"} y `start-y`{:class="block3variables"}. Luego, conéctalos al bloque `ir a`{:class="block3motion"} en el bloque de `reset-character`{:class="block3myblocks"} en **Mis bloques**, en lugar de los valores fijos de `x` y `y`:
 
 ```blocks3
-    definir reset-character
-    establecer [can-jump v] a [true]
-    estalecer [x-velocity v] a [0]
-    establecer [y-velocity v] a [-0]
-+    ir a x: (start-x) y: (start-y)
+    define reset-character
+    set [can-jump v] to [true]
+    set [x-velocity v] to [0]
+    set [y-velocity v] to [-0]
++    go to x: (start-x) y: (start-y)
 ```
 
 --- /task ---
@@ -133,16 +133,16 @@ Comienza creando variables para las coordenadas iniciales: `start-x`{:class="blo
 Luego, para cada mensaje que anuncie el inicio de un nivel, configura las coordenadas `start-x`{:class="block3variables"} y `start-y`{:class="block3variables"} en respuesta y agrega una **llamada** para `reset-character`{:class="block3myblocks"}:
 
 ```blocks3
-+    al recibir [level-1 v]
-+    establecer [start-x v] a [-183]
-+    establecer [start-y v] a [42]
++    when I receive [level-1 v]
++    set [start-x v] to [-183]
++    set [start-y v] to [42]
 +    reset-character :: custom
 ```
 
 ```blocks3
-+    al recibir [level-2 v]
-+    establecer [start-x v] a [-218]
-+    establecer [start-y v] a [-143]
++    when I receive [level-2 v]
++    set [start-x v] to [-218]
++    set [start-y v] to [-143]
 +    reset-character :: custom
 ```
 
@@ -157,15 +157,15 @@ También debes asegurarte de que cada vez que alguien comienza el juego, el prim
 Ve al script `reset-game`{:class="block3myblocks"} y elimina la llamada para `reset-character`{:class="block3myblocks"} de este. En su lugar, emite el `min-level`{:class="block3variables"}. El código que ya has agregado con esta tarjeta configurará las coordenadas iniciales correctas para el objeto **Player Character**, y también llamará a `reset-character`{:class="block3myblocks"}.
 
 ```blocks3
-    definir reset-game
-    fijar estilo de rotación [left-right v]
-    establecer [jump-height v] a [15]
-    establecer [gravity v] a [2]
-    establecer [x-speed v] a [1]
-    establecer [y-speed v] a [1]
-    establecer [lives v] a [3]
-    establecer [points v] a [0]
-+    enviar (join [level-](min-level ::variables))
+    define reset-game
+    set rotation style [left-right v]
+    set [jump-height v] to [15]
+    set [gravity v] to [2]
+    set [x-speed v] to [1]
+    set [y-speed v] to [1]
+    set [lives v] to [3]
+    set [points v] to [0]
++    broadcast (join [level-](min-level ::variables))
 ```
 
 --- /task ---

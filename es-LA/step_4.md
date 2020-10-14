@@ -9,9 +9,9 @@ Echemos un vistazo a cómo funciona el coleccionable en este momento.
 En los scripts para el objeto `Collectable`, busca el código `al comenzar como clon`{:class="block3events"}. Los bloques que debes observar son los que te dan puntos por recoger un gas:
 
 ```blocks3
-    si <touching [Player Character v]?> entonces
-        cambiar [points v] por (collectable-value ::variables)
-        eliminar este clon
+    if <touching [Player Character v]?> then
+        change [points v] by (collectable-value ::variables)
+        delete this clone
 ```
 
 y este que selecciona un disfraz para el clon:
@@ -28,10 +28,10 @@ title: ¿Cómo funciona elegir un disfraz?
 El bloque `pick-costume`{:class="block3myblocks"} funciona un poco como el bloque `lose`{:class="block3myblocks"}, pero tiene algo extra: toma una variable de **entrada** llamada `type`.
 
 ```blocks3
-    definir pick-costume (type)
-    si <(type :: variable) = [1]> entonces
-        cambiar disfraz a [fartCloud v]
-    fin
+    define pick-costume (type)
+    if <(type ::variable) = [1]> then
+        switch costume to [fartCloud v]
+    end
 ```
 
 Siempre que el bloque `pick-costume`{:class="block3myblocks"} se ejecuta, lo que hace es:
@@ -42,14 +42,14 @@ Siempre que el bloque `pick-costume`{:class="block3myblocks"} se ejecuta, lo que
 Echa un vistazo a la parte del script que utiliza el bloque:
 
 ```blocks3
-    al comenzar como clon
+    when I start as a clone
     pick-costume (collectable-type ::variables) :: custom
-    mostrar
-    repetir hasta que <(posición en y) > [170]>
-        cambiar y por (collectable speed ::variables)
-        si <touching [Player Character v]?> entonces
-            cambiar [points v] en (collectable-value ::variables)
-            eliminar este clon
+    show
+    repeat until <(y position) > [170]>
+        change y by (collectable-speed ::variables)
+        if <touching [Player Character v]?> then
+            change [points v] by (collectable-value ::variables)
+            delete this clone
 ```
 
 Puedes ver que la variable `collectable-type`{:class="block3variables"} es **trasladada** al bloque `pick-costume`{:class="block3myblocks"}. Dentro del código para `pick-costume`{:class="block3myblocks"}, `collectable-type`{:class="block3variables"} se usa entonces como la variable de entrada (`type`{:class="block3myblocks"}).
@@ -71,13 +71,13 @@ Agrega un nuevo disfraz al objeto `Collectable` para tu nueva recompensa. He dib
 A continuación, necesitas decirle al bloque `pick-costume`{:class="block3myblocks"} **Mis bloques** que establezca el nuevo disfraz en cuanto obtenga el nuevo valor para `type`{:class="block3myblocks"}, así \(usando cualquier nombre de disfraz que hayas elegido\):
 
 ```blocks3
-    definir pick-costume (type)
-    si <(type :: variable) = [1]> entonces
-        cambiar disfraz a [fartCloud v]
-    fin
-+ si <(type :: variable) = [2]> entonces
-        cambiar disfraz a [superFart v]
-    fin
+    define pick-costume (type)
+    if <(type ::variable) = [1]> then
+        switch costume to [fartCloud v]
+    end
++    if <(type ::variable) = [2]> then
+        switch costume to [superFart v]
+    end
 ```
 
 --- /task ---
@@ -101,13 +101,13 @@ Click **OK**.
 Haz que el bloque `react-to-player`{:class="block3myblocks"} aumente ya sea los puntos o la vida del jugador, dependiendo del valor del `type`{:class="block3myblocks"} .
 
 ```blocks3
-+    definir react-to-player (type)
-+    si <(type ::variable) = [1]> entonces
-        cambiar [points v] en (collectable-value ::variables)
-    fin
-+   si <(type ::variable) = [2]> entonces
-        cambiar [lives v] en [1]
-    fin
++    define react-to-player (type)
++    if <(type ::variable) = [1]> then
+        change [points v] by (collectable-value ::variables)
+    end
++   if <(type ::variable) = [2]> then
+        change [lives v] by [1]
+    end
 ```
 
 --- /task ---
@@ -117,10 +117,10 @@ Haz que el bloque `react-to-player`{:class="block3myblocks"} aumente ya sea los 
 Actualiza el código `al comenzar como clon`{:class="block3events"} para reemplazar al bloque que agrega un punto con una **llamada** a `react-to-player`{:class="block3myblocks"}, ** pasando ** `collectable-type`{:class="block3variables"}. Al usar este bloque ** Mis bloques **, las nubes de gas normales aún agregan un punto, y la nueva recompensa agrega una vida.
 
 ```blocks3
-    si <touching [Player Character v] ?> entonces
+    if <touching [Player Character v] ?> then
 +        react-to-player (collectable-type ::variables) :: custom
-        eliminar este clon
-    fin
+        delete this clone
+    end
 ```
 
 --- /task ---
@@ -151,15 +151,15 @@ Vas a configurar el `collectable-type`{:class="block3variables"} a ` 1 ` o ` 2 `
 Encuentra el ciclo `repetir hasta que`{:class="block3control"} dentro del código en bandera verde para el objeto `Collectable`, y agrega el código `si...si no`{:class="block3control"} que se muestra a continuación.
 
 ```blocks3
-    repetir hasta que <not <(create-collectables ::variables) = [true]>>
-+ si <[50] = (número al azar entre (1) y (50))> entonces
-            establecer [collectable-type v] a [2]
-        si no
-            establecer [collectable-type v] a [1]
-        fin
-        esperar (collectable-frequency ::variables) segundos
-        ir a x: (número al azar entre (-240) y (240)) y: (-179)
-        crear clon de [mí mismo v]
+    repeat until <not <(create-collectables ::variables) = [true]>>
++        if <[50] = (pick random (1) to (50))> then
+            set [collectable-type v] to [2]
+        else
+            set [collectable-type v] to [1]
+        end
+        wait (collectable-frequency ::variables) secs
+        go to x: (pick random (-240) to (240)) y: (-179)
+        create clone of [myself v]
 ```
 
 --- /task ---

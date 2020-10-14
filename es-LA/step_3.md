@@ -7,16 +7,16 @@ Puede que hayas notado que el bloque `lose`{:class="block3myblocks"} **Mis bloqu
 Primero, encuentra el bloque `lose`{:class="block3myblocks"} y complétalo con el siguiente código:
 
 ```blocks3
-    definir lose
-+ detener [otros scripts en objeto v] :: control stack
-+ Enviar [fin del juego v]
-+ ir a x:(0) y:(0)
-+ decir [¡Fin del juego!] durante (2) segundos
-+ decir [Es prácticamente imposible atrapar todo el metano, ¿verdad?] por (5) segundos
-+ decir [Sería mejor reducir la cantidad producida en primer lugar.] por (6) segundos
-+ decir [Considerando las consecuencias de cómo producimos los alimentos...] durante (5) segundos
-+ decir [...podemos hacerlo de una manera más sostenible que sea mejor para todos.] durante (6) segundos
-+ detener [todo v]
+    define lose
++    stop [other scripts in sprite v] :: control stack
++    broadcast [game over v]
++    go to x:(0) y:(0)
++    say [Game over!] for (2) secs
++    say [It's pretty much impossible to catch all the methane, right?] for (5) secs
++    say [It would be better to reduce the amount produced in the first place.] for (6) secs
++    say [By considering the consequences of how we produce food...] for (5) secs
++    say [...we can do it in a more sustainable way that's better for everyone.] for (6) secs
++    stop [all v]
 ```
 
 --- /task ---
@@ -44,13 +44,13 @@ Ahora necesitas asegurarte de que todos los sprites sepan qué hacer cuando el j
 Comienza con lo básico: los objetos `Platforms` y `Edges` necesitan código para aparecer cuando el juego comienza y desaparecer cuando sea 'Fin del juego', así que añade esto a cada uno de ellos:
 
 ```blocks3
-    al recibir [fin del juego v]
-    ocultar
+    when I receive [game over  v]
+    hide
 ```
 
 ```blocks3
-    al presionar la bandera verde
-    mostrar
+    when green flag clicked
+    show
 ```
 
 --- /task ---
@@ -64,19 +64,19 @@ Hablaremos más sobre lo que hace que los clones sean especiales cuando lleguemo
 Mira cómo funciona el objeto `Collectable`. Comprueba si puedes entender algo de su código:
 
 ```blocks3
-    al presionar bandera verde
-    fijar tamaño a (35) %
-    ocultar
-    establecer [collectable-value v] a [1]
-    establecer [collectable-speed v] a [1]
-    establecer [collectable-frequency v] a [1]
-    establecer [create-collectables v] a [true]
-    establecer [collectable-type v] a [1]
-    repetir hasta que <not <(create-collectables) = [true]>>
-        esperar (collectable-frequency) segundos
-        ir a x: (número al azar entre (-240) y (240)) y: (-179)
-        crear clon de [mí mismo v]
-    Fin
+    when green flag clicked
+    set size to (35) %
+    hide
+    set [collectable-value v] to [1]
+    set [collectable-speed v] to [1]
+    set [collectable-frequency v] to [1]
+    set [create-collectables v] to [true]
+    set [collectable-type v] to [1]
+    repeat until <not <(create-collectables) = [true]>>
+        wait (collectable-frequency) secs
+        go to x: (pick random (-240) to (240)) y: (-179)
+        create clone of [myself v]
+    end
 ```
 
  1. Primero, hace que el coleccionable original sea invisible.
@@ -88,9 +88,9 @@ Mira cómo funciona el objeto `Collectable`. Comprueba si puedes entender algo d
 Ahora configura un bloque en el objeto `Collectable` para que reaccione al mensaje `fin del juego`:
 
 ```blocks3
-    al recibir [fin del juego v]
-    ocultar
-    fijar [create-collectables v] a [false]
+    when I receive [game over v]
+    hide
+    set [create-collectables v] to [false]
 ```
 
 --- /task ---

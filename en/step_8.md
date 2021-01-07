@@ -12,7 +12,7 @@ Add a new sprite, name it **Moving-Platform**, and using the costume customisati
 
 --- /task ---
 
-Now, let's adde some code to the sprite. 
+Now, let's add some code to the sprite. 
 
 Begin with the basics: to make a never-ending set of platforms moving up the screen, you’ll need to clone the platform at regular intervals. I picked `4` seconds as my interval. You also need to make sure that there’s an on/off switch for making the platforms, so that they don’t show up in level 1. I’m using a new variable called `create-platforms`{:class="block3variables"}. 
 

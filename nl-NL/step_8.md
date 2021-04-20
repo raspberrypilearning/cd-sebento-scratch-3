@@ -12,7 +12,7 @@ Voeg een nieuwe sprite toe, noem deze **Bewegend-Platform**, en gebruik de uiter
 
 --- /task ---
 
-Laten we nu wat code toevoegen aan de sprite.
+Now, let's add some code to the sprite.
 
 Begin met de basis: om een nooit eindigende verzameling platforms op het scherm te laten bewegen, moet je het platform regelmatig klonen. Ik koos `4` seconden als mijn interval. Je moet ook zorgen dat er een aan/uit schakelaar is om de platforms te maken, zodat ze niet op level 1 verschijnen. Ik gebruik een nieuwe variabele genaamd `maak-platforms`{:class="block3variables"}.
 

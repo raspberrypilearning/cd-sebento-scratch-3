@@ -1,98 +1,98 @@
-## Moving platforms
+## Plateformes mobiles
 
-The reason I asked you to use my version of level 2 is the gap you might have noticed in the middle of the layout. You’re going to create a platform that moves through this gap and that the player can jump on and ride!
+La raison pour laquelle je t'ai demandé d'utiliser ma version de niveau 2 est l'écart que tu aurais pu remarquer au milieu de la disposition. Tu vas créer une plateforme qui traverse cet écart et sur laquelle le joueur peut sauter et monter !
 
-![Another level with different platforms](images/movingPlatforms.png)
+![Un autre niveau avec différentes plateformes](images/movingPlatforms.png)
 
-First, you’ll need the sprite for the platform.
+D'abord, tu auras besoin du sprite pour la plateforme.
 
 --- task ---
 
-Add a new sprite, name it **Moving-Platform**, and using the costume customisation tools in the Costumes tab to make it look like the other platforms \(use vector mode\).
+Ajoute un nouveau sprite, nomme-le **Plateforme-mobile** et en utilisant les outils de personnalisation des costumes dans l'onglet « Costumes » pour le faire ressembler aux autres plateformes (utilise le mode vectoriel).
 
 --- /task ---
 
-Now, let's adde some code to the sprite.
+Now, let's add some code to the sprite.
 
-Begin with the basics: to make a never-ending set of platforms moving up the screen, you’ll need to clone the platform at regular intervals. I picked `4` seconds as my interval. You also need to make sure that there’s an on/off switch for making the platforms, so that they don’t show up in level 1. I’m using a new variable called `create-platforms`{:class="block3variables"}.
+Commence par les bases : pour créer un ensemble infini de plateformes remontant l'écran, tu devras cloner la plateforme à intervalles réguliers. J'ai choisi `4` secondes comme intervalle. Tu dois également t'assurer qu'il y a un interrupteur marche/arrêt pour créer les plateformes, afin qu'elles n'apparaissent pas au niveau 1. J'utilise une nouvelle variable appelée `créer-plateformes`{:class="block3variables"}.
 
 --- task ---
 
-Add code to create clones of your platform sprite.
+Ajoute du code pour créer des clones de ton sprite Plateformes.
 
-Here's how mine looks so far:
+Voici à quoi ressemble le mien jusqu'à présent :
 
 ```blocks3
-+    when green flag clicked
-+    hide
-+    forever
-        wait (4) secs
-        if <(create-platforms ::variables) = [true]> then
-            create clone of [myself v]
-        end
-    end
++    quand le drapeau est cliqué
++    cacher
++    répéter indéfiniment
+        attendre (4) secs
+        si <(créer-plateformes ::variables) = [true]> alors
+            créer un clone de [moi-même v]
+        fin
+    fin
 ```
 
 --- /task ---
 
 --- task ---
 
-Then add the clone's code:
+Ajoute ensuite le code du clone :
 
 ```blocks3
-+    when I start as a clone
-+    show
-+    forever
-        if <(y position) < [180]> then
-            change y by (1)
-            wait (0.02) secs
-        else
-            delete this clone
-        end
-    end
++    quand je commence comme un clone
++    montrer
++    répéter indéfiniment
+        si <(ordonnée y) < [180]> alors
+            ajouter (1) à y
+            attendre (0.02) secs
+        sinon
+            supprimer ce clone
+        fin
+    fin
 ```
 
 --- /task ---
 
-This code makes the **Moving-Platform** clone move up to the top of the screen, slowly enough for the player to jump on and off, and then disappear.
+Ce code fait que le clone **Plateforme-mobile** se déplace vers le haut de l'écran, suffisamment lentement pour que le joueur puisse monter et descendre, puis disparaitre.
 
 --- task ---
 
-Now make the platforms disappear/reappear based on the broadcasts that change levels (so they're only on the level with space for them), and the `game over`{:class="block3events"} message.
+Fais maintenant disparaître/réapparaître les plateformes en fonction des diffusions qui changent de niveau (pour qu'elles ne soient que sur le niveau où il y a de la place pour elles), et le message `partie terminée` {:class="block3events"} .
 
 ```blocks3
-+    when I receive [level-1 v]
-+    set [create-platforms v] to [false]
-+    hide
++    quand je reçois [niveau-1 v]
++    mettre [créer-plateformes v] à [faux]
++    cacher
 
-+    when I receive [level-2 v]
-+    set [create-platforms v] to [true]
++    quand je reçois [niveau-2 v]
++    mettre [créer-plateformes v] à [vrai]
 
-+    when I receive [game over v]
-+    hide
-+    set [create-platforms v] to [false]
++    quand je reçois [partie terminée v]
++    cacher
++    mettre [créer-plateformes v] à [faux]
 ```
 
 --- /task ---
 
-Now, if you try to actually play the game, the **Player Character** falls through the platform! Any idea why?
+Maintenant, si tu essaies de jouer au jeu, le **Personnage** tombe à travers la plateforme ! Tu sais pourquoi ?
 
-It’s because the physics code doesn’t know about the platform. It’s actually a quick fix:
+C’est parce que le code physique ne connaît pas la plateforme. C'est simple à corriger :
 
 --- task ---
 
-In the **Player Character** sprite scripts, replace every `touching “Platforms”`{:class="block3sensing"}  block with an `OR`{:class="block3operators"} operator that checks for **either** `touching “Platforms”`{:class="block3sensing"}  **OR** `touching “Moving-Platform”`{:class="block3sensing"}.
+Dans les scripts **Personnage**, remplace tous les blocs `« Plateformes »`{:class="block3sensing"} avec un opérateur `OU`{:class="block3operators"} qui vérifie **soit** `touche les « Plateformes »`{:class="block3sensing"} **OU** `touche la « Plateforme-mobile »`{:class="block3sensing"}.
 
-Go through the code for the **Player Character** sprite and everywhere you see this block:
+Parcours le code du sprite **Personnage** et partout où tu vois ce bloc :
 
 ```blocks3
     <touching [Platforms v] ?>
 ```
 
-replace it with this one:
+remplace-le par celui-ci :
 
 ```blocks3
-    <<touching [Platforms v] ?> or <touching [Moving-Platform v] ?>>
+    <<touching [Platforms v] ?> ou <touching [Moving-Platform v] ?>>
 ```
 
 --- /task ---

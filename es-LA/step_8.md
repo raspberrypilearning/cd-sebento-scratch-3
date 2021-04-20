@@ -12,7 +12,7 @@ Agrega un nuevo objeto, asígnale el nombre de **Plataforma móvil**, y usa las 
 
 --- /task ---
 
-Ahora, agreguemos algo de código al objeto.
+Now, let's add some code to the sprite.
 
 Comienza con lo básico: para hacer que un conjunto interminable de plataformas se mueva hacia arriba de la pantalla, necesitarás clonar la plataforma a intervalos regulares. Yo elegí `4` segundos como mi intervalo. También debes asegurarte de que haya un interruptor de encendido y apagado para hacer las plataformas, de manera que no aparezcan en el nivel 1. Estoy usando una nueva variable llamada `create-platforms`{:class="block3variables"}.
 

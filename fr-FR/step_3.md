@@ -1,100 +1,100 @@
-## Losing the game
+## Perdre la partie
 
-You may have noticed that the `lose`{:class="block3myblocks"} **My blocks** block on the `Player Character` sprite is empty. You’re going to fill this in and set up all the pieces needed for a nice 'Game over' screen.
+Tu as peut-être remarqué que le bloc `perdre`{:class="block3myblocks"} **Mes blocs** sur le sprite `Personnage` est vide. Tu vas remplir ceci et mettre en place toutes les pièces nécessaires pour un bel écran « Partie terminée ».
 
 --- task ---
 
-First, find the `lose`{:class="block3myblocks"} block and complete it with the following code:
+Tout d'abord, trouve le bloc `perdre`{:class="block3myblocks"} et complète-le avec le code suivant :
 
 ```blocks3
-    define lose
-+    stop [other scripts in sprite v] :: control stack
-+    broadcast [game over v]
-+    go to x:(0) y:(0)
-+    say [Game over!] for (2) secs
-+    say [It's pretty much impossible to catch all the methane, right?] for (5) secs
-+    say [It would be better to reduce the amount produced in the first place.] for (6) secs
-+    say [By considering the consequences of how we produce food...] for (5) secs
-+    say [...we can do it in a more sustainable way that's better for everyone.] for (6) secs
-+    stop [all v]
+    définir perdre
++    stop [autres scripts dans sprite v] :: control stack
++    envoyer à tous [partie terminée v]
++    aller à x:(0) y:(0)
++    dire [Partie terminée !] pendant (2) secs
++    dire [C'est quasi impossible d'attraper tout le méthane, non ?] pendant (5) secs
++    dire [Ce serait mieux de réduire la quantité produite en premier.] pendant (6) secs
++    dire [En prenant en compte les conséquences de notre mode de production alimentaire...] pendant (5) secs
++    dire [...nous pouvons le faire d'une manière plus durable et meilleure pour tous..] pendant (6) secs
++    stop [tout v]
 ```
 
 --- /task ---
 
 --- collapse ---
 ---
-title: What does the code do?
+title: Que fait le code ?
 ---
 
-Whenever the `lose`{:class="block3myblocks"} block runs, what it does is:
+À chaque fois que le bloc `perdre`{:class="block3myblocks"} s'exécute, il :
 
- 1. Stop the physics and other game scripts on the `Player Character`
- 2. Tell all the other sprites that the game is over by **broadcasting** a message so they can change based on that
- 3. Move the `Player Character` to the centre of the screen and have them tell the player that the game is over
- 4. Stop all scripts in the game
+ 1. Arrête la physique et les autres scripts du jeu sur le `personnage`
+ 2. Indique à tous les autres sprites que le jeu est terminé en **diffusant** un message afin qu'ils puissent se modifier en fonction de çà
+ 3. Déplace le `personnage` au centre de l'écran et dit au joueur que la partie est terminée
+ 4. Arrête tous les scripts du jeu
 
 --- /collapse ---
 
-Now you need to make sure all the sprites know what to do when the game is over, and how to reset themselves when the player starts a new game. **Don’t forget that any new sprites you add also might need code for this!**
+Maintenant tu dois t'assurer que tous les sprites savent quoi faire quand le jeu est terminé, et comment se réinitialiser quand le joueur démarre une nouvelle partie. **N'oublie pas que tous les nouveaux sprites que tu ajoutes pourraient également avoir besoin de code pour cela !**
 
-### Hiding the platforms and edges
+### Cacher les plateformes et les bords
 
 --- task ---
 
-Start with the basics: The `Platforms` and `Edges` sprites both need code for appearing when the game starts and disappearing at 'Game over', so add this to each of them:
+Commencer par les bases : Les sprites `Plateformes` et `Bords` ont tous deux besoin de code pour apparaître lorsque le jeu commence et disparaître à « Partie terminée », donc ajoute ceci à chacun d'eux :
 
 ```blocks3
-    when I receive [game over  v]
-    hide
+    quand je reçois [partie terminée v]
+    cacher
 ```
 
 ```blocks3
-    when green flag clicked
-    show
+    quand le drapeau vert est cliqué
+    montrer
 ```
 
 --- /task ---
 
-### Stopping the farts
+### Arrêter les pets
 
-Now, for something a little more tricky! If you look at the code for the `Collectable` sprite, you’ll see it works by **cloning** itself. That is, it makes copies of itself that follow the special `when I start as a clone`{:class="block3events"} instructions.
+Maintenant, pour quelque chose d'un peu plus délicat ! Si tu regardes le code du sprite `Collectable` , tu verras qu'il fonctionne en se **clonant**. C'est-à-dire qu'il fait des copies de lui-même qui suivent les instructions spéciales `quand je commence comme un clone`{:class="block3events"} .
 
-We’ll talk more about what makes clones special when we get to the card about making new and different collectables. For now, what you need to know is that clones can do **almost** everything a normal sprite can, including receiving `broadcast`{:class="block3events"} messages.
+Nous reviendrons sur ce qui fait la spécificité des clones lorsque nous aborderons la carte relative à la création de collectables nouveau et différent. Pour l'instant, ce que tu dois savoir, c'est que les clones peuvent faire **presque** tout ce qu'un sprite normal peut faire, y compris les messages `envoyer à tous`{:class="block3events"}.
 
-Look at how the `Collectable` sprite works. See if you can understand some of its code:
+Regarde comment le sprite `Collectable` fonctionne. Regarde si tu peux comprendre une partie de son code :
 
 ```blocks3
-    when green flag clicked
-    set size to (35) %
-    hide
-    set [collectable-value v] to [1]
-    set [collectable-speed v] to [1]
-    set [collectable-frequency v] to [1]
-    set [create-collectables v] to [true]
-    set [collectable-type v] to [1]
-    repeat until <not <(create-collectables) = [true]>>
-        wait (collectable-frequency) secs
-        go to x: (pick random (-240) to (240)) y: (-179)
-        create clone of [myself v]
-    end
+    quand le drapeau vert est cliqué
+    mettre la taille à (35) % de la taille initiale
+    cacher
+    mettre [collectable-valeur v] à [1]
+    mettre [collectable-vitesse v] à [1]
+    mettre [collectable-fréquence v] à [1]
+    mettre [créer-collectables v] à [true]
+    mettre [collectable-type v] à [1]
+    répéter jusqu'à ce que <not <(create-collectables) = [true]>>
+        attendre (collectable-fréquence) secs
+        aller à x: (nombre aléatoire entre (-240) et (240)) y: (-179)
+        créer un clone de [moi-même v]
+    fin
 ```
 
- 1. First it makes the original collectable invisible.
- 2. Then it sets up the control variables. We’ll come back to these later.
- 3. The `create-collectables`{:class="block3variables"} variable is the on/off switch for cloning: the loop creates clones if `create-collectables`{:class="block3variables"} is `true`, and does nothing if it’s not.
+ 1. Tout d'abord, il rend invisible le collectable original.
+ 2. Puis il met en place les variables de contrôle. Nous y reviendrons plus tard.
+ 3. La variable `créer-collectables`{:class="block3variables"} est le commutateur marche/arrêt pour le clonage : la boucle crée des clones si `créer-collectables`{:class="block3variables"} est `vraie`, et ne fait rien si ce n’est pas le cas.
 
 --- task ---
 
-Now set up a block on the `Collectable` sprite so that it reacts to the `game over` broadcast:
+Maintenant, configure un bloc sur le sprite `Collectable` pour qu'il réagisse au message `partie terminée` :
 
 ```blocks3
-    when I receive [game over v]
-    hide
-    set [create-collectables v] to [false]
+    quand je reçois [partie terminée v]
+    cacher
+    mettre [créer-collectables v] à [faux]
 ```
 
 --- /task ---
 
-This code is similar to the code controlling the `Edges` and `Platforms` sprites. The only difference is that you’re also setting the `create-collectables`{:class="block3variables"} variable to `false` so that no new clones are created when it's 'Game over'.
+Ce code est similaire au code qui contrôle les sprites `Bords` et `Plateformes`. La seule différence est que tu définis également la variable `créer-collectables`{:class="block3variables"} à `faux` afin qu'aucun nouveau clone ne soit créé lorsque c'est « Partie terminée ».
 
-Note that you can use this variable to pass messages from one part of your code to another! 
+Note que tu peux utiliser cette variable pour passer des messages d'une partie de ton code à une autre ! 

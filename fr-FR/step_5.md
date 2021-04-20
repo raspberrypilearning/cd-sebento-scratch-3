@@ -1,62 +1,62 @@
-## Super power-ups!
+## Super power-ups !
 
-Now that you have a new power-up working, it’s time to make it do something cool! Let's make it 'rain' power-ups for a few seconds, instead of just giving out an extra life.
+Maintenant que tu as un nouveau power-up qui fonctionne, il est temps de faire quelque chose de cool ! Faisons en sorte qu'il pleuve des power-ups pendant quelques secondes, au lieu de simplement donner une vie supplémentaire.
 
-For this you need to create another piece of code that will start while the `react-to-player`{:class="block3myblocks"} block finishes running. To make that happen, you'll use a `broadcast`{:class="block3events"} block to send a message to another piece of code inside this sprite.
+Pour cela, tu dois créer un autre morceau de code qui démarrera pendant que le bloc `réagir-au-joueur`{:class="block3myblocks"} se termine. Pour faire en sorte que cela arrive, tu utiliseras un bloc `envoyer à tous`{:class="block3events"} pour envoyer un message à un autre bout de code à l'intérieur de ce sprite.
 
 --- task ---
 
-Create this block for the `Collectable` sprite. Let’s call the broadcast `collectable-rain`{:class="block3events"}.
+Crée ce bloc pour le sprite `Collectable`. Appelons la diffusion `collectable-pluie`{:class="block3events"}.
 
 ```blocks3
-+    when I receive [collectable-rain v]
-+    set [collectable-frequency v] to [0.000001]
-+    wait (1) secs
-+    set [collectable-frequency v] to [1]
++    quand je reçois [collectable-pluie v]
++    mettre [collectable-fréquence v] à [0.000001]
++    attendre (1) secs
++    mettre [collectable-fréquence v] à [1]
 ```
 
 --- /task ---
 
 --- collapse ---
 ---
-title: What does the new code do?
+title: Que fait le nouveau code ?
 ---
 
-This block just sets `collectable-frequency`{:class="block3variables"} to a very small number \(change it to different values and see what happens!\) and then waits a second and changes it back to `1`.
+Ce bloc définit simplement `collectable-fréquence`{:class="block3variables"} à un très petit nombre (change-le en différentes valeurs et vois ce qui se passe !) puis attend une seconde et le remet à `1`.
 
-This doesn’t look like it should do much, but think about what’s happening during that second: the `when green flag clicked`{:class="block3events"} code is still running, and the `repeat until`{:class="block3control"} loop in it is looping. Look at the code in that loop:
+Cela ne semble pas devoir faire grand-chose. mais pense à ce qui se passe au cours de cette seconde : le code `quand le drapeau vert est cliqué`{:class="block3events"} est toujours en cours d'exécution, et la boucle `répéter jusqu'à ce que `{:class="block3control"} qu'il contient tourne en boucle. Regarde le code dans cette boucle :
 
 ```blocks3
-    repeat until <not <(create-collectables ::variables) = [true]>>
-        if < [50] = (pick random (1) to (50))> then
-            set [collectable-type v] to [2]
-        else
-            set [collectable-type v] to [1]
-        end
-        wait (collectable-frequency ::variables) secs
-        go to x: (pick random (-240) to (240)) y:(-179)
-        create clone of [myself v]
-    end
+    répéter jusqu'à ce que <not <(create-collectables ::variables) = [true]>>
+        si < [50] = (nombre aléatoire entre (1) et (50))> alors
+            mettre [collectable-type  v] à [2]
+        sinon
+            mettre [collectable-type v] à [1]
+        fin
+        attendre (collectable-fréquence :: variables) secondes
+        aller à x: (nombre aléatoire entre (-240) et (240)) y: (-179)
+        créer un clone de [moi-même v]
+    fin
 ```
 
-You can see that the `wait` block here pauses the code for the length of time set by `collectable-frequency`{:class="block3variables"}. So if the value of `collectable-frequency`{:class="block3variables"} changes to `0.000001`, the `wait` block only pauses for **one millionth** of a second, meaning that the loop will run many more times than normal. As a result, the code is going to create **a lot** more power-ups than it normally would, until `collectable-frequency`{:class="block3variables"} changes back `1`. Can you think of any problems that might cause? There’ll be a lot more super-farts…what if you kept catching them?
+Tu peux voir que le bloc `attendre`{:class="block3control"} met ici en pause le code pour la durée définie par `collectable-fréquence`{:class="block3variables"}. Donc si la valeur de `collectable-fréquence`{:class="block3variables"} change à `0.000001`, le bloc `attendre` ne met en pause qu'**un millionième** de seconde, ce qui signifie que la boucle s'exécutera beaucoup plus de fois que la normale. Par conséquent, le code va créer **beaucoup** plus de power-ups qu'il ne le ferait normalement jusqu'à ce que `collectable-fréquence`{:class="block3variables"} soit remis à `1`. Peux-tu penser aux problèmes que cela pourraient causer ? Il y aura beaucoup plus de super pets…et si tu continuais à les attraper ?
 
 --- /collapse ---
 
-Now you have the sprite ready to receive the `collectable-rain`{:class="block3events"} broadcast block, but you haven't made code for sending the broadcast yet.
+Maintenant tu as le sprite prêt à recevoir le bloc de diffusion `collectable-pluie`{:class="block3events"}, mais tu n'as pas encore fait de code pour l'envoi de la diffusion.
 
 --- task ---
 
-Next, update the `react-to-player`{:class="block3myblocks"} block to look like this, so it broadcasts `collectable-rain`{:class="block3events"} when the player touches a type `2` power-up.
+Ensuite, mets à jour le bloc `réagir-au-joueur`{:class="block3myblocks"} pour ressembler à ceci, donc il diffuse `collectable-pluie`{:class="block3events"} quand le joueur touche un power-up de type `2`.
 
 ```blocks3
-    define react-to-player (type)
-    if <(type ::variable) = [1]> then
-        change [points v] by (collectable-value ::variables)
-    end
-    if <(type ::variable) = [2]> then
-+        broadcast [collectable-rain v]
-    end
+    définir réagir-au-joueur (type)
+    si <(type :: variable) = [1]> alors
+        ajouter (collectable-valeur :: variables) à [points v]
+    fin
+    si <(type :: variable) = [2]> alors
++        envoyer à tous [collectable-pluie v]
+    fin
 ```
 
 --- /task ---

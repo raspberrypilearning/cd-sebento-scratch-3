@@ -23,14 +23,14 @@ Ajoute du code pour créer des clones de ton sprite Plateformes.
 Voici à quoi ressemble le mien jusqu'à présent :
 
 ```blocks3
-+    quand le drapeau est cliqué
-+    cacher
-+    répéter indéfiniment
-        attendre (4) secs
-        si <(créer-plateformes ::variables) = [true]> alors
-            créer un clone de [moi-même v]
-        fin
-    fin
++    when green flag clicked
++    hide
++    forever
+        wait (4) secs
+        if <(créer-plateformes ::variables) = [true]> then
+            create clone of [myself v]
+        end
+    end
 ```
 
 --- /task ---
@@ -40,16 +40,16 @@ Voici à quoi ressemble le mien jusqu'à présent :
 Ajoute ensuite le code du clone :
 
 ```blocks3
-+    quand je commence comme un clone
-+    montrer
-+    répéter indéfiniment
-        si <(ordonnée y) < [180]> alors
-            ajouter (1) à y
-            attendre (0.02) secs
-        sinon
-            supprimer ce clone
-        fin
-    fin
++    when I start as a clone
++    show
++    forever
+        if <(y position) < [180]> then
+            change y by (1)
+            wait (0.02) secs
+        else
+            delete this clone
+        end
+    end
 ```
 
 --- /task ---
@@ -61,16 +61,16 @@ Ce code fait que le clone **Plateforme-mobile** se déplace vers le haut de l'é
 Fais maintenant disparaître/réapparaître les plateformes en fonction des diffusions qui changent de niveau (pour qu'elles ne soient que sur le niveau où il y a de la place pour elles), et le message `partie terminée`{:class="block3events"} .
 
 ```blocks3
-+    quand je reçois [niveau-1 v]
-+    mettre [créer-plateformes v] à [faux]
-+    cacher
++    when I receive [niveau-1 v]
++    set [créer-plateformes v] to [false]
++    hide
 
-+    quand je reçois [niveau-2 v]
-+    mettre [créer-plateformes v] à [vrai]
++    when I receive [niveau-2 v]
++    set [créer-plateformes v] to [true]
 
-+    quand je reçois [partie terminée v]
-+    cacher
-+    mettre [créer-plateformes v] à [faux]
++    when I receive [partie terminée v]
++    hide
++    set [créer-plateformes v] to [false]
 ```
 
 --- /task ---
@@ -86,13 +86,13 @@ Dans les scripts **Personnage**, remplace tous les blocs `« Plateformes »`{:cl
 Parcours le code du sprite **Personnage** et partout où tu vois ce bloc :
 
 ```blocks3
-    <touching [Platforms v] ?>
+    <touching [Plateformes v] ?>
 ```
 
 remplace-le par celui-ci :
 
 ```blocks3
-    <<touching [Platforms v] ?> ou <touching [Moving-Platform v] ?>>
+    <<touching [Plateformes v] ?> ou <touching [Plateforme-mobile v] ?>>
 ```
 
 --- /task ---

@@ -17,8 +17,8 @@ Redimensionne le sprite à la bonne taille et place-le à un endroit approprié 
 Commence par écrire le code le plus simple : configure son bloc pour le message `partie terminée`{:class="block3events"} afin de faire disparaître l'ennemi lorsque le joueur perd la partie.
 
 ```blocks3
-+    quand je reçois [partie terminée v]
-+    cacher
++    when I receive [partie terminée v]
++    hide
 ```
 
 --- /task ---
@@ -28,17 +28,17 @@ Commence par écrire le code le plus simple : configure son bloc pour le message
 Maintenant, tu dois écrire le code pour ce que fait l'ennemi. Tu peux utiliser le mien de cette carte, mais n'aie pas peur d'en ajouter plus ! (Et s'ils se téléportent sur différentes plateformes ? Ou s'il y a un power-up qui les rend plus rapides ou plus lents ?)
 
 ```blocks3
-+    quand le drapeau vert est cliqué
-+    montrer
-+    mettre [ennemi-déplacement-pas v] à [5]
-+    fixer le sens de rotation [gauche-droite v]
-+    aller à x: (1) y: (59)
-+    répéter indéfiniment
-        avancer de (ennemi-déplacement-pas) pas
-        si <not <touching [Platforms v] ?>> alors
-            mettre [ennemi-déplacement-pas v] to ((ennemi-déplacement-pas) * (-1))
-        fin
-    fin
++    when green flag clicked
++    show
++    set [ennemi-déplacement-pas v] to [5]
++    set rotation style [left-right v]
++    go to x: (1) y: (59)
++    forever
+        move (ennemi-déplacement-pas) steps
+        if <not <touching [Plateformes v] ?>> then
+            set [ennemi-déplacement-pas v] to ((ennemi-déplacement-pas) * (-1))
+        end
+    end
 ```
 
 **Note** : si tu fais juste glisser le bloc `aller à`{:class="block3motion"} et ne change pas les valeurs `x` et `y` , elles seront les valeurs de l'emplacement actuel du sprite !
@@ -54,13 +54,13 @@ La prochaine chose dont tu as besoin est que le joueur perd une vie quand il tou
 Voici comment je l'ai fait, mais n'hésite pas à essayer d'améliorer ce code ! J’ai modifié le bloc principal du sprite `Personnage`. Ajoute le code avant le bloc `si`{:class="block3control"} qui vérifie si tu es à court de vie.
 
 ```blocks3
-+    si <touching [Enemy v] ?> alors
-        cacher
-        aller à x: (-187) y: (42)
-        ajouter (-1) à [vies v]
-        attendre (0.5) secs
-        montrer
-    fin
++    if <touching [Ennemi v] ?> then
+        hide
+        go to x: (-187) y: (42)
+        change [vies v] by (-1)
+        wait (0.5) secs
+        show
+    end
 ```
 
 --- /task ---
@@ -73,28 +73,28 @@ title: Montre-moi l'ensemble du script mis à jour
 Le bloc principal de mon sprite `Personnage` ressemble maintenant à ceci :
 
 ```blocks3
-    quand le drapeau vert est cliqué
+    when green flag clicked
     réinitialiser-jeu :: custom
-    répéter indéfiniment
+    forever
         physique-principal :: custom
-        si <(ordonnée y) < [-179]> alors
-            cacher
+        if <(y position) < [-179]> then
+            hide
             réinitialiser-personnage :: custom
-            ajouter (-1) à [vies v]
-            attendre (0.05) secs
-            montrer
-        fin
-        si <touching [Enemy v] ?> alors
-            cacher
-            aller à x: (-187) y: (42)
-            ajouter (-1) à [vies v]
-            attendre (0.5) secs
-            montrer
-        fin
-        si <(vies) < [1]> alors
+            change [vies v] by (-1)
+            wait (0.05) secs
+            show
+        end
+        if <touching [Ennemi v] ?> then
+            hide
+            go to x: (-187) y: (42)
+            change [vies v] by (-1)
+            wait (0.5) secs
+            show
+        end
+        if <(vies) < [1]> then
             perdre :: custom
-        fin
-    fin
+        end
+    end
 ```
 
 --- /collapse ---

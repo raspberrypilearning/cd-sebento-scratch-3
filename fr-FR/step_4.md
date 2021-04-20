@@ -9,9 +9,9 @@ Jetons un coup d'œil sur le fonctionnement de collectible dès maintenant.
 Dans les scripts pour le sprite `Collectable`, trouve le code `quand je commence comme un clone`{:class="block3events"}. Les blocs que tu devrais regarder sont ceux qui te donnent des points pour collecter un pet :
 
 ```blocks3
-    si <touching [Player Character v]?> alors
-       ajouter (collectable-valeur :: variables) à [point v]
-        supprimer ce clone
+    if <touching [Personnage v]?> then
+        change [points v] by (collectable-valeur ::variables)
+        delete this clone
 ```
 
 et celui-ci qui sélectionne un costume pour le clone :
@@ -28,10 +28,10 @@ title: Comment fonctionne la sélection d'un costume ?
 Le bloc `choisir-costume`{:class="block3myblocks"} fonctionne un peu comme le bloc `perdre`{:class="block3myblocks"}, mais il a quelque chose de plus : il prend une variable **entrée** appelée `type`.
 
 ```blocks3
-    définir choisir-costume (type)
-    si <(type ::variable) = [1]> alors
-        basculer sur le costume [Nuagepet v]
-    fin
+    define choisir-costume (type)
+    if <(type ::variable) = [1]> then
+        switch costume to [Nuagepet v]
+    end
 ```
 
 Lorsque le bloc `choisir-costume`{:class="block3myblocks"} s'exécute, sa fonction est la suivante :
@@ -42,14 +42,14 @@ Lorsque le bloc `choisir-costume`{:class="block3myblocks"} s'exécute, sa foncti
 Jette un coup d'œil à la partie du script qui utilise le bloc :
 
 ```blocks3
-    quand je commence comme un clone
-    choisir-costume (collectable-type :: variables) :: custom
-    montrer
-    répétez jusqu’à ce que<(ordonnée y) > [170]>
-        ajouter (collectable-vitesse :: variables) à y
-        si <touching [Player Character v]?> alors
-            ajouter (collectable-valeur :: variables) à [point v]
-            supprimer ce clone
+    when I start as a clone
+    choisir-costume (collectable-type ::variables) :: custom
+    show
+    repeat until <(y position) > [170]>
+        change y by (collectable-vitesse ::variables)
+        if <touching [Personnage v]?> then
+            change [points v] by (collectable-valeur ::variables)
+            delete this clone
 ```
 
 Tu peux voir que la variable `collectable-type`{:class="block3variables"} est **passée** au bloc `choisir-costume`{:class="block3myblocks"}. Dans le code de `choisir-costume`{:class="block3myblocks"}, `collectable-type`{:class="block3variables"} est alors utilisé comme variable d'entrée (`type`{:class="block3myblocks"}).
@@ -71,13 +71,13 @@ Ajoute un nouveau costume au sprite `Collectable` pour ton nouveau power-up. J'a
 Ensuite tu dois dire au bloc `choisir-costume`{:class="block3myblocks"} **Mes blocs** pour définir le nouveau costume chaque fois qu'il obtient la nouvelle valeur pour `type`, comme ceci (en utilisant le nom du costume que tu as choisis) :
 
 ```blocks3
-    définir choisir-costume (type)
-    si <(type ::variable) = [1]> alors
-        basculer sur le costume [Nuagepet v]
-    fin
-+    si <(type ::variable) = [2]> alors
-        basculer sur le costume [superPet v]
-    fin
+    define choisir-costume (type)
+    if <(type ::variable) = [1]> then
+        switch costume to [Nuagepet v]
+    end
++    if <(type ::variable) = [2]> then
+        switch costume to [superPet v]
+    end
 ```
 
 --- /task ---
@@ -101,13 +101,13 @@ Clique sur **OK**.
 Fais que le bloc `réagir-au-joueur`{:class="block3myblocks"} augmente les points ou augmente la vie du joueur, selon la valeur de `type`{:class="block3myblocks"} .
 
 ```blocks3
-+    définir réagir-au-joueur (type)
-+    si <(type ::variable) = [1]> alors
-        ajouter (collectable-value ::variables) à [points v]
-    fin
-+   si <(type ::variable) = [2]> alors
-        ajouter [1] à [vies v]
-    fin
++    define réagir-au-joueur (type)
++    if <(type ::variable) = [1]> then
+        change [points v] by (collectable-valeur ::variables)
+    end
++   if <(type ::variable) = [2]> then
+        change [vies v] by [1]
+    end
 ```
 
 --- /task ---
@@ -117,10 +117,10 @@ Fais que le bloc `réagir-au-joueur`{:class="block3myblocks"} augmente les point
 Mets à jour le code `quand je commence comme un clone`{:class="block3events"} pour remplacer le bloc qui ajoute un point avec un **appel** à `réagir-au-joueur`{:class="block3myblocks"}, **en passant** `collectable-type`{:class="block3variables"}. En utilisant ce bloc **Mes blocs** , les nuages de pets normaux ajoutent encore un point, et le nouveau power-up ajoute une vie.
 
 ```blocks3
-    si <touching [Player Character v] ?> alors
+    if <touching [Personnage v] ?> then
 +        réagir-au-joueur (collectable-type ::variables) :: custom
-        supprimer ce clone
-    fin
+        delete this clone
+    end
 ```
 
 --- /task ---
@@ -151,15 +151,15 @@ Tu vas définir le `collectable-type`{:class="block3variables"} soit à `1` soit
 Trouve la boucle `répéter jusqu'à ce que`{:class="block3control"} dans le code du drapeau vert pour le sprite `Collectable` et ajoute le code `si...sinon`{:class="block3control"} affiché ci-dessous.
 
 ```blocks3
-    répéter jusqu'à ce que <not <(create-collectables ::variables) = [true]>>
-+        si <[50] = (nombre aléatoire entre (1) et (50))> alors
-            mettre [collectable-type v] à [2]
-        sinon
-            mettre [collectable-type v] à [1]
-        fin
-        attendre (collectable-fréquence ::variables) secs
-        aller à x: (nombre aléatoire entre (-240) à (240)) y: (-179)
-        créer un clone de [moi-même v]
+    repeat until <not <(créer-collectables ::variables) = [true]>>
++        if <[50] = (pick random (1) to (50))> then
+            set [collectable-type v] to [2]
+        else
+            set [collectable-type v] to [1]
+        end
+        wait (collectable-fréquence ::variables) secs
+        go to x: (pick random (-240) to (240)) y: (-179)
+        create clone of [myself v]
 ```
 
 --- /task ---

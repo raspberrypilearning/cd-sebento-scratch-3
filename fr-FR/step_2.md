@@ -6,7 +6,7 @@ Tu devrais y jeter un coup d'œil avec les détails sur cette carte, parce que t
 
 --- task ---
 
-La première chose à faire est d'obtenir une copie du code de [dojo.soy/platform-starter](http://dojo.soy/platform-starter){:target="_blank"}
+La première chose à faire est d'obtenir une copie du code de [scratch.mit.edu/projects/518237320](https://scratch.mit.edu/projects/518237320){:target="_blank"}
 
 Pour l'utiliser hors ligne, télécharge ce code en cliquant sur **Voir à l'intérieur**, puis le menu **Fichier** et **Télécharger sur votre ordinateur**, puis ouvre-le dans Scratch sur ton ordinateur.
 

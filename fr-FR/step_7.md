@@ -19,20 +19,20 @@ Le code de ce bouton est astucieux : il est conçu de telle sorte que chaque foi
 Ajoute ces scripts à ton sprite **Bouton**. Pour ce faire, tu devras créer quelques variables.
 
 ```blocks3
-+    quand ce drapeau est cliqué
-+    mettre [niveau-max v] à [2]
-+    mettre [niveau-min v] à [1]
-+    mettre [niveau-actuel v] à [1]
++    when green flag clicked
++    set [niveau-max v] to [2]
++    set [niveau-min v] to [1]
++    set [niveau-actuel v] to [1]
 ```
 
 ```blocks3
-+    quand ce sprite est cliqué
-+    ajouter (1) à [niveau-actuel v]
-+    si <(niveau-actuel) > (niveau-max ::variables)> alors
-        mettre [niveau-actuel v] à (niveau-max ::variables)
-    fin
-+    envoyer à tous [collectable-nettoyage v]
-+    envoyer à tous (regroupe [niveau-](niveau-actuel))
++    when this sprite clicked
++    change [niveau-actuel v] by (1)
++    if <(niveau-actuel) > (niveau-max ::variables)> then
+        set [niveau-actuel v] to (niveau-min ::variables)
+    end
++    broadcast [collectable-nettoyage v]
++    broadcast (join [niveau-](niveau-actuel))
 ```
 
 --- /task ---
@@ -58,8 +58,8 @@ Maintenant tu dois amener les autres sprites à répondre à ces diffusions ! Co
 Ajoute le code suivant aux scripts de sprite **Collectable** pour dire à tous ses clones de `cacher`{:class="block3vlooks"} quand ils reçoivent le message de nettoyage :
 
 ```blocks3
-+    quand je reçois [collectable-nettoyage v]
-+    cacher
++    when I receive [collectable-nettoyage v]
++    hide
 ```
 
 --- /task ---
@@ -75,15 +75,15 @@ Maintenant, pour basculer le sprite **Plateformes**. Tu pourras concevoir ton pr
 Ajoute ce code au sprite **Plateformes** :
 
 ```blocks3
-+    quand je reçois [niveau-1 v]
-+    basculer sur le costume [Niveau 1 v]
-+    montrer
++    when I receive [niveau-1 v]
++    switch costume to [Niveau 1 v]
++    show
 ```
 
 ```blocks3
-+    quand je reçois [niveau-2 v]
-+    basculer sur le costume [Niveau 2 v]
-+    montrer
++    when I receive [niveau-2 v]
++    switch costume to [Niveau 2 v]
++    show
 ```
 
 --- /task ---
@@ -97,13 +97,13 @@ Il reçoit les messages `regroupés`{:class="block3operators"} de `niveau-`{:cla
 Dans les scripts de sprite **Ennemi**, assure-toi juste que le sprite disparaît lorsque le joueur entre dans le niveau 2, comme ceci :
 
 ```blocks3
-+    quand je reçois [niveau-1 v]
-+    montrer
++    when I receive [niveau-1 v]
++    show
 ```
 
 ```blocks3
-+    quand je reçois [niveau-2 v]
-+    cacher
++    when I receive [niveau-2 v]
++    hide
 ```
 
 --- /task ---
@@ -119,11 +119,11 @@ Si tu préfères, tu peux plutôt faire bouger l'ennemi vers une autre plateform
 Commence par créer des variables pour les coordonnées de départ : `x-départ`{:class="block3variables"} et `y-départ`{:class="block3variables"}. Puis mets-les dans le bloc `aller à`{:class="block3motion"} dans le bloc `réinitialiser-personnage`{:class="block3myblocks"} **Mes blocs** au lieu des valeurs `x` et `y` fixes :
 
 ```blocks3
-    définir réinitialiser-personnage
-    mettre [peut-sauter v] à [vrai]
-    mettre [vélocité-x v] à [0]
-    mettre [vélocité-y v] to [-0]
-+    aller x: (x-départ) y: (y-départ)
+    define réinitialiser-personnage
+    set [peut-sauter v] to [true]
+    set [vélocité-x v] to [0]
+    set [vélocité-y v] to [-0]
++    go to x: (x-départ) y: (y-départ)
 ```
 
 --- /task ---
@@ -133,16 +133,16 @@ Commence par créer des variables pour les coordonnées de départ : `x-départ`
 Ensuite, pour chaque message annonçant le début d'un niveau, définis les coordonnées `x-départ`{:class="block3variables"} et `y-départ`{:class="block3variables"} dans la réponse, et ajoute un **appel** à `réinitialiser-personnage`{:class="block3myblocks"} :
 
 ```blocks3
-+    quand je reçois [niveau-1 v]
-+    mettre [x-départ v] à [-183]
-+    mettre [y-départ v] à [42]
++    when I receive [niveau-1 v]
++    set [x-départ v] to [-183]
++    set [y-départ v] to [42]
 +    réinitialiser-personnage :: custom
 ```
 
 ```blocks3
-+    quand je reçois [niveau-2 v]
-+    mettre [x-départ v] à [-218]
-+    mettre [y-départ v] à [-143]
++    when I receive [niveau-2 v]
++    set [x-départ v] to [-218]
++    set [y-départ v] to [-143]
 +    réinitialiser-personnage :: custom
 ```
 
@@ -157,15 +157,15 @@ Tu dois également t'assurer que chaque fois que quelqu'un commence le jeu, le p
 Va au script `réinitialiser-jeu`{:class="block3myblocks"} et retire l'appel de `réinitialiser-personnage`{:class="block3myblocks"}. À sa place, mets le message `niveau-min`{:class="block3variables"}. Le code que tu as déjà ajouté avec cette carte va alors configurer les coordonnées de départ correctes pour le sprite **Personnage** et appeler `réinitialiser-personnage`{:class="block3myblocks"}.
 
 ```blocks3
-    définir réinitialiser-jeu
-    fixer le sens de rotation [gauche-droite v]
-    mettre [saut-hauteur v] à [15]
-    mettre [gravité v] à [2]
-    mettre [vitesse-x v] à [1]
-    mettre [vitesse-y à [1]
-    mettre [vies v] à [3]
-    mettre [points v] à [0]
-+    envoyer à tous (regrouper [niveau-](niveau-min ::variables))
+    define réinitialiser-jeu
+    set rotation style [left-right v]
+    set [saut-hauteur v] to [15]
+    set [gravité v] to [2]
+    set [vitesse-x v] to [1]
+    set [vitesse-y v] to [1]
+    set [vies v] to [3]
+    set [points v] to [0]
++    broadcast (join [niveau-](niveau-min ::variables))
 ```
 
 --- /task ---

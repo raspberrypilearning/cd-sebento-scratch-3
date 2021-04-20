@@ -7,16 +7,17 @@ Tu as peut-être remarqué que le bloc `perdre`{:class="block3myblocks"} **Mes b
 Tout d'abord, trouve le bloc `perdre`{:class="block3myblocks"} et complète-le avec le code suivant :
 
 ```blocks3
-    définir perdre
-+    stop [autres scripts dans sprite v] :: control stack
-+    envoyer à tous [partie terminée v]
-+    aller à x:(0) y:(0)
-+    dire [Partie terminée !] pendant (2) secs
-+    dire [C'est quasi impossible d'attraper tout le méthane, non ?] pendant (5) secs
-+    dire [Ce serait mieux de réduire la quantité produite en premier.] pendant (6) secs
-+    dire [En prenant en compte les conséquences de notre mode de production alimentaire...] pendant (5) secs
-+    dire [...nous pouvons le faire d'une manière plus durable et meilleure pour tous..] pendant (6) secs
-+    stop [tout v]
+    define perdre
++    stop [other scripts in sprite v] :: control stack
++    broadcast [partie terminée v]
++    go to x:(0) y:(0)
++    say [Partie terminée!] for (2) secs
++    say [C'est quasi impossible d'attraper tout le méthane, non ?] for (5) secs
++    say [Ce serait mieux de réduire la quantité produite en premier.] for (6) secs
++    say [En prenant en compte les conséquences de notre mode de production alimentaire...] for (5) secs
++    say [...nous pouvons le faire d'une manière plus durable et meilleure pour tous.] for (6) secs
++    stop [all v]
+
 ```
 
 --- /task ---
@@ -44,13 +45,13 @@ Maintenant tu dois t'assurer que tous les sprites savent quoi faire quand le jeu
 Commencer par les bases : Les sprites `Plateformes` et `Bords` ont tous deux besoin de code pour apparaître lorsque le jeu commence et disparaître à « Partie terminée », donc ajoute ceci à chacun d'eux :
 
 ```blocks3
-    quand je reçois [partie terminée v]
-    cacher
+    when I receive [partie terminée  v]
+    hide
 ```
 
 ```blocks3
-    quand le drapeau vert est cliqué
-    montrer
+    when green flag clicked
+    show
 ```
 
 --- /task ---
@@ -64,19 +65,19 @@ Nous reviendrons sur ce qui fait la spécificité des clones lorsque nous aborde
 Regarde comment le sprite `Collectable` fonctionne. Regarde si tu peux comprendre une partie de son code :
 
 ```blocks3
-    quand le drapeau vert est cliqué
-    mettre la taille à (35) % de la taille initiale
-    cacher
-    mettre [collectable-valeur v] à [1]
-    mettre [collectable-vitesse v] à [1]
-    mettre [collectable-fréquence v] à [1]
-    mettre [créer-collectables v] à [true]
-    mettre [collectable-type v] à [1]
-    répéter jusqu'à ce que <not <(create-collectables) = [true]>>
-        attendre (collectable-fréquence) secs
-        aller à x: (nombre aléatoire entre (-240) et (240)) y: (-179)
-        créer un clone de [moi-même v]
-    fin
+    when green flag clicked
+    set size to (35) %
+    hide
+    set [collectable-valeur v] to [1]
+    set [collectable-vitesse v] to [1]
+    set [collectable-fréquence v] to [1]
+    set [créer-collectables v] to [true]
+    set [collectable-type v] to [1]
+    repeat until <not <(créer-collectables) = [true]>>
+        wait (collectable-fréquence) secs
+        go to x: (pick random (-240) to (240)) y: (-179)
+        create clone of [myself v]
+    end
 ```
 
  1. Tout d'abord, il rend invisible le collectable original.
@@ -88,9 +89,9 @@ Regarde comment le sprite `Collectable` fonctionne. Regarde si tu peux comprendr
 Maintenant, configure un bloc sur le sprite `Collectable` pour qu'il réagisse au message `partie terminée` :
 
 ```blocks3
-    quand je reçois [partie terminée v]
-    cacher
-    mettre [créer-collectables v] à [faux]
+    when I receive [partie terminée v]
+    hide
+    set [créer-collectables v] to [false]
 ```
 
 --- /task ---

@@ -1,48 +1,48 @@
 --- no-print ---
 
-This is the **Scratch 3** version of the project. There is also a [Scratch 2 version of the project](https://projects.raspberrypi.org/en/projects/cd-sebento-scratch-3-scratch2).
+Ceci est la version **Scratch 3** du projet. Il existe également une version [Scratch 2 du projet](https://projects.raspberrypi.org/en/projects/cd-sebento-scratch-3-scratch2).
 
 --- /no-print ---
 
 ## Introduction
 
-In this project you’ll be making a platform-style game to which you can later add your own levels, powers, and characters.
+Dans ce projet, tu feras un jeu de type plateforme auquel tu pourras ajouter plus tard tes propres niveaux, pouvoirs et personnages.
 
-### What you will make
+### Ce que tu feras
 
-Did you know that having lots and lots of cows contributes to climate change? That's because cows produce methane, a greenhouse gas, and fart it out. In this game your mission is to catch as much of the methane as you can.
+Savais-tu que le fait d'avoir vraiment beaucoup de vaches contribue au changement climatique ? C'est parce que les vaches produisent du méthane, un gaz à effet de serre, et le rejettent. Dans ce jeu, ta mission est d'attraper autant de méthane que possible.
 
 <div class="scratch-preview">
   <iframe allowtransparency="true" width="485" height="402" src="https://scratch.mit.edu/projects/embed/219285989/?autostart=false" frameborder="0"></iframe>
 </div>
 
-Use the arrow keys to move Pico around. Make sure you don't crash into the helicopter!
+Utilise les touches fléchées pour déplacer Pico. Assure-toi de ne pas te planter dans l'hélicoptère !
 
 --- collapse ---
 ---
-title: What you will learn
+title: Ce que tu vas apprendre
 ---
 
-+ Cloning sprites
-+ Using variables inside cloned sprites
-+ Creating and using **My blocks** blocks
-+ Reusing code in several places with **My blocks** blocks
-+ Messages to trigger behaviours across sprites
-+ Using variables to configure your program
++ Cloner de sprites
++ Utiliser des variables à l'intérieur des sprites clonés
++ Créer et utiliser les blocs **Mes blocs**
++ Réutiliser du code à plusieurs endroits avec les blocs **Mes blocs**
++ Messages pour déclencher des comportements à travers des sprites
++ Utiliser des variables pour configurer ton programme
 
 --- /collapse ---
 
 --- collapse ---
 ---
-title: What you will need
+title: Ce qu'il te faut
 ---
 
-### Hardware
+### Matériel informatique
 
-+ A computer capable of running Scratch 3
++ Un ordinateur capable d'exécuter Scratch 3
 
-### Software
+### Logiciel
 
-+ Scratch 3 (either [online](https://scratch.mit.edu/projects/editor/){:target="_blank"} or [offline](https://scratch.mit.edu/download/){:target="_blank"})
++ Scratch 3 (soit [en ligne](https://scratch.mit.edu/projects/editor/){:target="_blank"} ou [hors-ligne](https://scratch.mit.edu/download/){:target="_blank"})
 
 --- /collapse ---

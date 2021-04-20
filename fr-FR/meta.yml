@@ -1,7 +1,7 @@
 ---
-title: Fart catcher
+title: Attrape-pet
 hero_image: images/banner.png
-description: Make a platform-style game and add your own levels, powers, and characters.
+description: Crée un jeu de type plateforme et ajoute tes propres niveaux, pouvoirs et personnages.
 theme: orange
 listed: true
 copyedit: true
@@ -17,18 +17,18 @@ steps:
   - 
     title: Introduction
   - 
-    title: Setting things up
+    title: Mise en place
   - 
-    title: Losing the game
+    title: Perdre la partie
   - 
     title: Power-ups
   - 
-    title: Super power-ups!
+    title: Super power-ups !
   - 
-    title: Adding some competition
+    title: Ajouter de la difficulté
   - 
-    title: Level 2
+    title: Niveau 2
   - 
-    title: Moving platforms
+    title: Plateformes mobiles
   - 
-    title: What next?
+    title: Et ensuite ?

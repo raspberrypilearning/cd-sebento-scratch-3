@@ -99,4 +99,4 @@ Het hoofdblok van mijn `Player Character` sprite ziet er nu zo uit:
 
 --- /collapse ---
 
-De nieuwe code verbergt het karakter, verplaatst ze terug naar hun startpositie, vermindert `levens`{:class="block3variables"} met `1`en laat ze na een halve seconde opnieuw verschijnen.
+De nieuwe code verbergt het karakter, verplaatst ze terug naar hun startpositie, vermindert `levens`{:class="block3variables"} met `1` en laat ze na een halve seconde opnieuw verschijnen.

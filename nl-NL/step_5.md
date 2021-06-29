@@ -22,7 +22,7 @@ Maak dit blok voor de `Collectable` sprite. Laten we het signaal `prijzen-regen`
 title: Wat doet de nieuwe code?
 ---
 
-Dit blok stelt `prijs-frequentie`{:class="block3variables"} in op een heel klein aantal (verander het in verschillende waarden en kijk wat er gebeurt!), wacht dan een seconde en verandert het terug in `1`.
+Dit blok stelt `prijs-frequentie`{:class="block3variables"} in op een heel klein aantal \(verander het in verschillende waarden en kijk wat er gebeurt!\), wacht dan een seconde en verandert het terug in `1`.
 
 Dit ziet er niet naar uit dat het veel zou moeten doen, maar denk na over wat er tijdens die seconde gebeurt: de `wanneer op de groene vlag wordt geklikt`{:class="block3events"} code is nog steeds actief en de `herhaal tot`{:class="block3control"} lus is ook nog bezig. Bekijk de code in die lus:
 
@@ -52,7 +52,7 @@ Werk vervolgens het `reageer-op-speler`{:class="block3myblocks"} blok bij zodat 
 ```blocks3
     define reageer-op-speler (type)
     if <(type ::variable) = [1]> then
-        change [points v] by (prijs-waarde ::variables)
+        change [punten v] by (prijs-waarde ::variables)
     end
     if <(type ::variable) = [2]> then
 +        broadcast [prijzen-regen v]

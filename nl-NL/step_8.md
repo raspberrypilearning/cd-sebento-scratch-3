@@ -8,7 +8,7 @@ Ten eerste heb je de sprite voor het platform nodig.
 
 --- task ---
 
-Voeg een nieuwe sprite toe, noem deze **Bewegend-Platform**, en gebruik de uiterlijkgereedschappen in Uiterlijken om het op de andere platforms te laten lijken (gebruik de vectormodus).
+Voeg een nieuwe sprite toe, noem deze **Bewegend-Platform**, en gebruik de uiterlijkgereedschappen in Uiterlijken om het op de andere platforms te laten lijken \(gebruik de vectormodus\).
 
 --- /task ---
 
@@ -43,7 +43,7 @@ Voeg vervolgens de klooncode toe:
 +    when I start as a clone
 +    show
 +    forever
-        if <(y position) < [180]> then
+        if <(y positie) < [180]> then
             change y by (1)
             wait (0.02) secs
         else
@@ -81,7 +81,7 @@ Het is omdat de natuurkunde code nog niets weet over het platform. Er is een sne
 
 --- task ---
 
-Vervang in de **Player Character** sprite alle `raak ik "Platforms"`{:class="block3sensing"} blokken door een `OF`{:class="block3operators"} operator die controleert op **of** `raak ik "Platforms"`{:class= "block3sensing"}  **OF** `raak ik "Bewegend-Platform "`{:class="block3sensing"}.
+Vervang in de **Player Character** sprite alle `raak ik "Platforms"`{:class="block3sensing"} blokken door een `OF`{:class="block3operators"} operator die controleert op **of** `raak ik "Platforms"`{:class="block3sensing"}  **OF** `raak ik "Bewegend-Platform"`{:class="block3sensing"}.
 
 Doorloop de code voor de **Player Character** sprite en overal waar je dit blok ziet:
 

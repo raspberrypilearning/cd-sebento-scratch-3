@@ -26,9 +26,9 @@ Kijk eerst eens hoe de code is samengesteld. Het gebruikt veel blokken van **Mij
 
 --- /task ---
 
-In de bovenstaande code roept de `herhaal`{:class="block3control"} lus van het hoofdspel het `natuurkunde`{:class="block3myblocks"} blok aan om een heleboel dingen te doen! Ze gescheiden houden op deze manier maakt het gemakkelijk om de belangrijkste lus lezen en te begrijpen wat er wanneer gebeurt, zonder zorgen over **hoe** het gebeurt.
+In de bovenstaande code roept de `herhaal`{:class="block3control"} lus van het hoofdspel het `natuurkunde`{:class="block3myblocks"} blok aan om een heleboel dingen te doen! Ze gescheiden houden op deze manier maakt het gemakkelijk om de belangrijkste lus te lezen en te begrijpen wat er wanneer gebeurt, zonder zorgen over **hoe** het gebeurt.
 
-Kijk nu naar de `reset spel`{:class = "block3myblocks"} en `reset speler`{:class="block3myblocks"} blokken en merk op:
+Kijk nu naar de `reset spel`{:class="block3myblocks"} en `reset speler`{:class="block3myblocks"} blokken en merk op:
     1. Ze doen behoorlijk normale dingen, zoals het instellen van variabelen en ervoor zorgen dat het personage op de juiste manier ronddraait
     2. `reset spel`{:class="block3myblocks"} **roept** `reset speler`{:class="block3myblocks"} aan - wat betekent dat je een **Mijn blokken** blok in een ander **Mijn blokken** blok kunt gebruiken!
     3. `reset speler`{:class="block3myblocks"} wordt op twee verschillende plaatsen gebruikt, maar om het te wijzigen, hoef je alleen de code van het **Mijn blokken** blok op één plaats te wijzigen! Dit kan je veel werk besparen en fouten helpen voorkomen.

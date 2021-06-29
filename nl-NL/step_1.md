@@ -1,6 +1,6 @@
 --- no-print ---
 
-Dit is de **Scratch 3** versie van het project. Er is ook een [Scratch 2 versie van dit project](https://projects.raspberrypi.org/en/projects/cd-sebento-scratch-3-scratch2).
+Dit is de **Scratch 3** versie van het project. Er is ook een [Scratch 2 versie van dit project](https://projects.raspberrypi.org/nl-NL/projects/cd-sebento-scratch-3-scratch2).
 
 --- /no-print ---
 

@@ -8,7 +8,7 @@ Ten eerste heb je de sprite voor het platform nodig.
 
 --- task ---
 
-Voeg een nieuwe sprite toe, noem deze **Bewegend-Platform**, en gebruik de uiterlijkgereedschappen in Uiterlijken om het op de andere platforms te laten lijken (gebruik de vectormodus).
+Voeg een nieuwe sprite toe, noem deze **Bewegend-Platform**, en gebruik de uiterlijkgereedschappen in Uiterlijken om het op de andere platforms te laten lijken \(gebruik de vectormodus\).
 
 --- /task ---
 
@@ -43,7 +43,7 @@ Voeg vervolgens de klooncode toe:
 +    when I start as a clone
 +    show
 +    forever
-        if <(y position) < [180]> then
+        if <(y positie) < [180]> then
             change y by (1)
             wait (0.02) secs
         else

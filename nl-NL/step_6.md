@@ -1,6 +1,6 @@
 ## Wedstrijdelement toevoegen
 
-Je game werkt en nu kun je punten verzamelen, speciale power-ups verdienen en verliezen. Het wordt al wat! Misschien is het leuk om een wedstrijdelement toe te voegen - zoals bijvoorbeeld een personage dat een beetje beweegt, maar dat je niet aan mag raken? Dit lijkt op vijanden in de traditionele platformgames (zoals Super Mario) waar we ons hier door laten inspireren.
+Je game werkt en nu kun je punten verzamelen, speciale power-ups verdienen en verliezen. Het wordt al wat! Misschien is het leuk om een wedstrijdelement toe te voegen - zoals bijvoorbeeld een personage dat een beetje beweegt, maar dat je niet aan mag raken? Dit lijkt op vijanden in de traditionele platformgames \(zoals Super Mario\) waar we ons hier door laten inspireren.
 
 --- task ---
 
@@ -77,7 +77,7 @@ Het hoofdblok van mijn `Player Character` sprite ziet er nu zo uit:
     reset-spel :: custom
     forever
         nauurkunde :: custom
-        if <(y position) < [-179]> then
+        if <(y positie) < [-179]> then
             hide
             reset-speler :: custom
             change [levens v] by (-1)

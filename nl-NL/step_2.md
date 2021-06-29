@@ -26,7 +26,7 @@ Kijk eerst eens hoe de code is samengesteld. Het gebruikt veel blokken van **Mij
 
 --- /task ---
 
-In de bovenstaande code roept de `herhaal`{:class="block3control"} lus van het hoofdspel het `natuurkunde`{:class="block3myblocks"} blok aan om een heleboel dingen te doen! Ze gescheiden houden op deze manier maakt het gemakkelijk om de belangrijkste lus lezen en te begrijpen wat er wanneer gebeurt, zonder zorgen over **hoe** het gebeurt.
+In de bovenstaande code roept de `herhaal`{:class="block3control"} lus van het hoofdspel het `natuurkunde`{:class="block3myblocks"} blok aan om een heleboel dingen te doen! Ze gescheiden houden op deze manier maakt het gemakkelijk om de belangrijkste lus te lezen en te begrijpen wat er wanneer gebeurt, zonder zorgen over **hoe** het gebeurt.
 
 Kijk nu naar de `reset spel`{:class = "block3myblocks"} en `reset speler`{:class="block3myblocks"} blokken en merk op:
     1. Ze doen behoorlijk normale dingen, zoals het instellen van variabelen en ervoor zorgen dat het personage op de juiste manier ronddraait

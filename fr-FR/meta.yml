@@ -1,7 +1,8 @@
 ---
 title: Attrape-pet
 hero_image: images/banner.png
-description: Crée un jeu de type plateforme et ajoute tes propres niveaux, pouvoirs et personnages.
+description: Crée un jeu de type plateforme et ajoute tes propres niveaux, pouvoirs
+  et personnages.
 theme: orange
 listed: true
 copyedit: true
@@ -12,14 +13,16 @@ site_areas: coderdojo, projects
 hardware: ''
 software: scratch
 version: 3.0.0
-last_tested: "2018-04-23"
+last_tested: '2018-04-23'
 steps:
-  - title: Introduction
-  - title: Mise en place
-  - title: Perdre la partie
-  - title: Power-ups
-  - title: Super power-ups !
-  - title: Ajouter de la difficulté
-  - title: Niveau 2
-  - title: Plateformes mobiles
-  - title: Et ensuite ?
+- title: Introduction
+  completion: engaged
+- title: Mise en place
+- title: Perdre la partie
+- title: Power-ups
+- title: Super power-ups !
+- title: Ajouter de la difficulté
+- title: Niveau 2
+  completion: internal
+- title: Plateformes mobiles
+- title: Et ensuite ?

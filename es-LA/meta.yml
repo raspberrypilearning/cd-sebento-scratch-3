@@ -15,13 +15,15 @@ version: 3.0.0
 last_tested: '2018-04-23'
 steps:
 - title: Introducción
-  completion: engaged
 - title: Preparando todo
 - title: Perdiendo el juego
+  completion:
+  - engaged
 - title: Recompensas
 - title: "¡Súper recompensas!"
 - title: Añadiendo algo de competencia
 - title: Nivel 2
-  completion: internal
 - title: Plataformas móviles
+  completion:
+  - internal
 - title: "¿Qué sigue?"

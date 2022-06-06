@@ -16,13 +16,15 @@ version: 3.0.0
 last_tested: '2018-04-23'
 steps:
 - title: Introduction
-  completion: engaged
 - title: Mise en place
 - title: Perdre la partie
+  completion:
+  - engaged
 - title: Power-ups
 - title: Super power-ups !
 - title: Ajouter de la difficulté
 - title: Niveau 2
-  completion: internal
 - title: Plateformes mobiles
+  completion:
+  - internal
 - title: Et ensuite ?

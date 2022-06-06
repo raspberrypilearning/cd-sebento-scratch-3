@@ -16,13 +16,15 @@ version: 3.0.0
 last_tested: '2018-04-23'
 steps:
 - title: Εισαγωγή
-  completion: engaged
 - title: Πρώτες ρυθμίσεις
 - title: Χάνοντας το παιχνίδι
+  completion:
+  - engaged
 - title: Βραβεία
 - title: Σούπερ Βραβεία!
 - title: Προσθήκη ανταγωνισμού
 - title: Επίπεδο 2
-  completion: internal
 - title: Κινούμενες πλατφόρμες
+  completion:
+  - internal
 - title: Και τώρα;

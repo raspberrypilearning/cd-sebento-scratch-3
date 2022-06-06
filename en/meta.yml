@@ -15,13 +15,15 @@ version: 3.0.0
 last_tested: '2018-04-23'
 steps:
 - title: Introduction
-  completion: engaged
 - title: Setting things up
 - title: Losing the game
+  completion:
+  - engaged
 - title: Power-ups
 - title: Super power-ups!
 - title: Adding some competition
 - title: Level 2
-  completion: internal
 - title: Moving platforms
+  completion:
+  - internal
 - title: What next?
